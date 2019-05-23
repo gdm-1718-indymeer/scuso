@@ -67,3 +67,6 @@ dist/config/
 dist/utilities/
 dist/views/
 dist/index.js
+
+# Editor Files
+.idea/*
