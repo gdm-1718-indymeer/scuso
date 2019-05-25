@@ -3,11 +3,14 @@ Import extenal libraries
 */
 import React, { Component } from 'react';
 
+
 /*
 Import internal libraries
 */
 import Api from '../../services';
 import PostsList from '../../components/posts-list';
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 class HomePage extends Component {
     state = {
@@ -19,6 +22,31 @@ class HomePage extends Component {
     }
 
     loadPosts = () => {
+        const url = 'https://cors-anywhere.herokuapp.com/https://deschuur.org/agenda';
+
+        axios.get(url)
+        .then(response => {
+            console.log(response.data);
+            let getData = html => {
+                let data = [];
+                const $ = cheerio.load(html);
+                $('.card').each((i, elem) => {
+                  data.push({
+                    image : $(elem).find('.card.img').attr('img'),
+                    title : $(elem).text(),
+                    link : $(elem).find('a.storylink').attr('href')
+                  });
+                });
+                console.log(data);
+              }
+              
+              getData(response.data)
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    
+
         Api.findAllPosts()
             .then((data) => {
                 this.setState(prevState => ({
