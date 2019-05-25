@@ -32,9 +32,15 @@ class HomePage extends Component {
                 const $ = cheerio.load(html);
                 $('.card').each((i, elem) => {
                   data.push({
-                    image : $(elem).find('.card.img').attr('img'),
-                    title : $(elem).text(),
-                    link : $(elem).find('a.storylink').attr('href')
+                    image : $(elem).find('img').attr('src'),
+                    title : $(elem).find('h2').text(),
+                    link : 'https://deschuur.org' + $(elem).find('a').attr('href'),
+                    data: {
+                        day: $(elem).find('.date').children('.day').text(),
+                        day_month: $(elem).find('.day_month').text()
+                    },
+                    label: $(elem).find('.tag').text(),
+                    price: $(elem).find('.cost').text(),
                   });
                 });
                 console.log(data);
