@@ -1,0 +1,49 @@
+.top-bar {
+  text-align: center;
+  box-sizing: border-box;
+  font-weight: bold;
+  width: 100vw;
+  background-color: white;
+  padding: 0.1vh;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.3);
+}
+
+.messaging-container {
+  background-color: white;
+  height: 100vh;
+}
+
+.messages-container {
+  padding: 2vh 4vw;
+}
+
+.message-bubble {
+  padding: 1vh 3vw;
+  border-radius: 2vw;
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.you-parent {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.other-guy {
+  background-color: lightgray;
+}
+
+.you {
+  background-color: #D97D54;
+  color: white;
+}
+
+.messaging-input {
+  box-shadow: inset 0 0 1vw rgba(0, 0, 0, 0.3);
+  border: none;
+  width: 100vw;
+  padding: 3vh 3vw;
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+}
