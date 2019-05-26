@@ -5,8 +5,29 @@ body {
   font-family: $font-family-europa;
   font-weight: $euroReg;
 }
-
-
+h1{
+  color:white;
+  font-size: 4em;
+  position: relative;
+}
+h1::before{
+  content:"";
+  width: 85px;
+  background: white;
+  height: 8px;
+  position: absolute;
+  top: 120px;
+  left: 105px;
+}
+h1::after{
+  content:"";
+  height: 77px;
+  background: white;
+  width: 8px;
+  position: absolute;
+  top: 120px;
+  left: 105px;
+}
 .hidden{
       background-color: $color_lightb;
       padding: 5%;
@@ -25,32 +46,69 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+h2{
+  margin-left: 130px;
+  font-size: 3em;
+  position: relative;
+  display: inline;
+}
+h2::before{
+  content:"";
+  width: 85px;
+  background: black;
+  height: 8px;
+  position: absolute;
+  top: 58px;
+  left: -16px;
+}
+h2::after{
+  content:"";
+  height: 77px;
+  background: black;
+  width: 8px;
+  position: absolute;
+  top: -11px;
+  left: -20px;
+}
 
 .card {
   overflow: hidden;
+  height: 600px;
   border-radius: 15px;
   background: white;
-  border-radius: .25rem;
-  width: 30%;
-  margin: 10px;
+  border-radius: 20px;
+  width: 22%;
+  margin: 30px;
   box-shadow: 
     0 15px 30px 0 rgba(0,0,0,0.05),
     0 5px 15px 0 rgba(0,0,0,.05);
   transition: ease box-shadow 0.3s;
+  img{
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+   
+  }
+  
   &:hover {
    box-shadow: 
     0 15px 60px 0 rgba(0,0,0,0.08),
     0 5px 25px 0 rgba(0,0,0,.08);
+    img{
+      transform: scale(0.9);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
   }
 }
-
 .card-detail {
-  padding: .5rem 1rem;
+  padding: .15rem 5rem;
+  line-height: 20em;
   
   h3 { 
     font-size: 1.5rem; 
     margin-bottom: none; 
-    line-height: .09;
+    line-height: 1.5;
   }
   
   p {

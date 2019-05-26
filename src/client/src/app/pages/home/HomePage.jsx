@@ -81,10 +81,10 @@ class HomePage extends Component {
         
         return (
             <React.Fragment>
-                <h1 className="hidden">Overzicht Grafische en Digitale Media</h1>
+                <h1 className="hidden">SCUSO</h1>
                 <section className="section section--articles">
                     <header className="section__header">
-                        <h2 className="section__title">Nieuws</h2>
+                        <h2 className="section__title">Calender</h2>
                     </header>
                     <div className="section__content section__content--articles">
                         <div class="container">
