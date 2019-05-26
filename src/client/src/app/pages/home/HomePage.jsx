@@ -81,7 +81,10 @@ class HomePage extends Component {
         
         return (
             <React.Fragment>
-                <h1 className="hidden">SCUSO</h1>
+                <div className="headerwithsearch">
+                    <h1 className="hidden">SCUSO</h1>
+                    <input type="text" placeholder="search an event"></input>
+                </div>
                 <section className="section section--articles">
                     <header className="section__header">
                         <h2 className="section__title">Calender</h2>
