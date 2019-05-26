@@ -1,5 +1,73 @@
 @import '../_sass/abstracts/variables';
 
 body {
-  background: $color_blue;
+  background: $color_grey;
+  font-family: $font-family-europa;
+  font-weight: $euroReg;
 }
+
+
+.hidden{
+      background-color: $color_lightb;
+      padding: 5%;
+  }
+
+  @mixin nth-children($points...) {
+    @each $point in $points {
+        &:nth-child(#{$point}) {
+            @content;
+        }
+    }
+}
+.container {
+  margin: 2rem ;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 15px;
+  background: white;
+  border-radius: .25rem;
+  width: 30%;
+  margin: 10px;
+  box-shadow: 
+    0 15px 30px 0 rgba(0,0,0,0.05),
+    0 5px 15px 0 rgba(0,0,0,.05);
+  transition: ease box-shadow 0.3s;
+  &:hover {
+   box-shadow: 
+    0 15px 60px 0 rgba(0,0,0,0.08),
+    0 5px 25px 0 rgba(0,0,0,.08);
+  }
+}
+
+.card-detail {
+  padding: .5rem 1rem;
+  
+  h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: none; 
+    line-height: .09;
+  }
+  
+  p {
+    line-height: 1.3rem;  
+  }
+}
+
+.card-image {
+  margin: 0;
+  padding: 0;
+  height: 250px;
+  overflow: hidden;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
