@@ -41,9 +41,19 @@
 .messaging-input {
   box-shadow: inset 0 0 1vw rgba(0, 0, 0, 0.3);
   border: none;
-  width: 100vw;
+  width: 80vw;
   padding: 3vh 3vw;
   position: absolute;
   bottom: 0;
+  left: 0;
   box-sizing: border-box;
+}
+
+.send-button {
+  width: 20vw;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 3vh 3vw;
+  border: none;
 }

@@ -81,11 +81,7 @@ class MessagingPage extends Component {
                 </div>
                 {/*End Filler Code*/}
             </div>
-            <div className="compose-bar">
-                <input type="text" className="messaging-input" placeholder="Type here..." value={this.state.message}
-              onChange={e => this.setState({ message: e.target.value })}></input>
-    
-            </div>
+
         </div>
         )
     }
