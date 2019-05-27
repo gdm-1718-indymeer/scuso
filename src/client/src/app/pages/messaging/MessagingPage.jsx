@@ -74,23 +74,6 @@ class MessagingPage extends Component {
 
                 {/*Filler Code*/}
                 <div className="other-parent">
-                <div className="user-details">
-                    <div style={{ textAlign: "center" }}>
-                        {/*response
-                             <p>
-                                The temperature in Florence is: {response} °F
-                            </p>
-                        <p>Loading...</p>*/}
-                    </div>
-                        {/*
-                        this.state.users.map(user => 
-                            <tr>
-                            <td>Username: </td>
-                            <td>{user.name}</td>
-                            </tr>
-                        )
-                        */}
-                    </div>
                     <div className="message-bubble other-guy">Hi there!</div>
                 </div>
                 <div className="you-parent">

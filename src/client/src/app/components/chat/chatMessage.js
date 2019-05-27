@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default ({ name, message }) =>
-  <p>
-    <strong>{name}</strong> <em>{message}</em>
-  </p>
+    <div className="other-parent">
+        <div className="message-bubble other-guy">
+            <strong>{name}:&nbsp;</strong><em> {message}</em>
+        </div>
+    </div>
