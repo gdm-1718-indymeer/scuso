@@ -115,6 +115,11 @@ app.get('/swagger.json', (req, res) => {
 app.get('/docs', (req, res) => {
     res.render('redoc', {});
 });
+
+io.on('connection', function(socket){
+    console.log('a user connected');
+});
+
 app.get('*', (req, res) => {
     if (config.nodeEnvironment === 'Production') {
         res.sendFile(path.join(__dirname, './client/index.html'));
@@ -158,6 +163,14 @@ if (config.nodeEnvironment === 'Development') {
     const seeder = new Seeder();
     seeder.seed();
 }
+
+const io = require('socket.io')();
+io.on('connection', (client) => {
+    // here you can start emitting events to the client
+});
+const port = 8000;
+io.listen(port);
+console.log('listening on port ', port);
 
 // Export our app for testing purposes
 export default app;
