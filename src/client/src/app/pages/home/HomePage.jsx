@@ -12,8 +12,8 @@ Import internal libraries
 */
 import Api from '../../services';
 import PostsList from '../../components/posts-list';
-const axios = require('axios');
-const cheerio = require('cheerio');
+import axios from 'axios';
+import cheerio from 'cheerio';
 
 class HomePage extends Component {
     state = {

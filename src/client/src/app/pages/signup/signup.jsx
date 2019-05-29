@@ -1,13 +1,9 @@
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 /*
 Import extenal libraries
-
 */
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
-
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -65,64 +61,56 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
 });
+class Signup extends Component {
+	constructor() {
+		super()
+		this.state = {
+			username: '',
+      password: '',
+      email: '',
+			confirmPassword: '',
 
+		}
+		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleChange = this.handleChange.bind(this)
+	}
+	handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value
+		})
+	}
+	handleSubmit(event) {
+		console.log('sign-up handleSubmit, username: ')
+		console.log(this.state.username)
+		event.preventDefault()
 
-class LoginPage extends Component {
-  constructor() {
-      super()
-      this.state = {
-          email: '',
-          password: '',
-          redirectTo: null
-      }
-      this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleChange = this.handleChange.bind(this)
+		//request to server to add a new username/password
+		axios.post('/api/v1/user', {
+			username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+		})
+			.then(response => {
+				console.log(response)
+				if (!response.data.errmsg) {
+					console.log('successful signup')
+					this.setState({ //redirect to login page
+						redirectTo: '/'
+					})
+				} else {
+					console.log('username already taken')
+				}
+			}).catch(error => {
+				console.log('signup error: ')
+				console.log(error)
 
-  }
-
-  handleChange(event) {
-      this.setState({
-          [event.target.name]: event.target.value
-      })
-  }
-
-  handleSubmit(event) {
-      event.preventDefault()
-      console.log('handleSubmit')
-
-      axios
-          .get('/api/v1/users', {
-              username: this.state.email,
-              password: this.state.password
-          })
-          .then(response => {
-              console.log('login response: ')
-              console.log(response)
-              if (response.status === 200) {
-                  // update App.js state
-                  this.props.updateUser({
-                      loggedIn: true,
-                      email: response.data.email
-                  })
-                  // update the state to redirect to home
-                  this.setState({
-                      redirectTo: '/'
-                  })
-              }
-          }).catch(error => {
-              console.log('login error: ')
-              console.log(error);
-              
-          })
-  }
+			})
+	}
   render() {
     const { classes } = this.props;
-    if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />
-  } else {
 
+    
     return (
-   
       <React.Fragment>
         <CssBaseline />
         <Paper className={classes.paper}>
@@ -133,13 +121,20 @@ class LoginPage extends Component {
             Sign in
           </Typography>
           <form className={classes.form}>
+          <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="name">Name</InputLabel>
+              <Input name="username" type="text" id="username"  autoComplete="username"  value={this.state.username}
+							onChange={this.handleChange} autoFocus />
+            </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email"  value={this.state.email} onChange={this.handleChange} autoFocus />
+              <Input id="email" name="email" autoComplete="email" value={this.state.email}
+							onChange={this.handleChange}  />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" value={this.state.password} onChange={this.handleChange} autoComplete="current-password" />
+              <Input name="password" type="password" id="password" autoComplete="current-password"  value={this.state.password}
+							onChange={this.handleChange}/>
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -157,12 +152,9 @@ class LoginPage extends Component {
             </Button>
           </form>
         </Paper>
-      
       </React.Fragment>
-    
-      )
-    }
+    )
   }
 }
 
-export default withStyles(styles)(LoginPage);
+export default withStyles(styles)(Signup);
