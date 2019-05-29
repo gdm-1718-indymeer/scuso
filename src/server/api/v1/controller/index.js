@@ -4,6 +4,7 @@ import BlogController from './blog.controller';
 import CategoryController from './category.controller';
 import PostController from './post.controller';
 import UserController from './user.controller';
+import MessagesController from './messages.controller';
 
 export {
     AuthController,
@@ -11,4 +12,5 @@ export {
     CategoryController,
     PostController,
     UserController,
+    MessagesController,
 };

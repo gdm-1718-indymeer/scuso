@@ -54,9 +54,10 @@ class UserController {
 
     // ViewModel for Insert / Create
     create = (req, res) => {
-        const vm = {
-            categories: [],
-        };
+        const newUser = new User({
+            email: req.body.email
+        })
+        newUser.save().then(user => req.user.json())
         return res.status(200).json(vm);
     }
 
@@ -64,10 +65,8 @@ class UserController {
     store = async (req, res, next) => {
         try {
             const postCreate = new User({
-                title: req.body.title,
-                synopsis: req.body.synopsis,
-                body: req.body.body,
-                categoryId: req.body.categoryId
+                email: req.body.email,
+                password: req.body.password,
             });
             const user = await postCreate.save();
             return res.status(201).json(user);

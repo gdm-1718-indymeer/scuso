@@ -4,10 +4,11 @@ import slug from 'slug';
 
 const { Schema } = mongoose;
 
-let Message = new mongoose.Schema(
+let MessageSchema = new mongoose.Schema(
     {
         content: { type: String, required: true, max: 512 },
+        timestamp: { type: Date, default: Date.now }
     }
 );
 
-module.exports = Message = mongoose.model('Message', MessageSchema);
+export default mongoose.model('Message', MessageSchema);
