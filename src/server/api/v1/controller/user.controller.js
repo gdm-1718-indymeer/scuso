@@ -12,6 +12,7 @@ import { User } from '../database';
 import { APIError, handleAPIError } from '../../../utilities';
 
 class UserController {
+    
     // List all the models
     index = async (req, res, next) => {
         try {
@@ -64,10 +65,9 @@ class UserController {
     store = async (req, res, next) => {
         try {
             const postCreate = new User({
-                title: req.body.title,
-                synopsis: req.body.synopsis,
-                body: req.body.body,
-                categoryId: req.body.categoryId
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password,
             });
             const user = await postCreate.save();
             return res.status(201).json(user);
@@ -75,7 +75,6 @@ class UserController {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while saving the User!', next);
         }
     }
-
     // ViewModel for Edit / Update
     edit = async (req, res, next) => {
         const { id } = req.params;
