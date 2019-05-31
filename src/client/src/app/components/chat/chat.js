@@ -3,14 +3,14 @@ import ChatInput from './chatInput'
 import ChatMessage from './chatMessage'
 import Api from "../../services";
 
-const URL = 'ws://localhost:3030'
+const URL = 'ws://localhost:3030';
 
 class Chat extends Component {
   state = {
     name: 'Bob',
     messages: [],
     dbMessages: [],
-  }
+  };
 
   // ws = new WebSocket(URL)
 
@@ -20,7 +20,6 @@ class Chat extends Component {
           this.setState({
             dbMessages: data
           });
-          console.log(data)
         })
         .catch((error) => {
           console.log(error);
@@ -69,16 +68,23 @@ class Chat extends Component {
   render() {
     return (
       <div>
-        <label htmlFor="name">
-          Name:&nbsp;
-          <input
-            type="text"
-            id={'name'}
-            placeholder={'Enter your name...'}
-            value={this.state.name}
-            onChange={e => this.setState({ name: e.target.value })}
-          />
-        </label>
+          {this.state.dbMessages.map((message) =>
+              <div className="other-parent" key={message._id}>
+                  <div className="message-bubble other-guy" key={message._id}>
+                      {message.content}
+                  </div>
+              </div>
+          )}
+        {/*<label htmlFor="name">*/}
+        {/*  Name:&nbsp;*/}
+        {/*  <input*/}
+        {/*    type="text"*/}
+        {/*    id={'name'}*/}
+        {/*    placeholder={'Enter your name...'}*/}
+        {/*    value={this.state.name}*/}
+        {/*    onChange={e => this.setState({ name: e.target.value })}*/}
+        {/*  />*/}
+        {/*</label>*/}
         <ChatInput
           ws={this.ws}
           onSubmitMessage={messageString => this.submitMessage(messageString)}

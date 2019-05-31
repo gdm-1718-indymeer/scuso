@@ -42,13 +42,11 @@ class MessagingPage extends Component {
         return (
             <div className="messaging-container">
             <div className="top-bar"><h3>User Name</h3></div>
-            <div>
-                <button onClick={this.sendSocketIO}>Send Socket.io</button>
-            </div>
+            {/*<div>*/}
+            {/*    <button onClick={this.sendSocketIO}>Send Socket.io</button>*/}
+            {/*</div>*/}
             <div className="messages-container">
-
-            <Chat />
-
+                <Chat />
             </div>
 
         </div>

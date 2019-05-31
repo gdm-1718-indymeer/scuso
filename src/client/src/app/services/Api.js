@@ -30,10 +30,8 @@ class Api {
 
     static loadMessages = async () => {
         let url = `${this.URL}/messages`;
-        const response = await fetch(`${url}`).then((resp)=> {
-            // return resp.json()
-            console.log(resp.json())
-        })
+        const response = await fetch(`${url}`)
+        return await response.json()
     }
 }
 // export { subscribeToTimer };

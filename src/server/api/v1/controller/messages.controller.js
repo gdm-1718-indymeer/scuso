@@ -15,8 +15,8 @@ class MessagesController {
     // List all the models
     index = async (req, res, next) => {
         try {
-            const blogs = await Blog.find()
-            return res.status(200).json(blogs);
+            const messages = await Messages.find()
+            return res.status(200).json(messages);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
         }
