@@ -9,19 +9,22 @@ class Chat extends Component {
   state = {
     name: 'Bob',
     messages: [],
-    dbMessages: ['test'],
+    dbMessages: [],
   }
 
   // ws = new WebSocket(URL)
 
   componentWillMount() {
-    const ml = Api.loadMessages().body;
-    this.setState(state => {
-      const list = state.dbMessages.concat(ml);
-      return list
-    });
-    console.log(ml)
-    console.log(this.state.dbMessages)
+    Api.loadMessages()
+        .then((data) => {
+          this.setState({
+            dbMessages: data
+          });
+          console.log(data)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   }
 
   // componentDidMount() {
@@ -80,12 +83,12 @@ class Chat extends Component {
           ws={this.ws}
           onSubmitMessage={messageString => this.submitMessage(messageString)}
         />
-        {/*{this.state.dbMessages.map((message, index) =>*/}
-        {/*  <ChatMessage*/}
-        {/*    key={index}*/}
-        {/*    message={message.content}*/}
-        {/*  />,*/}
-        {/*)}*/}
+        {this.state.dbMessages.map((message, index) =>
+          <ChatMessage
+            key={index}
+            message={message.content}
+          />,
+        )}
       </div>
     )
   }

@@ -15,28 +15,10 @@ class MessagesController {
     // List all the models
     index = async (req, res, next) => {
         try {
-            // const { limit, skip } = req.query;
-            // let posts = null;
-            // if (limit && skip) {
-            //     const options = {
-            //         page: parseInt(skip, 10) || 1,
-            //         limit: parseInt(limit, 10) || 10,
-            //         populate: 'category',
-            //         sort: { created_at: -1 },
-            //     };
-            //     posts = await User.paginate({}, options);
-            // } else {
-            //     posts = await User.find().populate('category').sort({ created_at: -1 }).exec();
-            // }
-            //
-            // if (posts === undefined || posts === null) {
-            //     throw new APIError(404, 'Collection for posts not found!');
-            // }
-            // return res.status(200).json(posts);
-            Messages.find()
-                .then(mess => res.json(mess))
+            const blogs = await Blog.find()
+            return res.status(200).json(blogs);
         } catch (err) {
-            return handleAPIError(500, err.message || 'Some error occurred while retrieving posts', next);
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
         }
     };
     //

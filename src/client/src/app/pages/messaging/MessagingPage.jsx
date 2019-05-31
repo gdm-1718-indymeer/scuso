@@ -49,14 +49,6 @@ class MessagingPage extends Component {
 
             <Chat />
 
-                {/*Filler Code*/}
-                <div className="other-parent">
-                    <div className="message-bubble other-guy">Hi there!</div>
-                </div>
-                <div className="you-parent">
-                    <div className="message-bubble you">Oi! Sup?</div>
-                </div>
-                {/*End Filler Code*/}
             </div>
 
         </div>

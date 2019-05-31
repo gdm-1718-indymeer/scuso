@@ -28,16 +28,12 @@ class Api {
             .join('&');
     }
 
-    static loadMessages = async() => {
+    static loadMessages = async () => {
         let url = `${this.URL}/messages`;
-        const response = await fetch(`${url}`, {
-            headers : {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        });
-        // console.log(response.json());
-        return await response.json();
+        const response = await fetch(`${url}`).then((resp)=> {
+            // return resp.json()
+            console.log(resp.json())
+        })
     }
 }
 // export { subscribeToTimer };
