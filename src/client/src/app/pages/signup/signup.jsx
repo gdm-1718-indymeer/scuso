@@ -18,6 +18,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+
 /*
 Material UI
 */
@@ -66,19 +67,24 @@ class Signup extends Component {
 		super()
 		this.state = {
 			username: '',
-      password: '',
       email: '',
-			confirmPassword: '',
+      redirectTo: null,
+      localProvider:{
+        password: ''
+      }
+      
 
-		}
+    }
+  
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
-	}
-	handleChange(event) {
+    this.handleChange = this.handleChange.bind(this)
+  }
+  
+	handleChange(event, value) {
 		this.setState({
 			[event.target.name]: event.target.value
 		})
-	}
+  }
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.username)
@@ -87,16 +93,14 @@ class Signup extends Component {
 		//request to server to add a new username/password
 		axios.post('/api/v1/users/', {
 			username: this.state.username,
-      password: this.state.password,
+      localProvider: this.state.localProvider.password,
       email: this.state.email,
 		})
 			.then(response => {
 				console.log(response)
 				if (!response.data.errmsg) {
-					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/'
-					})
+          console.log('successful signup')
+          this.props.history.push("/");
 				} else {
 					console.log('username already taken')
 				}
@@ -133,8 +137,8 @@ class Signup extends Component {
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password"  value={this.state.password}
-							onChange={this.handleChange}/>
+              <Input name="password" type="password" id="password" autoComplete="current-password" 
+							onChange={this.handleChange} value={this.state.password}/>
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

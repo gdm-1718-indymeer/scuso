@@ -27,6 +27,7 @@ import Signup from './app/pages/signup'
 import LoginForm from './app/pages/login'
 import Navbar from './app/components/navbar'
 import Home from './app/pages/home'
+import signup from './app/pages/signup';
 
 class App extends Component {
   constructor() {
@@ -80,23 +81,28 @@ class App extends Component {
           <p>Join the party, {this.state.username}!</p>
         }
         {/* Routes to different components */}
-        <Router
+        <Router>
+        <Route
           exact path="/"
-          component={Home} />
-        <Router
+          exact component={Home} />
+        <Route
           path="/login"
+          exact component={ LoginForm }
           render={() =>
             <LoginForm
               updateUser={this.updateUser}
             />}
         />
-        <Router
+        <Route
           path="/signup"
+           exact component={ signup }
+
           render={() =>
             <Signup/>}
         />
-      <Router>
+      <Route>
       <Main />
+      </Route>
       </Router>
 
       </div>
