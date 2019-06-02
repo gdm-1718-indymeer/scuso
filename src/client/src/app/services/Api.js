@@ -33,7 +33,12 @@ class Api {
         const response = await fetch(`${url}`)
         return await response.json()
     }
+
+    static sendMessage = async () => {
+        let url = `${this.URL}/messages/create`;
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
 }
-// export { subscribeToTimer };
 
 export default Api;

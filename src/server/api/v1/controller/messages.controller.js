@@ -39,7 +39,9 @@ class MessagesController {
     // ViewModel for Insert / Create
     create = (req, res) => {
         const newMessage = new Messages({
-            content: req.body.content
+            conversation_id: 'me_u',
+            content: req.body.content,
+            sent_by: req.body.sent_by,
         });
         newMessage.save().then(message => res.json(message))
         return res.status(200).json(newMessage);

@@ -21,6 +21,7 @@ class Chat extends Component {
                 this.setState({
                     dbMessages: data
                 });
+                console.log(data)
             })
             .catch((error) => {
                 console.log(error);
@@ -59,12 +60,19 @@ class Chat extends Component {
     //   });
     // }
 
-    // submitMessage = messageString => {
-    //   // on submitting the ChatInput form, send the message, add it to the list and reset the input
-    //   const message = { name: this.state.name, message: messageString }
-    //   this.ws.send(JSON.stringify(message))
-    //   this.addMessage(message)
-    // }
+    submitMessage = messageString => {
+      // const message = { name: this.state.name, message: messageString }
+        console.log('Fired')
+        console.log(messageString)
+      Api.sendMessage({
+          content: messageString,
+          sent_by: 'disguy'
+      }).then((resp) => {
+          console.log(resp)
+      }).catch((err) => {
+          console.log(err)
+      })
+    }
 
     render() {
         return (
@@ -87,6 +95,7 @@ class Chat extends Component {
                     <ChatMessage
                         key={index}
                         message={message.content}
+                        from={message.sent_by}
                     />,
                 )}
             </div>
