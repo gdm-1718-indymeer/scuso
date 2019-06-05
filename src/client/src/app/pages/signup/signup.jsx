@@ -107,7 +107,7 @@ class Signup extends Component {
 				console.log(response)
 				if (!response.data.errmsg) {
           console.log('successful signup')
-          this.props.history.push("/");
+          this.props.history.push("/login");
 				} else {
 					console.log('username already taken')
 				}

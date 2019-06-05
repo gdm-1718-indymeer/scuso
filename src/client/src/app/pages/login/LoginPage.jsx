@@ -21,7 +21,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-
 /*
 Material UI
 */
@@ -91,7 +90,7 @@ class LoginPage extends Component {
       console.log('handleSubmit')
 
       axios
-          .get('/api/v1/users', {
+          .post('api/v1//login/local', {
               username: this.state.email,
               password: this.state.password
           })
@@ -100,10 +99,10 @@ class LoginPage extends Component {
               console.log(response)
               if (response.status === 200) {
                   // update App.js state
-                  this.props.updateUser({
+                 /* this.props.updateUser({
                       loggedIn: true,
                       email: response.data.email
-                  })
+                  })*/
                   // update the state to redirect to home
                   this.setState({
                       redirectTo: '/'
