@@ -62,15 +62,18 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
 });
+
 class Signup extends Component {
-	constructor() {
+  constructor() {
 		super()
 		this.state = {
 			username: '',
       email: '',
       redirectTo: null,
       localProvider:{
-        password: ''
+        password: {
+          value:''
+        }
       }
       
 
@@ -79,11 +82,19 @@ class Signup extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
-  
-	handleChange(event, value) {
-		this.setState({
-			[event.target.name]: event.target.value
-		})
+  handleInputChange(event, value){
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+  }
+  handleChange(el) {
+    let inputName = el.target.name;
+    let inputValue = el.target.value;
+
+    let statusCopy = Object.assign({}, this.state);
+    statusCopy.localProvider[inputName].value = inputValue;
+
+    this.setState(statusCopy);
   }
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
@@ -92,9 +103,7 @@ class Signup extends Component {
 
 		//request to server to add a new username/password
 		axios.post('/api/v1/users/', {
-			username: this.state.username,
-      localProvider: this.state.localProvider.password,
-      email: this.state.email,
+			...this.state
 		})
 			.then(response => {
 				console.log(response)
@@ -109,11 +118,12 @@ class Signup extends Component {
 				console.log(error)
 
 			})
-	}
+  }  
   render() {
     const { classes } = this.props;
 
     
+
     return (
       <React.Fragment>
         <CssBaseline />
@@ -124,21 +134,18 @@ class Signup extends Component {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form}>
+          <form  className={classes.form}>
           <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="name">Name</InputLabel>
-              <Input name="username" type="text" id="username"  autoComplete="username"  value={this.state.username}
-							onChange={this.handleChange} autoFocus />
+              <Input name="username" type="text" id="username"  autoComplete="username" onChange={this.handleInputChange}  />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" value={this.state.email}
-							onChange={this.handleChange}  />
+              <Input id="email" name="email" autoComplete="email" onChange={this.handleInputChange} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password" 
-							onChange={this.handleChange} value={this.state.password}/>
+              <Input type="password" id="password" autoComplete="current-password" onChange={this.handleChange} name="password"/>
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -149,8 +156,7 @@ class Signup extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
-              onClick={this.handleSubmit}
+
             >
               Sign in
             </Button>
