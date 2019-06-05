@@ -69,11 +69,8 @@ class Signup extends Component {
 		this.state = {
 			username: '',
       email: '',
-      redirectTo: null,
       localProvider:{
-        password: {
-          value:''
-        }
+        password:''
       }
       
 
@@ -81,20 +78,19 @@ class Signup extends Component {
   
 		this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+
   }
-  handleInputChange(event, value){
-      this.setState({
-        [event.target.name]: event.target.value
-      })
-  }
+ 
+
   handleChange(el) {
-    let inputName = el.target.name;
-    let inputValue = el.target.value;
-
-    let statusCopy = Object.assign({}, this.state);
-    statusCopy.localProvider[inputName].value = inputValue;
-
-    this.setState(statusCopy);
+    let nextState = {...this.state, localProvider: {...this.state.localProvider, [el.target.name]: [el.target.value] } };
+    this.setState(nextState);
+  }
+  handleInputChange(event, value) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
@@ -103,8 +99,10 @@ class Signup extends Component {
 
 		//request to server to add a new username/password
 		axios.post('/api/v1/users/', {
-			...this.state
-		})
+      username: this.state.username,
+      email: this.state.email,
+        password: this.state.localProvider.password
+    		})
 			.then(response => {
 				console.log(response)
 				if (!response.data.errmsg) {
@@ -114,6 +112,7 @@ class Signup extends Component {
 					console.log('username already taken')
 				}
 			}).catch(error => {
+        console.log(this.state)
 				console.log('signup error: ')
 				console.log(error)
 
@@ -137,11 +136,11 @@ class Signup extends Component {
           <form  className={classes.form}>
           <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="name">Name</InputLabel>
-              <Input name="username" type="text" id="username"  autoComplete="username" onChange={this.handleInputChange}  />
+              <Input name="username" type="text" id="username"  autoComplete="username" onChange={this.handleInputChange} value={this.state.username} />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" onChange={this.handleInputChange} />
+              <Input id="email" name="email" autoComplete="email" onChange={this.handleInputChange} value={this.state.email}/>
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
@@ -156,6 +155,8 @@ class Signup extends Component {
               fullWidth
               variant="contained"
               color="primary"
+              className={classes.submit}
+              onClick={this.handleSubmit}
 
             >
               Sign in

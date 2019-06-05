@@ -81,28 +81,9 @@ class App extends Component {
           <p>Join the party, {this.state.username}!</p>
         }
         {/* Routes to different components */}
-        <Router>
-        <Route
-          exact path="/"
-          exact component={Home} />
-        <Route
-          path="/login"
-          exact component={ LoginForm }
-          render={() =>
-            <LoginForm
-              updateUser={this.updateUser}
-            />}
-        />
-        <Route
-          path="/signup"
-           exact component={ signup }
+       <Router>
+       <Main />
 
-          render={() =>
-            <Signup/>}
-        />
-      <Route>
-      <Main />
-      </Route>
       </Router>
 
       </div>

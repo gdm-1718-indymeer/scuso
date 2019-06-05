@@ -11,7 +11,6 @@ import bcrypt from 'bcrypt';
 Import internal libraries:
 - config
 */
-import { stringify } from 'querystring';
 import config from '../../../../config';
 
 /*
@@ -22,6 +21,10 @@ const { Schema } = mongoose;
 const UserSchema = new Schema(
     {
         username: {
+            type: String,
+            required: false,
+        },
+        password: {
             type: String,
             required: false,
         },
@@ -68,16 +71,16 @@ UserSchema.pre('validate', function (next) {
 UserSchema.pre('save', function (next) {
     const user = this;
 
-    if (!user.isModified('localProvider.password')) return next();// only hash the password if it has been modified (or is new)
+    if (!user.isModified('password')) return next();// only hash the password if it has been modified (or is new)
 
     try {
         return bcrypt.genSalt(config.auth.bcrypt.SALT_WORK_FACTOR, (errSalt, salt) => {
             if (errSalt) throw errSalt;
 
-            return bcrypt.hash(user.localProvider.password, salt, (errHash, hash) => {
+            return bcrypt.hash(user.password, salt, (errHash, hash) => {
                 if (errHash) throw errHash;
 
-                user.localProvider.password = hash;
+                user.password = hash;
                 return next();
             });
         });
