@@ -28,7 +28,9 @@ import Grid from '@material-ui/core/Grid';
 
 /*
 Components
+
 */
+import {login} from './UserFunction'
 
 /*
 Styling
@@ -72,9 +74,8 @@ class LoginPage extends Component {
       this.state = {
           email: '',
           password: '',
-          redirectTo: null
       }
-      this.handleSubmit = this.handleSubmit.bind(this)
+      this.onSubmit = this.onSubmit.bind(this)
       this.handleChange = this.handleChange.bind(this)
 
   }
@@ -84,36 +85,22 @@ class LoginPage extends Component {
           [event.target.name]: event.target.value
       })
   }
+  onSubmit(e){
+    e.preventDefault()
 
-  handleSubmit(event) {
-      event.preventDefault()
-      console.log('handleSubmit')
-
-      axios
-          .post('api/v1//login/local', {
-              username: this.state.email,
-              password: this.state.password
-          })
-          .then(response => {
-              console.log('login response: ')
-              console.log(response)
-              if (response.status === 200) {
-                  // update App.js state
-                 /* this.props.updateUser({
-                      loggedIn: true,
-                      email: response.data.email
-                  })*/
-                  // update the state to redirect to home
-                  this.setState({
-                      redirectTo: '/'
-                  })
-              }
-          }).catch(error => {
-              console.log('login error: ')
-              console.log(error);
-              
-          })
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    login(user).then(res => {
+      if(res){
+        this.props.history.push('/')
+      }
+    })
   }
+
+
+  
   render() {
     const { classes } = this.props;
     if (this.state.redirectTo) {
@@ -150,7 +137,7 @@ class LoginPage extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={this.handleSubmit}
+              onClick={this.onSubmit}
             >
               Sign in
             </Button>

@@ -70,6 +70,7 @@ class UserController {
                 password: req.body.password,
             });
             const user = await postCreate.save();
+            console.log(user);
             return res.status(201).json(user);
         } catch (err) {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while saving the User!', next);

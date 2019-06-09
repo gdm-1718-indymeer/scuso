@@ -20,6 +20,9 @@ class Api {
             .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
             .join('&');
     }
+    static comparePass = async (Authservice, initializeLocalStrategy ) => {
+        
+    }
 }
 
 export default Api;
