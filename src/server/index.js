@@ -31,8 +31,6 @@ import mongoose from 'mongoose';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import passport from 'passport';
-import socket_io from 'socket.io';
-
 
 /*
 Import internal libraries

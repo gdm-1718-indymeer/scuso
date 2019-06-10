@@ -22,16 +22,16 @@ class MessagesController {
         }
     };
 
-    conversations = async (req, res, next) => {
-        try {
-            const conversations = await db.collection('messages').find({
-                from:
-            })
-            return res.status(200).json(messages);
-        } catch (err) {
-            return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
-        }
-    };
+    // conversations = async (req, res, next) => {
+    //     try {
+    //         const conversations = await db.collection('messages').find({
+    //             from:
+    //         })
+    //         return res.status(200).json(messages);
+    //     } catch (err) {
+    //         return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
+    //     }
+    // };
     //
     // // Show specific model by id
     // show = async (req, res, next) => {

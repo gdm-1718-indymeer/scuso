@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import 'whatwg-fetch';
 import Chat from '../../components/chat/chat'
-import openSocket from 'socket.io-client';
 import Api from '../../services/';
 import ChatMessage from "../../components/chat/chatMessage";
 
