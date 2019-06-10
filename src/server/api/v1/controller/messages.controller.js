@@ -21,6 +21,17 @@ class MessagesController {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
         }
     };
+
+    conversations = async (req, res, next) => {
+        try {
+            const conversations = await db.collection('messages').find({
+                from:
+            })
+            return res.status(200).json(messages);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
+        }
+    };
     //
     // // Show specific model by id
     // show = async (req, res, next) => {
@@ -37,14 +48,15 @@ class MessagesController {
     // }
     //
     // ViewModel for Insert / Create
+
     create = (req, res) => {
         const newMessage = new Messages({
-            conversation_id: 'me_u',
+            from: req.body.from,
+            to: req.body.to,
             content: req.body.content,
-            sent_by: req.body.sent_by,
         });
         newMessage.save().then(message => res.json(message))
-        return res.status(200).json(newMessage);
+        // return res.status(200).json(newMessage);
     }
     //
     // Store / Create the new model

@@ -22,6 +22,9 @@ const initializeEndpoints = (parentRouter, authService) => {
      *         description: An array of blogs
      */
     parentRouter.get('/messages', messagesController.index);
+
+
+    parentRouter.get('/conversations', messagesController.conversations);
     /**
      * @swagger
      * /api/v1/blogs/create:
@@ -35,7 +38,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Create post
      */
-    parentRouter.get('/messages/create/', messagesController.create);
+    parentRouter.post('/messages/create', messagesController.create);
     /**
      * @swagger
      * /api/v1/blogs/{id}:

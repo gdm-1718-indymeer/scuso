@@ -1,3 +1,7 @@
+.body {
+  background-color: white;
+}
+
 .top-bar {
   text-align: center;
   box-sizing: border-box;
@@ -6,15 +10,16 @@
   background-color: white;
   padding: 0.1vh;
   box-shadow: 0 0 2vw rgba(0, 0, 0, 0.3);
+  position: fixed;
 }
 
 .messaging-container {
   background-color: white;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .messages-container {
-  padding: 2vh 4vw;
+  padding: 10vh 4vw;
 }
 
 .message-bubble {
@@ -44,7 +49,7 @@
   border: none;
   width: 80vw;
   padding: 3vh 3vw;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   box-sizing: border-box;
@@ -52,7 +57,7 @@
 
 .send-button {
   width: 20vw;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   padding: 3vh 3vw;

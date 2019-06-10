@@ -5,33 +5,29 @@ import Api from "../../services";
 
 const URL = 'ws://localhost:3030';
 
-class Chat extends Component {
+class ConversationList extends Component {
     state = {
-        otherPerson: 'Bob',
-        messages: [],
-        dbMessages: [],
+        conversations: []
     };
 
     // ws = new WebSocket(URL)
 
-    loadMessages() {
-        Api.loadMessages()
+    loadConversations() {
+        Api.loadConversations('Jonas')
             .then((data) => {
                 console.log('RUN')
                 this.setState({
-                    dbMessages: data
+                    conversations: data
                 });
                 console.log(data)
-                this.messagesEnd.scrollIntoView({behavior: "smooth"})
             })
             .catch((error) => {
-                console.log(error)
-                this.messagesEnd.scrollIntoView({behavior: "smooth"})
+                console.log(error);
             });
     }
 
     componentDidMount() {
-        this.loadMessages()
+        this.loadConversations()
     }
 
     // componentDidMount() {
@@ -71,9 +67,9 @@ class Chat extends Component {
         console.log('Fired')
         console.log(messageString)
         Api.sendMessage({
-            from: 'Jonas',
-            to: this.state.otherPerson,
+            conversation_id: 'me_u',
             content: messageString,
+            sent_by: 'Jonas'
         }).then((resp) => {
             this.loadMessages()
             console.log(resp)
@@ -85,30 +81,9 @@ class Chat extends Component {
     render() {
         return (
             <div>
-                {/*<label htmlFor="name">*/}
-                {/*  Name:&nbsp;*/}
-                {/*  <input*/}
-                {/*    type="text"*/}
-                {/*    id={'name'}*/}
-                {/*    placeholder={'Enter your name...'}*/}
-                {/*    value={this.state.name}*/}
-                {/*    onChange={e => this.setState({ name: e.target.value })}*/}
-                {/*  />*/}
-                {/*</label>*/}
-                <ChatInput
-                    ws={this.ws}
-                    onSubmitMessage={messageString => this.submitMessage(messageString)}
-                />
-                {this.state.dbMessages.map((message, index) =>
-                    <ChatMessage
-                        key={index}
-                        message={message.content}
-                        from={message.from}
-                    />,
+                {this.state.conversations.map((message, index) =>
+                    <ConversationThumb />,
                 )}
-                <div ref={(el) => {
-                    this.messagesEnd = el;
-                }}/>
             </div>
         )
     }
