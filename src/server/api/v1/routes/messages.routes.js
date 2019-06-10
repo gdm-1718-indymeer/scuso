@@ -24,7 +24,7 @@ const initializeEndpoints = (parentRouter, authService) => {
     parentRouter.get('/messages', messagesController.index);
 
 
-    parentRouter.get('/conversations', messagesController.conversations);
+    // parentRouter.get('/conversations', messagesController.conversations);
     /**
      * @swagger
      * /api/v1/blogs/create:
