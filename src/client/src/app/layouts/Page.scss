@@ -2,5 +2,173 @@
 @import 'Messaging';
 
 body {
-  background: $color_blue;
+  background: $color_grey;
+  font-family: $font-family-europa;
+  font-weight: $euroReg;
 }
+h1{
+  color:white;
+  font-size: 4em;
+  position: relative;
+}
+h1::before{
+  content:"";
+  width: 85px;
+  background: white;
+  height: 8px;
+  position: absolute;
+  top: -8px;
+  left: -10px;
+}
+h1::after{
+  content:"";
+  height: 77px;
+  background: white;
+  width: 8px;
+  position: absolute;
+  top: -8px;
+  left: -17px;
+}
+.headerwithsearch{
+      background-color: $color_lightb;
+      padding: 5%;
+      margin-bottom: 50px;
+      input{
+        padding: 25px 25px 8px 25px;
+        background: $color_lightb;
+        border: none;
+        width: 600px;
+        border-bottom: 1px solid white;
+        color: white;
+        font-size: 2em;
+        position: relative;
+        &::placeholder{
+          color: white;
+        }
+        &:selection{
+          border: 2px solid white;
+          
+        }
+       
+      }
+      
+
+  }
+
+  @mixin nth-children($points...) {
+    @each $point in $points {
+        &:nth-child(#{$point}) {
+            @content;
+        }
+    }
+}
+.container {
+  margin: 2rem ;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+h2{
+  margin-left: 130px;
+  margin-top: 50px;
+  font-size: 3em;
+  position: relative;
+  display: inline;
+}
+h2::before{
+  content:"";
+  width: 85px;
+  background: black;
+  height: 8px;
+  position: absolute;
+  top: 58px;
+  left: -16px;
+}
+h2::after{
+  content:"";
+  height: 77px;
+  background: black;
+  width: 8px;
+  position: absolute;
+  top: -11px;
+  left: -20px;
+}
+
+.card {
+  overflow: hidden;
+  height: 600px;
+  border-radius: 15px;
+  background: white;
+  border-radius: 20px;
+  width: 22%;
+  margin: 30px;
+  box-shadow: 
+    0 15px 30px 0 rgba(0,0,0,0.05),
+    0 5px 15px 0 rgba(0,0,0,.05);
+  transition: ease box-shadow 0.3s;
+  img{
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+   
+  }
+  
+  &:hover {
+   box-shadow: 
+    0 15px 60px 0 rgba(0,0,0,0.08),
+    0 5px 25px 0 rgba(0,0,0,.08);
+    img{
+      transform: scale(0.9);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+  }
+}
+.card-detail {
+  padding: .15rem 5rem;
+  line-height: 20em;
+  
+  h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: none; 
+    line-height: 1.5;
+  }
+  
+  p {
+    line-height: 1.3rem;  
+  }
+}
+
+.card-image {
+  margin: 0;
+  padding: 0;
+  height: 250px;
+  overflow: hidden;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+/*
+
+MEDIA QUERIES FOR MOBILE AND TABLET..
+
+*/
+@media only screen and (max-width: 1600px) {
+  .card{
+    width: 45%;
+    margin: 30px auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .card{
+    width: 90%;
+    margin: 30px auto;
+  }
+}
+
+
