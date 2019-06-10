@@ -54,10 +54,9 @@ class UserController {
 
     // ViewModel for Insert / Create
     create = (req, res) => {
-        const newUser = new User({
-            email: req.body.email
-        })
-        newUser.save().then(user => req.user.json())
+        const vm = {
+            categories: [],
+        };
         return res.status(200).json(vm);
     }
 
@@ -65,10 +64,12 @@ class UserController {
     store = async (req, res, next) => {
         try {
             const postCreate = new User({
+                username: req.body.username,
                 email: req.body.email,
                 password: req.body.password,
             });
             const user = await postCreate.save();
+            console.log(user);
             return res.status(201).json(user);
         } catch (err) {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while saving the User!', next);
