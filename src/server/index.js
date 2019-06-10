@@ -115,6 +115,11 @@ app.get('/swagger.json', (req, res) => {
 app.get('/docs', (req, res) => {
     res.render('redoc', {});
 });
+
+/*io.on('connection', function(socket){
+    console.log('a user connected');
+});*/
+
 app.get('*', (req, res) => {
     if (config.nodeEnvironment === 'Production') {
         res.sendFile(path.join(__dirname, './client/index.html'));
@@ -159,5 +164,34 @@ if (config.nodeEnvironment === 'Development') {
     seeder.seed();
 }
 
+// socket.io
+// const WebSocket = require('ws');
+//
+// const wss = new WebSocket.Server({ port: 3030 });
+//
+// wss.on('connection', function connection(ws) {
+//   ws.on('message', function incoming(data) {
+//     wss.clients.forEach(function each(client) {
+//       if (client !== ws && client.readyState === WebSocket.OPEN) {
+//         client.send(data);
+//       }
+//     });
+//   });
+// });
+//const io = socket_io(app)
+/*
+const ht = require('http').Server(app);
+const io = require('socket.io')(ht);
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('User Disconnected');
+    });
+    socket.on('example_message', function(msg){
+        console.log('message: ' + msg);
+    });
+});
+io.listen(8000);
+*/
 // Export our app for testing purposes
 export default app;

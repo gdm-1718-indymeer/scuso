@@ -29,6 +29,7 @@ import PostDetailPage from './pages/post-detail';
 Import styling
 */
 import './Main.css';
+import MessagingPage from "./pages/messaging";
 
 class Main extends Component {
   render() {
@@ -42,6 +43,7 @@ class Main extends Component {
           <RouteWithLayout path="/login" layout={ LoginLayout } component={ LoginPage }></RouteWithLayout>
           <RouteWithLayout path="/signup" layout={ LoginLayout } component={ SignPage }></RouteWithLayout>
           <RouteWithLayout path="/admin" layout={ AdminLayout } component={ AdminPage }></RouteWithLayout>
+          <RouteWithLayout path="/messaging" component={ MessagingPage }></RouteWithLayout>
         </Switch>
       </div>
     );

@@ -1,0 +1,65 @@
+.body {
+  background-color: white;
+}
+
+.top-bar {
+  text-align: center;
+  box-sizing: border-box;
+  font-weight: bold;
+  width: 100vw;
+  background-color: white;
+  padding: 0.1vh;
+  box-shadow: 0 0 2vw rgba(0, 0, 0, 0.3);
+  position: fixed;
+}
+
+.messaging-container {
+  background-color: white;
+  min-height: 100vh;
+}
+
+.messages-container {
+  padding: 10vh 4vw;
+}
+
+.message-bubble {
+  padding: 1vh 3vw;
+  border-radius: 2vw;
+  display: inline-flex;
+  flex-direction: row;
+  margin: 1vh 0;
+}
+
+.you-parent {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.other-guy {
+  background-color: lightgray;
+}
+
+.you {
+  background-color: #D97D54;
+  color: white;
+}
+
+.messaging-input {
+  box-shadow: inset 0 0 1vw rgba(0, 0, 0, 0.3);
+  border: none;
+  width: 80vw;
+  padding: 3vh 3vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.send-button {
+  width: 20vw;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 3vh 3vw;
+  border: none;
+}
