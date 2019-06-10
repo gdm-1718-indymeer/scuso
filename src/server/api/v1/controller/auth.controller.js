@@ -9,11 +9,12 @@ import config from '../../../config';
 
 class AuthController {
     loginLocal = async (authService, req, res, next) => {
+        console.log('loginLocal')
         authService.passport.authenticate('local', config.jwtSession, (err, user, info) => {
             if (err) { return next(err); }
 
             if (!user) {
-                return next(new Error(req.body.password));
+                return next(new Error('hehehehehehehhe'));
             }
             req.auth = {
                 id: user.id,
