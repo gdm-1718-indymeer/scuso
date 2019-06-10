@@ -3,6 +3,7 @@ Import extenal libraries
 */
 import React, { Component } from 'react';
 import 'whatwg-fetch';
+import ConversationList from '../../components/chat/conversationList';
 import Chat from '../../components/chat/chat'
 import Api from '../../services/';
 import ChatMessage from "../../components/chat/chatMessage";
@@ -26,9 +27,8 @@ class MessagingPage extends Component {
             {/*<div>*/}
             {/*    <button onClick={this.sendSocketIO}>Send Socket.io</button>*/}
             {/*</div>*/}
-            <div className="messages-container">
-                <Chat />
-            </div>
+
+            <ConversationList />
 
         </div>
         )

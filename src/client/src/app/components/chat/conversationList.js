@@ -1,13 +1,27 @@
 import React, {Component} from 'react'
 import ChatInput from './chatInput'
 import ChatMessage from './chatMessage'
+import ConversationThumb from './conversationThumb'
 import Api from "../../services";
 
 const URL = 'ws://localhost:3030';
 
 class ConversationList extends Component {
     state = {
-        conversations: []
+        conversations: [
+            {
+                from: 'Carmen',
+                preview: 'Komde vanavond buite?',
+            },
+            {
+                from: 'Pascale',
+                preview: 'Wa doe je momenteel?',
+            },
+            {
+                from: 'Marc',
+                preview: 'Komde vanavond buite?',
+            }
+        ]
     };
 
     // ws = new WebSocket(URL)
@@ -27,40 +41,8 @@ class ConversationList extends Component {
     }
 
     componentDidMount() {
-        this.loadConversations()
+        // this.loadConversations()
     }
-
-    // componentDidMount() {
-    // this.ws.onopen = () => {
-    //   // on connecting, do nothing but log it to the console
-    //   console.log('connected')
-    //   // this.setState(mess)
-    // }
-
-    //   this.ws.onmessage = evt => {
-    //     // on receiving a message, add it to the list of messages
-    //     const message = JSON.parse(evt.data)
-    //     this.addMessage(message)
-    //   }
-    //
-    //   this.ws.onclose = () => {
-    //     console.log('disconnected')
-    //     // automatically try to reconnect on connection loss
-    //     this.setState({
-    //       ws: new WebSocket(URL),
-    //     })
-    //   }
-    // }
-    //
-    // addMessage = message => {
-    //   this.setState(state => {
-    //     const messages = state.messages.concat(message);
-    //     localStorage.setItem('conversation_id', messages)
-    //     return {
-    //       messages,
-    //     };
-    //   });
-    // }
 
     submitMessage = messageString => {
         // const message = { name: this.state.name, message: messageString }
@@ -80,13 +62,17 @@ class ConversationList extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.conversations.map((message, index) =>
-                    <ConversationThumb />,
+            <div className={'conversation-list-container'}>
+                {this.state.conversations.map((state, index) =>
+                    <ConversationThumb
+                        fromWho={state.from}
+                        preview={state.preview}
+                        key={index}
+                    />,
                 )}
             </div>
         )
     }
 }
 
-export default Chat
+export default ConversationList
