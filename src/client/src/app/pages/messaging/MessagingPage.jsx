@@ -2,17 +2,10 @@
 Import extenal libraries
 */
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import 'whatwg-fetch';
 import Chat from '../../components/chat/chat'
 import Api from '../../services/';
 import ChatMessage from "../../components/chat/chatMessage";
-
-// const socket = openSocket('http://localhost:8000');
-
-
 
 class MessagingPage extends Component {
    constructor(props) {
@@ -24,17 +17,6 @@ class MessagingPage extends Component {
             endpoint: 'http://127.0.0.1:8000',
         }
       }
-
-    // componentDidMount() {
-    //     const { endpoint } = this.state;
-    //     const socket = openSocket(endpoint);
-    //     socket.on("FromAPI", data => this.setState({ response: data }));
-    // }
-    //
-    // sendSocketIO() {
-    //
-    //     socket.emit('example_message', 'demo');
-    // }
 
     render() {
 
