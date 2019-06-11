@@ -73,6 +73,7 @@
 .thumb-container {
   padding: 1vw;
   border-bottom: 1px solid #EEEEEE;
+  z-index: -10;
 }
 
 .thumb-from {
@@ -91,5 +92,5 @@
 }
 
 .conv-thumb {
-  z-index: -10;
+  //z-index: -5;
 }

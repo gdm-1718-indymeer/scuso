@@ -60,17 +60,19 @@ class ConversationList extends Component {
         })
     }
 
-    openConversation (e) {
-        console.log(e.target)
+
+    openConversation = (ev, from) => {
+        ev.preventDefault();
+        console.log(from)
     }
 
     render() {
         return (
-            <div className={'conversation-list-container'} onClick={((e) => this.openConversation(e))}>
+            <div className={'conversation-list-container'}>
                 {this.state.conversations.map((state, index) =>
                     <ConversationThumb
                         className={'conv-thumb'}
-                        onClick={this.openConversation.bind(this)}
+                        onClick={(ev) => this.openConversation(ev, state.from)}
                         fromWho={state.from}
                         preview={state.preview}
                         key={index}
