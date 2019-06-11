@@ -63,3 +63,25 @@
   padding: 3vh 3vw;
   border: none;
 }
+
+// Conversation thumbnail
+.conversation-list-container {
+  padding: 10vh 0;
+  text-align: left;
+}
+
+.thumb-container {
+  padding: 1vw;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.thumb-from {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 1vh;
+  color: #D97D54;
+}
+
+.thumb-content {
+  margin: 1vh;
+}
