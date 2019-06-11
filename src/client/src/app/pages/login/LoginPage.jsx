@@ -98,6 +98,7 @@ class LoginPage extends Component {
       }
     })
   }
+  notify = () => toast("Wow so easy !");
 
 
   
@@ -143,7 +144,18 @@ class LoginPage extends Component {
             </Button>
           </form>
         </Paper>
-      
+        <button onClick={this.notify}>Notify !</button>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+          />
       </React.Fragment>
     
       )

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 /*
 Import extenal libraries
 */
@@ -69,10 +68,7 @@ class Signup extends Component {
 		this.state = {
 			username: '',
       email: '',
-      localProvider:{
         password:''
-      }
-      
 
     }
   
@@ -100,7 +96,7 @@ class Signup extends Component {
 		//request to server to add a new username/password
 		axios.post('/api/v1/users/', {
       username: this.state.username,
-      email: this.state.email,
+        email: this.state.email,
         password: this.state.localProvider.password
     		})
 			.then(response => {

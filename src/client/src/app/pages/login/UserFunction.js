@@ -1,4 +1,8 @@
 import axios from 'axios'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 export const login = user => {
     return axios
@@ -11,6 +15,9 @@ export const login = user => {
         return res.data
     })
     .catch(err => {
+        toast.error('🦄 WRONG EMAIL OR PASSWORD' ,err, {
+            position: toast.POSITION.BOTTOM_LEFT
+          });
         console.log(err)
     })
 }
