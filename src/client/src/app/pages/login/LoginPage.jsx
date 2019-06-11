@@ -21,6 +21,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+
 /*
 Material UI
 */
@@ -31,6 +32,7 @@ Components
 
 */
 import {login} from './UserFunction'
+import {toast, ToastContainer} from "react-toastify";
 
 /*
 Styling

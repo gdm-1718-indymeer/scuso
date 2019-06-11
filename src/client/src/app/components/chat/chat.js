@@ -47,22 +47,25 @@ class Chat extends Component {
 
     render() {
         return (
-            <div className="messages-container">
-                <div>
-                    <ChatInput
-                        ws={this.ws}
-                        onSubmitMessage={messageString => this.submitMessage(messageString)}
-                    />
-                    {this.state.dbMessages.map((message, index) =>
-                        <ChatMessage
-                            key={index}
-                            message={message.content}
-                            from={message.from}
-                        />,
-                    )}
-                    <div ref={(el) => {
-                        this.messagesEnd = el;
-                    }}/>
+            <div className="messaging-container">
+                <div className="top-bar"><h3>User Name</h3></div>
+                <div className="messages-container">
+                    <div>
+                        <ChatInput
+                            ws={this.ws}
+                            onSubmitMessage={messageString => this.submitMessage(messageString)}
+                        />
+                        {this.state.dbMessages.map((message, index) =>
+                            <ChatMessage
+                                key={index}
+                                message={message.content}
+                                from={message.from}
+                            />,
+                        )}
+                        <div ref={(el) => {
+                            this.messagesEnd = el;
+                        }}/>
+                    </div>
                 </div>
             </div>
         )

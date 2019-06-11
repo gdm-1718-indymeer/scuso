@@ -1,5 +1,5 @@
 /*
-Import extenal libraries
+Import external libraries
 */
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
