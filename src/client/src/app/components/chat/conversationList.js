@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import ChatInput from './chatInput'
 import ChatMessage from './chatMessage'
-import ConversationThumb from './conversationThumb'
 import Api from "../../services";
 
 const URL = 'ws://localhost:3030';
@@ -61,8 +60,8 @@ class ConversationList extends Component {
     }
 
 
-    openConversation = (ev, from) => {
-        ev.preventDefault();
+    openConversation = (event, from) => {
+        console.log('test')
         console.log(from)
     }
 
@@ -70,13 +69,10 @@ class ConversationList extends Component {
         return (
             <div className={'conversation-list-container'}>
                 {this.state.conversations.map((state, index) =>
-                    <ConversationThumb
-                        className={'conv-thumb'}
-                        onClick={(ev) => this.openConversation(ev, state.from)}
-                        fromWho={state.from}
-                        preview={state.preview}
-                        key={index}
-                    />,
+                    <div className={'thumb-container'} key={index} onClick={(ev) => this.readMoreHandler(ev, state.from)}>
+                        <p className={'thumb-from'}>{state.from}</p>
+                        <p className={'thumb-content'}>{state.preview}</p>
+                    </div>,
                 )}
             </div>
         )

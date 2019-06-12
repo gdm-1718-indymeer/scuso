@@ -73,7 +73,7 @@
 .thumb-container {
   padding: 1vw;
   border-bottom: 1px solid #EEEEEE;
-  z-index: -10;
+  background-color: white;
 }
 
 .thumb-from {
@@ -89,8 +89,4 @@
 
 .chat-comp {
   display: none;
-}
-
-.conv-thumb {
-  //z-index: -5;
 }
