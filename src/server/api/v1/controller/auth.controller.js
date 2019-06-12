@@ -23,7 +23,7 @@ class AuthController {
             console.log(token);
 
             return res.status(200).json({
-                email: user.email,
+                email: req.auth,
                 token: `${token}`,
                 strategy: 'local',
             });

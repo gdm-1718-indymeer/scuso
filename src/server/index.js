@@ -128,7 +128,7 @@ app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '/../client/build/index.html'));
     }
 });
-app.use('/messaging', passport.authenticate('jwt', { session: false }), apiV1Router);
+app.use('/messaging', verifyToken, apiV1Router);
 
 // Global Application Error Handler
 app.use((error, req, res, next) => {
@@ -166,6 +166,26 @@ if (config.nodeEnvironment === 'Development') {
     seeder.seed();
 }
 
+// Verify Token
+function verifyToken(req, res, next) {
+    // Get auth header value
+    const bearerHeader = req.headers['authorization'];
+    // Check if bearer is undefined
+    if(typeof bearerHeader !== 'undefined') {
+      // Split at the space
+      const bearer = bearerHeader.split(' ');
+      // Get token from array
+      const bearerToken = bearer[1];
+      // Set the token
+      req.token = bearerToken;
+      // Next middleware
+      next();
+    } else {
+      // Forbidden
+      res.sendStatus(403);
+    }
+  
+  }
 // socket.io
 // const WebSocket = require('ws');
 //

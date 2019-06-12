@@ -33,7 +33,6 @@ class HomePage extends Component {
 
         axios.get(url)
         .then(response => {
-            console.log(response.data);
             let getData = html => {
                 let data = [];
                 const $ = cheerio.load(html);
