@@ -14,6 +14,8 @@ import Api from '../../services';
 import PostsList from '../../components/posts-list';
 import axios from 'axios';
 import cheerio from 'cheerio';
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 class HomePage extends Component {
     state = {
@@ -50,13 +52,12 @@ class HomePage extends Component {
                   });
                 })
                 this.setState({ events: data })
-                console.log(data);
               }
               
             getData(response.data)
         })
         .catch(error => {
-            console.log(error);
+            toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
         })
 
         Api.findAllPosts()
@@ -67,7 +68,8 @@ class HomePage extends Component {
                 }));
             })
             .catch((error) => {
-                console.log(error);
+                toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
+
             });
     }
 

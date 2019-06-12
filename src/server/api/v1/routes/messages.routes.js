@@ -21,7 +21,9 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: An array of blogs
      */
-    parentRouter.get('/messages', messagesController.index);
+    parentRouter.get('/messages', messagesController.index, function(req, res, next) {
+        res.send(req.user);
+    });
 
 
     // parentRouter.get('/conversations', messagesController.conversations);

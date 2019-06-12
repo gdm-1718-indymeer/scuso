@@ -116,6 +116,7 @@ app.get('/docs', (req, res) => {
     res.render('redoc', {});
 });
 
+
 /*io.on('connection', function(socket){
     console.log('a user connected');
 });*/
@@ -127,6 +128,7 @@ app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '/../client/build/index.html'));
     }
 });
+app.use('/messaging', passport.authenticate('jwt', { session: false }), apiV1Router);
 
 // Global Application Error Handler
 app.use((error, req, res, next) => {

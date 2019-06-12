@@ -33,6 +33,8 @@ Components
 */
 import {login} from './UserFunction'
 import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 /*
 Styling
@@ -101,7 +103,6 @@ class LoginPage extends Component {
     })
   }
   notify = () => toast("Wow so easy !");
-
 
   
   render() {

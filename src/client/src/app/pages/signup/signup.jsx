@@ -26,6 +26,10 @@ import Grid from '@material-ui/core/Grid';
 /*
 Components
 */
+import { FormErrors } from './formError';
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 /*
 Styling
@@ -57,6 +61,13 @@ const styles = theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
   },
+  panelDefault:{
+    color: '#D8000C',
+    backgroundColor: '#FFD2D2',
+    padding: `2px`,
+    fontSize: '1em',
+    verticalAlign: 'middle',
+  },
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
@@ -68,7 +79,11 @@ class Signup extends Component {
 		this.state = {
 			username: '',
       email: '',
-        password:''
+      password:'',
+      formErrors: {email: '', password: ''},
+      emailValid: false,
+      passwordValid: false,
+      formValid: false
 
     }
   
@@ -83,11 +98,43 @@ class Signup extends Component {
     let nextState = {...this.state, localProvider: {...this.state.localProvider, [el.target.name]: [el.target.value] } };
     this.setState(nextState);
   }
-  handleInputChange(event, value) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+  handleInputChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({[name]: value},
+                  () => { this.validateField(name, value) });
   }
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let emailValid = this.state.emailValid;
+    let passwordValid = this.state.passwordValid;
+
+    switch(fieldName) {
+      case 'email':
+        emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+        break;
+      case 'password':
+        passwordValid = value.length >= 6;
+        fieldValidationErrors.password = passwordValid ? '': ' is too short';
+        break;
+      default:
+        break;
+    }
+    this.setState({formErrors: fieldValidationErrors,
+                    emailValid: emailValid,
+                    passwordValid: passwordValid
+                  }, this.validateForm);
+  }
+
+  validateForm() {
+    this.setState({formValid: this.state.emailValid && this.state.passwordValid});
+  }
+
+  errorClass(error) {
+    return(error.length === 0 ? '' : 'has-error');
+  }
+
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.username)
@@ -97,7 +144,7 @@ class Signup extends Component {
 		axios.post('/api/v1/users/', {
       username: this.state.username,
         email: this.state.email,
-        password: this.state.localProvider.password
+        password: this.state.password
     		})
 			.then(response => {
 				console.log(response)
@@ -110,10 +157,14 @@ class Signup extends Component {
 			}).catch(error => {
         console.log(this.state)
 				console.log('signup error: ')
-				console.log(error)
+        console.log(error)
+        toast.error('👻 Email already exist' ,error, {
+          position: toast.POSITION.BOTTOM_LEFT
+        });
 
 			})
   }  
+
   render() {
     const { classes } = this.props;
 
@@ -121,6 +172,7 @@ class Signup extends Component {
 
     return (
       <React.Fragment>
+          
         <CssBaseline />
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -129,18 +181,19 @@ class Signup extends Component {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+      
           <form  className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
+          <FormControl margin="normal"  required fullWidth>
               <InputLabel htmlFor="name">Name</InputLabel>
               <Input name="username" type="text" id="username"  autoComplete="username" onChange={this.handleInputChange} value={this.state.username} />
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl margin="normal"  className={`form-group ${this.errorClass(this.state.formErrors.email)}`} required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
               <Input id="email" name="email" autoComplete="email" onChange={this.handleInputChange} value={this.state.email}/>
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+            <FormControl margin="normal" className={`form-group ${this.errorClass(this.state.formErrors.password)}`} required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input type="password" id="password" autoComplete="current-password" onChange={this.handleChange} name="password"/>
+              <Input type="password" id="password" autoComplete="current-password" onChange={this.handleInputChange}  value={this.state.password} name="password"/>
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -159,6 +212,20 @@ class Signup extends Component {
             </Button>
           </form>
         </Paper>
+        <div >
+          <FormErrors className={classes.panelDefault} formErrors={this.state.formErrors} />
+        </div>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+          />
       </React.Fragment>
     )
   }

@@ -15,7 +15,7 @@ export const login = user => {
         return res.data.token
     })
     .catch(err => {
-        toast.error('🦄 WRONG EMAIL OR PASSWORD' ,err, {
+        toast.error('😥 WRONG EMAIL OR PASSWORD' ,err, {
             position: toast.POSITION.BOTTOM_LEFT
           });
         console.log(err)
