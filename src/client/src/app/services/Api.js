@@ -1,10 +1,5 @@
-// import openSocket from 'socket.io-client';
-// const  socket = openSocket('http://localhost:8000');
+import axios from 'axios'
 
-// function subscribeToTimer(cb) {
-//     socket.on('timer', timestamp => cb(null, timestamp));
-//     socket.emit('subscribeToTimer', 1000);
-//   }
 class Api {
     static URL = '/api/v1';
 
@@ -34,11 +29,32 @@ class Api {
         return await response.json()
     }
 
-    static sendMessage = async () => {
+    //BUGGED
+    static sendMessage = async (req) => {
         let url = `${this.URL}/messages/create`;
-        const response = await fetch(`${url}`)
-        return await response.json()
+        axios.post(url, {
+            conversation_id: '5cfd52d1d0a74c5c33df48a3_5cfd44a2eb54ec196a385f83',
+            from: '5cfd52d1d0a74c5c33df48a3',
+            to: '5cfd44a2eb54ec196a385f83',
+            content: req.content,
+        }).then((response) => {
+            return response.json()
+        }).catch((err) => {
+            return err
+        })
     }
+
+    static loadConversations = async () => {
+        let url = `${this.URL}/messages/loadconversations`;
+        axios.post(url, {
+            userId: localStorage.getItem('userId')
+        }).then((response) => {
+            return response
+        }).catch((err) => {
+            return err
+        })
+    }
+
 }
 
 export default Api;

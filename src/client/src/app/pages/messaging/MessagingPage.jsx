@@ -25,6 +25,7 @@ class MessagingPage extends Component {
             <div>
                 <div className="top-bar"><h3>User Name</h3></div>
                 <ConversationList />
+                {/*<Chat />*/}
             </div>
         )
     }

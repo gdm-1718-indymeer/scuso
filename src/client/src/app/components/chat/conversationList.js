@@ -26,17 +26,7 @@ class ConversationList extends Component {
     // ws = new WebSocket(URL)
 
     loadConversations() {
-        Api.loadConversations('Jonas')
-            .then((data) => {
-                console.log('RUN')
-                this.setState({
-                    conversations: data
-                });
-                console.log(data)
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+
     }
 
     componentDidMount() {
@@ -61,15 +51,26 @@ class ConversationList extends Component {
 
 
     openConversation = (event, from) => {
-        console.log('test')
         console.log(from)
+        Api.loadConversations()
+        .then((data) => {
+            // this.setState({
+            //     conversations: data
+            // });
+            console.log('THEN')
+            console.log(data)
+        })
+        .catch((error) => {
+            console.log('ERROR')
+            console.log(error);
+        });
     }
 
     render() {
         return (
             <div className={'conversation-list-container'}>
                 {this.state.conversations.map((state, index) =>
-                    <div className={'thumb-container'} key={index} onClick={(ev) => this.readMoreHandler(ev, state.from)}>
+                    <div className={'thumb-container'} key={index} onClick={(ev) => this.openConversation(ev, state.from)}>
                         <p className={'thumb-from'}>{state.from}</p>
                         <p className={'thumb-content'}>{state.preview}</p>
                     </div>,

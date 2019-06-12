@@ -22,16 +22,15 @@ class MessagesController {
         }
     };
 
-    // conversations = async (req, res, next) => {
-    //     try {
-    //         const conversations = await db.collection('messages').find({
-    //             from:
-    //         })
-    //         return res.status(200).json(messages);
-    //     } catch (err) {
-    //         return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
-    //     }
-    // };
+    loadConversations = async (req, res, next) => {
+        try {
+            const messages = await Messages.find({ from: req.body.userId })
+            return res.status(200).json(messages);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
+        }
+    };
+
     //
     // // Show specific model by id
     // show = async (req, res, next) => {
@@ -51,6 +50,7 @@ class MessagesController {
 
     create = (req, res) => {
         const newMessage = new Messages({
+            conversation_id: req.body.conversation_id,
             from: req.body.from,
             to: req.body.to,
             content: req.body.content,
@@ -58,6 +58,8 @@ class MessagesController {
         newMessage.save().then(message => res.json(message))
         // return res.status(200).json(newMessage);
     }
+
+
     //
     // Store / Create the new model
     // store = async (req, res, next) => {

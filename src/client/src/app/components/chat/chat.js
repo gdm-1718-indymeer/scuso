@@ -34,7 +34,7 @@ class Chat extends Component {
         // const message = { name: this.state.name, message: messageString }
         console.log(messageString)
         Api.sendMessage({
-            from: localStorage.getItem('userToken'),
+            from: localStorage.getItem('userId'),
             to: this.state.otherPerson,
             content: messageString,
         }).then((resp) => {
