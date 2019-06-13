@@ -34,14 +34,11 @@ class Api {
         return await response.json()
     }
 
-<<<<<<< HEAD
-=======
     static sendMessage = async () => {
         let url = `${this.URL}/messages/create`;
         const response = await fetch(`${url}`)
         return await response.json()
     }
->>>>>>> ca87ba9bbdb76d880c2eefee8f0bd2674bc353b9
 }
 
 export default Api;

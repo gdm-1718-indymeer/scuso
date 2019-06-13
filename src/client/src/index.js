@@ -27,6 +27,7 @@ document.querySelector('.nohamburger').addEventListener('click', function(){
 
 let windowwidth;
 
+
 setInterval(function(){
     windowwidth = window.innerWidth;
     console.log(windowwidth)
@@ -43,4 +44,4 @@ setInterval(function(){
         document.querySelector('.nohamburger').style.display = "none"; 
         document.querySelector('.hamburger').style.display = "block"; 
     }
-}, 500)
+}, 5000)

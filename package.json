@@ -31,11 +31,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-<<<<<<< HEAD
-    "react-icons": "^3.7.0",
-=======
     "react": "^16.8.6",
->>>>>>> ca87ba9bbdb76d880c2eefee8f0bd2674bc353b9
     "slug": "^1.1.0",
     "swagger-jsdoc": "^3.2.9",
     "swagger-ui-express": "^4.0.2",
