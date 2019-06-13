@@ -43,27 +43,18 @@ class ConversationList extends Component {
             sent_by: 'Jonas'
         }).then((resp) => {
             this.loadMessages()
-            console.log(resp)
         }).catch((err) => {
             console.log(err)
         })
     }
 
 
-    openConversation = (event, from) => {
+    openConversation = async (event, from) => {
         console.log(from)
-        Api.loadConversations()
-        .then((data) => {
-            // this.setState({
-            //     conversations: data
-            // });
-            console.log('THEN')
-            console.log(data)
+        await Api.loadConversations().then((res) => {
+            console.log('tester')
+            console.log(res)
         })
-        .catch((error) => {
-            console.log('ERROR')
-            console.log(error);
-        });
     }
 
     render() {

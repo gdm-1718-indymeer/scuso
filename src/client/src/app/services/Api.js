@@ -46,9 +46,10 @@ class Api {
 
     static loadConversations = async () => {
         let url = `${this.URL}/messages/loadconversations`;
-        axios.post(url, {
+        await axios.post(url, {
             userId: localStorage.getItem('userId')
         }).then((response) => {
+            console.log('then')
             return response
         }).catch((err) => {
             return err

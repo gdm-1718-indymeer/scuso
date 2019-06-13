@@ -61,10 +61,12 @@ class HomePage extends Component {
 
         Api.findAllPosts()
             .then((data) => {
+                console.log('postloader')
                 this.setState(prevState => ({
                     ...prevState,
                     posts: data
                 }));
+                console.log(this.state.posts)
             })
             .catch((error) => {
                 toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
@@ -109,6 +111,15 @@ class HomePage extends Component {
                              </div>
                          </section>
                          )}
+                        {this.state && this.state.posts && this.state.posts.map(item =>
+                            <section class="card">
+                                <img class="card-image loading" src={item.image || <Skeleton count={5} />}/>
+                                <div class="card-detail">
+                                    <h3 class="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
+                                    <p class="card-description loading">{item.bio}</p>
+                                </div>
+                            </section>
+                        )}
                         </div>
 
 

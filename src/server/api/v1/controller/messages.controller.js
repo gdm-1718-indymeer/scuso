@@ -27,7 +27,7 @@ class MessagesController {
             const messages = await Messages.find({ from: req.body.userId })
             return res.status(200).json(messages);
         } catch (err) {
-            return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving conversations', next);
         }
     };
 
