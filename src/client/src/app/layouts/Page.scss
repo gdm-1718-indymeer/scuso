@@ -70,7 +70,7 @@ h1::after{
   left: -17px;
 }
 .body{
-  width: calc(100%-200px);
+  width: calc(100%- 200px);
   margin-left: 200px;
   transition: margin-left 0.2s ease;
 }
@@ -101,7 +101,7 @@ h1::after{
         &::placeholder{
           color: white;
         }
-        &:selection{
+        &::selection{
           border: 2px solid white;
           
         }
@@ -186,7 +186,7 @@ h2::after{
   
   h3 { 
     font-size: 1.5rem; 
-    margin-bottom: none; 
+    margin-bottom: 0;
     line-height: 1.5;
   }
   
