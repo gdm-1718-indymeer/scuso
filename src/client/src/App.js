@@ -45,12 +45,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser()
-
-    //JONAS
-    Api.checkUser().then((response) => {
-      console.log(response)
-    })
-    //JONAS
   }
 
   updateUser (userObject) {
