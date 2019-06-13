@@ -27,7 +27,7 @@ class MessagesController {
         console.log('CONTROLLER')
         try {
             console.log(req.params.id)
-            const messages = await Messages.find({ from: req.params.id }).populate('from')
+            const messages = await Messages.find({ $or:[ {'from':req.params.id}, {'to':req.params.id} ] })
             return res.status(200).json(messages);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving conversations', next);
@@ -51,10 +51,12 @@ class MessagesController {
     //
     // ViewModel for Insert / Create
 
-    create = (req, res) => {
+    create = async (req, res) => {
+        const t = await User.findById(req.body.from)
         const newMessage = new Messages({
             conversation_id: req.body.conversation_id,
             from: req.body.from,
+            from_name: t.username,
             to: req.body.to,
             content: req.body.content,
         });

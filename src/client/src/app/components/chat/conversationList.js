@@ -58,7 +58,7 @@ class ConversationList extends Component {
 
 
     openConversation = async (event, from) => {
-        console.log(from)``
+        console.log(from)
     }
 
     render() {
@@ -66,7 +66,7 @@ class ConversationList extends Component {
             <div className={'conversation-list-container'}>
                 {this.state.conversations.map((state, index) =>
                     <div className={'thumb-container'} key={index} onClick={(ev) => this.openConversation(ev, state.from)}>
-                        <p className={'thumb-from'}>{state.from}</p>
+                        <p className={'thumb-from'}>{state.from_name}</p>
                         <p className={'thumb-content'}>{state.content}</p>
                     </div>,
                 )}
