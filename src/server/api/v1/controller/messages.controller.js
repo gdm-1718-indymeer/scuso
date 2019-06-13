@@ -9,6 +9,7 @@ Import the internal libraries:
 - errorHandler
 */
 import { Messages } from '../database';
+import { User } from '../database';
 import { APIError, handleAPIError } from '../../../utilities';
 
 class MessagesController {
@@ -26,7 +27,7 @@ class MessagesController {
         console.log('CONTROLLER')
         try {
             console.log(req.params.id)
-            const messages = await Messages.find({ from: req.params.id })
+            const messages = await Messages.find({ from: req.params.id }).populate('from')
             return res.status(200).json(messages);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving conversations', next);
