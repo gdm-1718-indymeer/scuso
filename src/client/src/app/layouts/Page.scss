@@ -26,8 +26,34 @@ nav ul li a{
   font-size: 1.3em;
   position: relative;
 }
+.exerptTitle{
+  text-align: left;
+}
+.exerptDescription{
+  text-align: left;
+}
 ul{
   list-style-type: none;
+}
+.blogpost{
+  width: 60%;
+  margin: 15px auto;
+  padding: 25px;
+  transition: all 0.2s ease
+}
+.blogpost:nth-child(even){
+  background: #FFF;
+}
+.blogpost:nth-child(odd){
+  background: #EFEFEF;
+}
+.blogpost:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+-moz-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+
 }
 .mainNav{
   margin-bottom: 205px;
@@ -122,7 +148,7 @@ h1::after{
   margin: 2rem ;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
 }
 h2{
   margin-left: 130px;
@@ -224,16 +250,6 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
   .card{
     width: 45%;
     margin: 30px auto;
-  }
-  .navigation{
-    left: -200px;
-  }
-  .body{
-    margin-left: 0px;
-    width: 100%;
-  }
-  .hamburger{
-    display: block;
   }
 }
 
