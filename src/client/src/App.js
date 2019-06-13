@@ -78,8 +78,25 @@ class App extends Component {
 
   render() {
     return (
+      
       <div className="App">
-   
+        <div className="hamburger">☰</div>
+            <nav className="nav">
+
+            <div className="navigation">
+                    <div className="mainnavigation">
+                    <ul className="mainNav">
+                        <li><a href="/">home</a></li>
+                        <li><a href="/login">login</a></li>
+                        <li><a href="/messages">messages</a></li>
+                    </ul>
+                    <ul className="secondNav">
+                        <li><a href="http://www.maesfranckxruben.be/landingpage/">about</a></li>
+
+                    </ul>
+                    </div>
+            </div>
+            </nav>
         {/*<Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />*/}
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
