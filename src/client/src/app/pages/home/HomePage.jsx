@@ -98,6 +98,7 @@ class HomePage extends Component {
                 <div className="hamburger">hamburger</div>
                 <div className="nohamburger">hamburger</div>
                 <div className="navigation">
+                    
                     <nav className="nav">
                         <ul className="mainNav">
                             <li><a href="/">home</a></li>
