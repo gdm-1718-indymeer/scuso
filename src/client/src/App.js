@@ -21,6 +21,7 @@ class App extends Component {
 export default App;*/
 
 import axios from 'axios'
+import Api from './app/services'
 import { Route, Link } from 'react-router-dom'
 // components
 import Signup from './app/pages/signup'
@@ -44,6 +45,12 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser()
+
+    //JONAS
+    Api.checkUser().then((response) => {
+      console.log(response)
+    })
+    //JONAS
   }
 
   updateUser (userObject) {

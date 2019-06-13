@@ -42,7 +42,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      */
     parentRouter.post('/messages/create', messagesController.create);
 
-    parentRouter.post('/messages/loadconversations', messagesController.loadConversations);
+    parentRouter.get('/messages/loadconversations/:id', messagesController.loadConversations);
     /**
      * @swagger
      * /api/v1/blogs/{id}:
