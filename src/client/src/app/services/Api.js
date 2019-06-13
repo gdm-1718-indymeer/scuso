@@ -1,3 +1,10 @@
+// import openSocket from 'socket.io-client';
+// const  socket = openSocket('http://localhost:8000');
+
+// function subscribeToTimer(cb) {
+//     socket.on('timer', timestamp => cb(null, timestamp));
+//     socket.emit('subscribeToTimer', 1000);
+//   }
 class Api {
     static URL = '/api/v1';
 
@@ -20,6 +27,21 @@ class Api {
             .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
             .join('&');
     }
+
+    static loadMessages = async () => {
+        let url = `${this.URL}/messages`;
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
+
+<<<<<<< HEAD
+=======
+    static sendMessage = async () => {
+        let url = `${this.URL}/messages/create`;
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
+>>>>>>> ca87ba9bbdb76d880c2eefee8f0bd2674bc353b9
 }
 
 export default Api;

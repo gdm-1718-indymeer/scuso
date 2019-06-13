@@ -1,4 +1,9 @@
 @import '../_sass/abstracts/variables';
+<<<<<<< HEAD
+@import 'blogposties';
+=======
+@import 'Messaging';
+>>>>>>> ca87ba9bbdb76d880c2eefee8f0bd2674bc353b9
 
 body {
   background: $color_grey;
@@ -19,6 +24,11 @@ h1::before{
   top: -8px;
   left: -10px;
 }
+.body{
+  width: calc(100%-200px);
+  margin-left: 200px;
+  transition: margin-left 0.2s ease;
+}
 h1::after{
   content:"";
   height: 77px;
@@ -28,9 +38,50 @@ h1::after{
   top: -8px;
   left: -17px;
 }
+nav ul li a{
+  text-decoration: none;
+  color: #222;
+  font-size: 1.3em;
+  position: relative;
+}
+ul{
+  list-style-type: none;
+}
+.mainNav{
+  margin-bottom: 205px;
+}
+nav ul li{
+  margin: 55px 0px;
+  font-family: avenir;
+  font-weight: 900;
+}
+nav ul li a:before{
+  content:'';
+  position: absolute;
+  width: 0px;
+  height: 4px;
+  background: #222;
+  top: 30px;
+  transition: all 0.2s ease;
+}
+nav ul li a:hover:before{
+  width: 36px;
+}
+.navigation{
+  position: fixed;
+  width: 200px;
+  height: 100vh;
+  background: white;
+  -webkit-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+-moz-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+  z-index: 500;
+  transition: all 0.2s ease;
+}
 .headerwithsearch{
       background-color: $color_lightb;
-      padding: 5%;
+      padding: 2%;
+      padding-left: 125px;
       margin-bottom: 50px;
       input{
         padding: 25px 25px 8px 25px;
@@ -65,7 +116,12 @@ h1::after{
   margin: 2rem ;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
+}
+.Forum{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
 }
 h2{
   margin-left: 130px;
@@ -149,8 +205,16 @@ h2::after{
     height: auto;
   }
 }
-
-
+.hamburger{
+  display: none;
+  position: fixed;
+  z-index: 1000;
+}
+.nohamburger{
+  display: none;
+  position: fixed;
+  z-index: 1000;
+}
 /*
 
 MEDIA QUERIES FOR MOBILE AND TABLET..
@@ -161,12 +225,29 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
     width: 45%;
     margin: 30px auto;
   }
+  .navigation{
+    left: -200px;
+  }
+  .body{
+    margin-left: 0px;
+    width: 100%;
+  }
+  .hamburger{
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 800px) {
   .card{
     width: 90%;
     margin: 30px auto;
+  }
+  .navigation{
+    left: -200px;
+  }
+  .body{
+    margin-left: 0px;
+    width: 100%;
   }
 }
 

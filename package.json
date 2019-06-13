@@ -8,6 +8,11 @@
   "license": "MIT",
   "dependencies": {
     "@babel/register": "^7.4.0",
+    "@fortawesome/fontawesome-svg-core": "1.2.0",
+    "@fortawesome/free-regular-svg-icons": "5.1.0",
+    "@fortawesome/free-solid-svg-icons": "5.1.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.2",
@@ -26,6 +31,11 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+<<<<<<< HEAD
+    "react-icons": "^3.7.0",
+=======
+    "react": "^16.8.6",
+>>>>>>> ca87ba9bbdb76d880c2eefee8f0bd2674bc353b9
     "slug": "^1.1.0",
     "swagger-jsdoc": "^3.2.9",
     "swagger-ui-express": "^4.0.2",

@@ -1,13 +1,9 @@
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 /*
 Import extenal libraries
-
 */
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
-
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -21,6 +17,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+
+
 /*
 Material UI
 */
@@ -28,9 +26,7 @@ import Grid from '@material-ui/core/Grid';
 
 /*
 Components
-
 */
-import {login} from './UserFunction'
 
 /*
 Styling
@@ -67,48 +63,67 @@ const styles = theme => ({
   },
 });
 
-
-class LoginPage extends Component {
+class Signup extends Component {
   constructor() {
-      super()
-      this.state = {
-          email: '',
-          password: '',
+		super()
+		this.state = {
+			username: '',
+      email: '',
+      localProvider:{
+        password:''
       }
-      this.onSubmit = this.onSubmit.bind(this)
-      this.handleChange = this.handleChange.bind(this)
+      
 
-  }
-
-  handleChange(event) {
-      this.setState({
-          [event.target.name]: event.target.value
-      })
-  }
-  onSubmit(e){
-    e.preventDefault()
-
-    const user = {
-      email: this.state.email,
-      password: this.state.password
     }
-    login(user).then(res => {
-      if(res){
-        this.props.history.push('/')
-      }
+  
+		this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+
+  }
+ 
+
+  handleChange(el) {
+    let nextState = {...this.state, localProvider: {...this.state.localProvider, [el.target.name]: [el.target.value] } };
+    this.setState(nextState);
+  }
+  handleInputChange(event, value) {
+    this.setState({
+      [event.target.name]: event.target.value
     })
   }
+	handleSubmit(event) {
+		console.log('sign-up handleSubmit, username: ')
+		console.log(this.state.username)
+		event.preventDefault()
 
+		//request to server to add a new username/password
+		axios.post('/api/v1/users/', {
+      username: this.state.username,
+      email: this.state.email,
+        password: this.state.localProvider.password
+    		})
+			.then(response => {
+				console.log(response)
+				if (!response.data.errmsg) {
+          console.log('successful signup')
+          this.props.history.push("/login");
+				} else {
+					console.log('username already taken')
+				}
+			}).catch(error => {
+        console.log(this.state)
+				console.log('signup error: ')
+				console.log(error)
 
-  
+			})
+  }  
   render() {
     const { classes } = this.props;
-    if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />
-  } else {
+
+    
 
     return (
-   
       <React.Fragment>
         <CssBaseline />
         <Paper className={classes.paper}>
@@ -118,14 +133,18 @@ class LoginPage extends Component {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form}>
+          <form  className={classes.form}>
+          <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="name">Name</InputLabel>
+              <Input name="username" type="text" id="username"  autoComplete="username" onChange={this.handleInputChange} value={this.state.username} />
+            </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email"  value={this.state.email} onChange={this.handleChange} autoFocus />
+              <Input id="email" name="email" autoComplete="email" onChange={this.handleInputChange} value={this.state.email}/>
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" value={this.state.password} onChange={this.handleChange} autoComplete="current-password" />
+              <Input type="password" id="password" autoComplete="current-password" onChange={this.handleChange} name="password"/>
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -137,18 +156,16 @@ class LoginPage extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={this.onSubmit}
+              onClick={this.handleSubmit}
+
             >
               Sign in
             </Button>
           </form>
         </Paper>
-      
       </React.Fragment>
-    
-      )
-    }
+    )
   }
 }
 
-export default withStyles(styles)(LoginPage);
+export default withStyles(styles)(Signup);

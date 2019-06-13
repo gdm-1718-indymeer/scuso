@@ -1,0 +1,25 @@
+.blogpostlist>section:nth-child(odd){
+    background: #EFEFEF;
+}
+.blogpostlist>section:nth-child(even){
+    background: white;
+}
+.blogpost{
+    padding: 45px;;
+
+}
+.blogpostlist{
+    width: 100%;
+}
+.blogpost{
+    width: 60%;
+    margin: 15px auto;
+    transition: all 0.2s ease;
+    cursor:pointer;
+}
+.blogpost:hover{
+    transform: scale(1.05);
+    -webkit-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+-moz-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+}
