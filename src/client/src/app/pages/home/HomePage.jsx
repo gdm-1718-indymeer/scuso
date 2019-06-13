@@ -118,8 +118,8 @@ class HomePage extends Component {
                                 </div>
                             </section>
 
-                            {this.state && this.state.events && this.state.events.map(item =>
-                            <section class="card">
+                            {this.state && this.state.events && this.state.events.map((item, index) =>
+                            <section class="card" key={index}>
                                 <img class="card-image loading" src={item.image || <Skeleton count={5} />}/>
                                 <div class="card-detail">
                                 <h3 class="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
@@ -127,8 +127,8 @@ class HomePage extends Component {
                                 </div>
                             </section>
                             )}
-                            {this.state && this.state.posts && this.state.posts.map(item =>
-                                <section class="card">
+                            {this.state && this.state.posts && this.state.posts.map((item, index) =>
+                                <section class="card" key={index}>
                                     <div class="card-detail">
                                         <h3 class="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
                                         <p class="card-description loading">{item.synopsis}</p>
