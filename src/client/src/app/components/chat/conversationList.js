@@ -58,7 +58,7 @@ class ConversationList extends Component {
 
 
     openConversation = async (event, from) => {
-        console.log(from)
+        console.log(from)``
     }
 
     render() {

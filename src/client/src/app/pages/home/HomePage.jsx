@@ -89,6 +89,22 @@ class HomePage extends Component {
         
         return (
             <React.Fragment>
+            <div className="hamburger">hamburger</div>
+            <div className="nohamburger">hamburger</div>
+            <div className="navigation">
+                <nav className="nav">
+                    <ul className="mainNav">
+                        <li><a href="/">home</a></li>
+                        <li><a href="/login">login</a></li>
+                        <li><a href="/messages">messages</a></li>
+                    </ul>
+                    <ul className="secondNav">
+                        <li><a href="http://www.maesfranckxruben.be/landingpage/">about</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div className="body">
                 <div className="headerwithsearch">
                     <h1 className="hidden">SCUSO</h1>
                     <input type="text" placeholder="search an event"></input>
@@ -98,30 +114,29 @@ class HomePage extends Component {
                         <h2 className="section__title">Calender</h2>
                     </header>
                     <div className="section__content section__content--articles">
-                        <div class="container">
-                        <section class="card">
-                             <img class="card-image loading" src={ <Skeleton count={5} />}/>
-                             <div class="card-detail">
-                             <h3 class="card-title loading">{ <Skeleton count={5}/>}</h3>
-                             <p class="card-description loading">{<Skeleton count={5}/>}</p>
-                             </div>
-                         </section>
+                        <div className="container">
+                        <section className="card">
+                            <img className="card-image loading" src={ <Skeleton count={5} />}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
+                            <p className="card-description loading">{<Skeleton count={5}/>}</p>
+                            </div>
+                        </section>
 
-                        {this.state && this.state.events && this.state.events.map(item =>
-                         <section class="card">
-                             <img class="card-image loading" src={item.image || <Skeleton count={5} />}/>
-                             <div class="card-detail">
-                             <h3 class="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
-                             <p class="card-description loading">{item.bio}</p>
-                             </div>
-                         </section>
-                         )}
-                        {this.state && this.state.posts && this.state.posts.map(item =>
-                            <section class="card">
-                                <img class="card-image loading" src={item.image || <Skeleton count={5} />}/>
-                                <div class="card-detail">
-                                    <h3 class="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
-                                    <p class="card-description loading">{item.bio}</p>
+                        {this.state && this.state.events && this.state.events.map((item, index) =>
+                        <section className="card" key={index}>
+                            <img className="card-image loading" src={item.image || <Skeleton count={5} />}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
+                            <p className="card-description loading">{item.bio}</p>
+                            </div>
+                        </section>
+                        )}
+                        {this.state && this.state.posts && this.state.posts.map((item, index) =>
+                            <section className="blogpost" key={index}>
+                                <div className="blogexerpt">
+                                    <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
+                                    <p className="exerptDescription loading">{item.synopsis}</p>
                                 </div>
                             </section>
                         )}
@@ -134,6 +149,7 @@ class HomePage extends Component {
                         READ MORE
                     </footer>
                 </section>
+            </div>
                 <ToastContainer
           position="bottom-left"
           autoClose={5000}
