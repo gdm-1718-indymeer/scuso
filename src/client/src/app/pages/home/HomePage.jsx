@@ -19,7 +19,7 @@ class HomePage extends Component {
     state = {
         posts: [],
         events: [],
-
+        blogs:[]
     };
 
     componentWillMount() {
@@ -134,6 +134,7 @@ class HomePage extends Component {
                         READ MORE
                     </footer>
                 </section>
+                </div>
             </React.Fragment>
         )
     }
