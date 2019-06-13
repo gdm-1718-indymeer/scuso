@@ -29,8 +29,31 @@ nav ul li a{
 .exerptTitle{
   text-align: left;
 }
+.exerptDescription{
+  text-align: left;
+}
 ul{
   list-style-type: none;
+}
+.blogpost{
+  width: 60%;
+  margin: 15px auto;
+  padding: 25px;
+  transition: all 0.2s ease
+}
+.blogpost:nth-child(even){
+  background: #FFF;
+}
+.blogpost:nth-child(odd){
+  background: #EFEFEF;
+}
+.blogpost:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+-moz-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+
 }
 .mainNav{
   margin-bottom: 205px;
