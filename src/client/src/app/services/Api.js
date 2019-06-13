@@ -45,15 +45,17 @@ class Api {
     }
 
     static loadConversations = async () => {
-        let url = `${this.URL}/messages/loadconversations`;
-        await axios.post(url, {
-            userId: localStorage.getItem('userId')
-        }).then((response) => {
-            console.log('then')
-            return response
-        }).catch((err) => {
-            return err
-        })
+        let url = `${this.URL}/messages/loadconversations/${localStorage.getItem('userId')}`;
+        console.log(url)
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
+
+    static checkUser = async () => {
+        let url = `${this.URL}/users/${localStorage.getItem('userId')}`;
+        console.log(url)
+        const response = await fetch(`${url}`)
+        return await response.json()
     }
 
 }

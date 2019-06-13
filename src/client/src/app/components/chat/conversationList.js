@@ -30,7 +30,15 @@ class ConversationList extends Component {
     }
 
     componentDidMount() {
-        // this.loadConversations()
+        Api.loadConversations().then((res) => {
+            console.log('tester')
+            console.log(res)
+            this.setState({
+                conversations: res
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
     submitMessage = messageString => {
@@ -51,10 +59,7 @@ class ConversationList extends Component {
 
     openConversation = async (event, from) => {
         console.log(from)
-        await Api.loadConversations().then((res) => {
-            console.log('tester')
-            console.log(res)
-        })
+
     }
 
     render() {
@@ -63,7 +68,7 @@ class ConversationList extends Component {
                 {this.state.conversations.map((state, index) =>
                     <div className={'thumb-container'} key={index} onClick={(ev) => this.openConversation(ev, state.from)}>
                         <p className={'thumb-from'}>{state.from}</p>
-                        <p className={'thumb-content'}>{state.preview}</p>
+                        <p className={'thumb-content'}>{state.content}</p>
                     </div>,
                 )}
             </div>

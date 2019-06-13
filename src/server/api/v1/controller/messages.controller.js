@@ -23,8 +23,10 @@ class MessagesController {
     };
 
     loadConversations = async (req, res, next) => {
+        console.log('CONTROLLER')
         try {
-            const messages = await Messages.find({ from: req.body.userId })
+            console.log(req.params.id)
+            const messages = await Messages.find({ from: req.params.id })
             return res.status(200).json(messages);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving conversations', next);
