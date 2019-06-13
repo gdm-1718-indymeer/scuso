@@ -26,11 +26,20 @@ class HomePage extends Component {
     
     componentWillMount() {
         this.loadPosts();
+        let storage = localStorage.getItem('notiSeen');
+        if( storage === 'true'){
+        }else{
+            Api.checkUser().then((response) => {
 
-        Api.checkUser().then((response) => {
-            console.log(response.username)
-            toast(`👋 hello, how are you ${response.username}?`);
-          })
+                    toast(`👋 hello, how are you ${response.username}?`);
+                    localStorage.setItem('notiSeen', 'true');
+                }
+    
+              )
+              
+            
+        }
+    
     }
    
     loadPosts = () => {
