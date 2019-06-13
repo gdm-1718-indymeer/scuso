@@ -4,22 +4,22 @@ Import extenal libraries
 import React, { Component } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
+
+
+
 /*
 Import internal libraries
 */
-
 import Api from '../../services';
 import PostsList from '../../components/posts-list';
-import axios from 'axios';
-import cheerio from 'cheerio';
-
+const axios = require('axios');
+const cheerio = require('cheerio');
 
 class HomePage extends Component {
     state = {
         posts: [],
         events: [],
-        blogs:[],
-        
+
     };
 
     componentWillMount() {
@@ -62,9 +62,9 @@ class HomePage extends Component {
         Api.findAllPosts()
             .then((data) => {
                 this.setState(prevState => ({
-                    blogs: data
+                    ...prevState,
+                    posts: data
                 }));
-                console.log(data)
             })
             .catch((error) => {
                 console.log(error);
@@ -74,20 +74,6 @@ class HomePage extends Component {
     goToPostDetailPage = (id) => {
         this.props.history.push(`/news/${id}`);
     }
-
-    submitMessage = messageString => {
-        // const message = { name: this.state.name, message: messageString }
-          console.log('Fired')
-          console.log(messageString)
-        Api.sendMessage({
-            content: messageString,
-            sent_by: 'disguy'
-        }).then((resp) => {
-            console.log(resp)
-        }).catch((err) => {
-            console.log(err)
-        })
-      }
 
     render() {
         const { posts } = this.state.posts;
@@ -114,6 +100,7 @@ class HomePage extends Component {
                 <div className="body">
                 <div className="headerwithsearch">
                     <h1 className="hidden">SCUSO</h1>
+                    <input type="text" placeholder="search an event"></input>
                 </div>
                 <section className="section section--articles">
                     <header className="section__header">
@@ -128,30 +115,16 @@ class HomePage extends Component {
                              <p class="card-description loading">{<Skeleton count={5}/>}</p>
                              </div>
                          </section>
-                            {this.state && this.state.events && this.state.events.map(item =>
-                            <section class="card">
-                                <img class="card-image loading" src={item.image || <Skeleton count={5} />}/>
-                                <div class="card-detail">
-                                <h3 class="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
-                                <p class="card-description loading">{item.bio}</p>
-                                </div>
-                            </section>
-                            )}
-                         <div className="blogpostlist">
-                            {this.state.blogs.map(blog =>
-                                    <section class="blogpost">
-                                    
-                                    <div class="blogexerpt">
-                                    <h3 class="exerptTitle loading">{blog.title || <Skeleton count={5}/>}</h3>
-                                    <p class="exerptDescription loading">{blog.synopsis}</p>
-                                    </div>
-                                </section>
-                            )}
-                        </div>
-                            
 
-
-
+                        {this.state && this.state.events && this.state.events.map(item =>
+                         <section class="card">
+                             <img class="card-image loading" src={item.image || <Skeleton count={5} />}/>
+                             <div class="card-detail">
+                             <h3 class="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
+                             <p class="card-description loading">{item.bio}</p>
+                             </div>
+                         </section>
+                         )}
                         </div>
 
 
@@ -161,7 +134,6 @@ class HomePage extends Component {
                         READ MORE
                     </footer>
                 </section>
-                </div>
             </React.Fragment>
         )
     }

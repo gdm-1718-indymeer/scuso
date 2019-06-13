@@ -13,7 +13,7 @@ Import the internal libraries:
 - User
 */
 import { logger } from '../../../utilities';
-import { Blog, Category, Post, User, Message } from './schemas';
+import { Blog, Category, Post, User } from './schemas';
 
 class Seeder {
     constructor() {
@@ -21,7 +21,6 @@ class Seeder {
         this.categories = [];
         this.posts = [];
         this.users = [];
-        this.messages = [];
     }
 
     blogCreate = async (title, description) => {
