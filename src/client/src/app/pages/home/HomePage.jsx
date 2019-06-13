@@ -24,6 +24,7 @@ class HomePage extends Component {
 
     };
     
+    
     componentWillMount() {
         this.loadPosts();
         let storage = localStorage.getItem('notiSeen');
@@ -98,21 +99,8 @@ class HomePage extends Component {
         
         return (
             <React.Fragment>
-            <div className="hamburger">hamburger</div>
-            <div className="nohamburger">hamburger</div>
-            <div className="navigation">
-                <nav className="nav">
-                    <ul className="mainNav">
-                        <li><a href="/">home</a></li>
-                        <li><a href="/login">login</a></li>
-                        <li><a href="/messages">messages</a></li>
-                    </ul>
-                    <ul className="secondNav">
-                        <li><a href="http://www.maesfranckxruben.be/landingpage/">about</a></li>
+            
 
-                    </ul>
-                </nav>
-            </div>
             <div className="body">
                 <div className="headerwithsearch">
                     <h1 className="hidden">SCUSO</h1>
@@ -141,6 +129,7 @@ class HomePage extends Component {
                             </div>
                         </section>
                         )}
+                        <div>
                         {this.state && this.state.posts && this.state.posts.map((item, index) =>
                             <section className="blogpost" key={index}>
                                 <div className="blogexerpt">
@@ -150,7 +139,7 @@ class HomePage extends Component {
                             </section>
                         )}
                         </div>
-
+                        </div>
 
                         <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
                     </div>
@@ -173,6 +162,7 @@ class HomePage extends Component {
             </React.Fragment>
         )
     }
+    
 }
 
 export default (HomePage);
