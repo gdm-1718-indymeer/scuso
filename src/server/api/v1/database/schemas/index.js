@@ -4,6 +4,7 @@ import Category from './category.schema';
 import Post from './post.schema';
 import User from './user.schema';
 import Messages from './message.schema';
+import events from './events.schema';
 
 export {
     Blog,
@@ -11,4 +12,5 @@ export {
     Post,
     User,
     Messages,
+    events,
 };
