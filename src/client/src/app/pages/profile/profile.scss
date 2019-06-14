@@ -1,14 +1,14 @@
-header {
+.profileBody header {
     text-align: center;
     background: url('https://images.unsplash.com/photo-1560496110-85043a260f8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2978&q=80') no-repeat top center ;
     background-size: cover;
     overflow: hidden;
     padding-top: 60px;
   }
-  header {
+  .profileBody header {
     line-height: 1.5;
   }
-  header .profile-image {
+  .profileBody header .profile-image {
     margin-top: 50px;
     width: 150px;
     height: 150px;
@@ -16,22 +16,23 @@ header {
     border: 3px solid white;
     transition: all .5s;
   }
-  header .profile-image:hover {
+  .profileBody header .profile-image:hover {
     transform: scale(1.2) rotate(5deg);
   }
-  .tag {
+  .profileBody .tag {
     background-color: #efefef;
     color: black;
     padding: 10px;
     border-radius: 5px;
     display: table;
     margin: 10px auto;
+    z-index: 2;
   } 
-  .location {
+  .profileBody .location {
     background-color: #222;
     color: yellow;
   }
-  .card {
+  .profileBody .card {
     margin: 30px;
     padding: 20px 40px 40px;
     max-width: 500px;
@@ -41,16 +42,16 @@ header {
     border-radius: 6px;
     transition: all .5s;
   }
-  .card:hover {
+  .profileBody .card:hover {
     border-color: #ff99ff;
   }
   
-  ul.skills {
+  .profileBody ul.skills {
     padding: 0;
     text-align: center;
   }
   
-  .skills li {
+  .profileBody .skills li {
     border-radius: 6px;
     display: inline-block;
     background: #ff9904;
@@ -59,13 +60,13 @@ header {
     margin: 2px;
   }
   
-  .skills li:nth-child(odd) {
+  .profileBody .skills li:nth-child(odd) {
     background: #0399ff;
   }
 /* Styles for larger screens */
 @media screen and (min-width: 720px) {
   
-    .flex {
+    .profileBody .flex {
         display: -ms-flexbox;      /* TWEENER - IE 10 */
         display: flex; 
         max-width: 1200px;
@@ -74,25 +75,25 @@ header {
         margin: 0 auto;
     }
   
-    header {
+    .profileBody header {
       min-height: 470px;
     }
   
-    .nav {
+    .profileBody .nav {
       max-width: 1200px;
       padding: 0 30px;
     }
   
   
-    main {
+    .profileBody  main {
       padding-top: 20px;
     }
   
-    main p {
+    .profileBody main p {
       line-height: 1.6em;
     }
   
-    footer {
+    .profileBody  footer {
       font-size: 1.3em;
       max-width: 1200px;
       margin: 40px auto;
