@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import ChatInput from './chatInput'
-import ChatMessage from './chatMessage'
+import Chat from './chat'
 import Api from "../../services";
 
 const URL = 'ws://localhost:3030';
@@ -23,12 +22,6 @@ class ConversationList extends Component {
         ]
     };
 
-    // ws = new WebSocket(URL)
-
-    loadConversations() {
-
-    }
-
     componentDidMount() {
         Api.loadConversations().then((res) => {
             console.log('tester')
@@ -43,19 +36,28 @@ class ConversationList extends Component {
 
     openConversation = async (event, from) => {
         console.log(from)
+        this.setState({
+            uid: from
+        })
     }
 
     render() {
-        return (
-            <div className={'conversation-list-container'}>
-                {this.state.conversations.map((state, index) =>
-                    <div className={'thumb-container'} key={index} onClick={(ev) => this.openConversation(ev, state.from)}>
-                        <p className={'thumb-from'}>{state.from_name}</p>
-                        <p className={'thumb-content'}>{state.content}</p>
-                    </div>,
-                )}
-            </div>
-        )
+        if(this.state.uid){
+            return <Chat with={this.state.uid} />
+        }else {
+            return (
+                <div className={'conversation-list-container'}>
+                    <div className={'discover'}/>
+                    {this.state.conversations.map((state, index) =>
+                        <div className={'thumb-container'} key={index}
+                             onClick={(ev) => this.openConversation(ev, state.from)}>
+                            <p className={'thumb-from'}>{state.from_name}</p>
+                            <p className={'thumb-content'}>{state.content}</p>
+                        </div>,
+                    )}
+                </div>
+            )
+        }
     }
 }
 

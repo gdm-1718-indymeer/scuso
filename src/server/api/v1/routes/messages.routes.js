@@ -21,7 +21,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: An array of blogs
      */
-    parentRouter.get('/messages', messagesController.index, function(req, res, next) {
+    parentRouter.get('/messages/load/:you/:other', messagesController.index, function(req, res) {
         res.send(req.user);
     });
 
@@ -45,6 +45,7 @@ const initializeEndpoints = (parentRouter, authService) => {
     parentRouter.get('/users/search/:query', messagesController.searchRecipient);
 
     parentRouter.get('/messages/loadconversations/:id', messagesController.loadConversations);
+
     parentRouter.get('/messages/remove', messagesController.hakare);
     /**
      * @swagger
