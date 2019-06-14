@@ -58,6 +58,13 @@ class Api {
         return await response.json()
     }
 
+    static searchRecipient = async (query) => {
+        let url = `${this.URL}/users/search/${query}`;
+        console.log(url)
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
+
 }
 
 export default Api;
