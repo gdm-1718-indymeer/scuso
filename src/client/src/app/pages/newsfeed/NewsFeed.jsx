@@ -45,16 +45,6 @@ class NewsFeed extends Component {
         this.handleChange = this.handleChange.bind(this)
   
     }
-    handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-        let body = this.state.body;
-        let syn = this.textTruncate(body, 100);
-        this.setState({
-            synopsis: syn,
-        })
-    }
     
     textTruncate(str, length, ending){
         if (length == null) {
@@ -69,6 +59,20 @@ class NewsFeed extends Component {
           return str;
         }
       };
+      handleChange(event) {
+          
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+        if(this.state.body !== ""){
+        let body = this.state.body;
+        let syn = this.textTruncate(body, 100);
+        this.setState({
+            synopsis: syn,
+        })
+    }
+    }
+    
     onSubmit(event) {
         
         event.preventDefault()
