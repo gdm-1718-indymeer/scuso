@@ -24,6 +24,7 @@ import LoginPage from './pages/login';
 import SignPage from './pages/signup';
 import NewsPage from './pages/news';
 import PostDetailPage from './pages/post-detail';
+import profilePage from './pages/profile';
 
 /*
 Import styling
@@ -43,6 +44,7 @@ class Main extends Component {
           <RouteWithLayout path="/login" layout={ LoginLayout } component={ LoginPage }></RouteWithLayout>
           <RouteWithLayout path="/signup" layout={ LoginLayout } component={ SignPage }></RouteWithLayout>
           <RouteWithLayout path="/admin" layout={ AdminLayout } component={ AdminPage }></RouteWithLayout>
+          <RouteWithLayout path="/profile" component={ profilePage }></RouteWithLayout>
           <RouteWithLayout path="/messaging" component={ MessagingPage }></RouteWithLayout>
         </Switch>
       </div>

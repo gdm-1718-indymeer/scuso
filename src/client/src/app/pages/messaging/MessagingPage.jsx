@@ -24,6 +24,7 @@ class MessagingPage extends Component {
         this.setState()
     }
 
+
     render() {
         switch (this.state.view) {
             case 'conversation':
