@@ -64,11 +64,13 @@ class NewsFeed extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+        if(this.state.body !== ""){
         let body = this.state.body;
         let syn = this.textTruncate(body, 100);
         this.setState({
             synopsis: syn,
         })
+    }
     }
     
     onSubmit(event) {
