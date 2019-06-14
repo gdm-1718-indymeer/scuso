@@ -63,15 +63,12 @@ class NewsFeed extends Component {
                 console.log("gepushed")
 				if (!response.data.errmsg) {
           console.log('submit success')
-          this.props.history.push("/login");
-				} else {
-					console.log('username already taken')
 				}
 			}).catch(error => {
         console.log(this.state)
-				console.log('signup error: ')
+				console.log('push error: ')
         console.log(error)
-        toast.error('👻 Email already exist' ,error, {
+        toast.error('👻 tis nie gelukt moat' ,error, {
           position: toast.POSITION.BOTTOM_LEFT
         });
 
@@ -182,10 +179,10 @@ class NewsFeed extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              onClick={this.handleSubmit}
+              onClick={this.onSubmit}
 
             >
-              Sign in
+              Send
             </Button>
           </form>
                        
