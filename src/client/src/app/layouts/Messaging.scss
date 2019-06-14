@@ -49,17 +49,22 @@
   border: none;
   width: 80vw;
   padding: 3vh 3vw;
+  
+  box-sizing: border-box;
+}
+.compose-bar{
   position: fixed;
   bottom: 0;
-  left: 0;
-  box-sizing: border-box;
+  .send-button{
+    position: fixed;
+    right: 0;
+  }
 }
 
 .send-button {
   width: 20vw;
-  position: fixed;
-  bottom: 0;
-  right: 0;
+  
+  
   padding: 3vh 3vw;
   border: none;
 }
