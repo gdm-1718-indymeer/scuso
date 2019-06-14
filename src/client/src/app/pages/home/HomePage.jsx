@@ -103,6 +103,7 @@ class HomePage extends Component {
 
             <div className="body">
                 <div className="headerwithsearch">
+                    <div className="header">
                     <h2 className="discover">Discover Activities</h2>
                      <p>Discover fun new activities below:</p> 
                      <div className="search-container">
@@ -110,6 +111,7 @@ class HomePage extends Component {
                         <input type="text" placeholder="Search Activities" name="search"></input>
                         <button type="submit"><p className ='magnify'> &#9906;</p></button>
                         </form>
+                    </div>
                     </div>
                 </div>
                 <section className="section section--articles">

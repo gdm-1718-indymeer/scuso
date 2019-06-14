@@ -15,13 +15,21 @@ let hamburgerclicked = false;
 document.querySelector('.hamburger').addEventListener('click', function(){
     if(hamburgerclicked === true){
         document.querySelector('.navigation').style.left = '-100%';
-        document.querySelector('.hamburger').style.transform ='rotate(0deg)'
 
+        document.querySelector('.hamburger').style.transform ='rotate(0deg)'
+        document.querySelector('.menubar').style.zIndex = "600"
+        document.querySelector('.menubar').style.left = "0"
+
+        document.querySelector('.discover').style.zIndex = "607"
         hamburgerclicked = false;
     }else{
         document.querySelector('.navigation').style.left = '0';
         document.querySelector('.hamburger').style.transform ='rotate(90deg)'
+        document.querySelector('.hamburger').style.zIndex ='99999';
         hamburgerclicked = true;
+        document.querySelector('.menubar').style.left = "100%"
+        document.querySelector('.discover').style.zIndex = "0"
+
     }
 })
 
