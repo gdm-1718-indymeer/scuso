@@ -91,6 +91,7 @@ class App extends Component {
                     <ul className="mainNav">
                         <li><a href="/">home</a></li>
                         <li><a href="/login">login</a></li>
+                        <li><a href="/profile">profile</a></li>
                         <li><a href="/messaging">messages</a></li>
                     </ul>
                     <ul className="secondNav">

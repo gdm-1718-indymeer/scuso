@@ -12,7 +12,6 @@ import { User } from '../database';
 import { APIError, handleAPIError } from '../../../utilities';
 
 class UserController {
-    
     // List all the models
     index = async (req, res, next) => {
         try {
@@ -76,6 +75,7 @@ class UserController {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while saving the User!', next);
         }
     }
+
     // ViewModel for Edit / Update
     edit = async (req, res, next) => {
         const { id } = req.params;
