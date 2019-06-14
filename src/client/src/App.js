@@ -81,7 +81,9 @@ class App extends Component {
     return (
       
       <div className="App">
-        <div className="hamburger">☰</div>
+        <div className="menubar">
+          <div className="hamburger">☰</div>
+        </div>
             <nav className="nav">
 
             <div className="navigation">
