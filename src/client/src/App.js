@@ -52,6 +52,7 @@ class App extends Component {
   }
 
   getUser() {
+    /*
     axios.get('/api/v1/users').then(response => {
       console.log('Get user response: ')
       console.log(response.data.id, 'test')
@@ -73,7 +74,7 @@ class App extends Component {
         })
         localStorage.setItem('flag' , false)
       }
-    })
+    })*/
   }
 
   render() {
