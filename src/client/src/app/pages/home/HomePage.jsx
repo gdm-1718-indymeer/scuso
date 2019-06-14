@@ -64,7 +64,8 @@ class HomePage extends Component {
                     label: $(elem).find('.tag').text(),
                     price: $(elem).find('.cost').text(),
                   });
-                })
+                });
+                console.log(data)
                 this.setState({ events: data })
               }
               
@@ -95,7 +96,6 @@ class HomePage extends Component {
 
     render() {
         const { posts } = this.state.posts;
-        console.log(this.state.events)
         
         return (
             <React.Fragment>
@@ -103,12 +103,18 @@ class HomePage extends Component {
 
             <div className="body">
                 <div className="headerwithsearch">
-                    <h1 className="hidden">SCUSO</h1>
-                    <input type="text" placeholder="search an event"></input>
+                    <h2 className="discover">Discover Activities</h2>
+                     <p>Discover fun new activities below:</p> 
+                     <div className="search-container">
+                        <form >
+                        <input type="text" placeholder="Search Activities" name="search"></input>
+                        <button type="submit"><p className ='magnify'> &#9906;</p></button>
+                        </form>
+                    </div>
                 </div>
                 <section className="section section--articles">
                     <header className="section__header">
-                        <h2 className="section__title">Calender</h2>
+                        <h2 className="section__title">Populair Near you</h2>
                     </header>
                     <div className="section__content section__content--articles">
                         <div className="container">
@@ -126,18 +132,48 @@ class HomePage extends Component {
                             <div className="card-detail">
                             <h3 className="card-title loading">{item.title || <Skeleton count={5}/>}</h3>
                             <p className="card-description loading">{item.bio}</p>
+                            <div className="fadeout"></div>
+
                             </div>
                         </section>
                         )}
-                        <div>
-                        {this.state && this.state.posts && this.state.posts.map((item, index) =>
-                            <section className="blogpost" key={index}>
-                                <div className="blogexerpt">
-                                    <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
-                                    <p className="exerptDescription loading">{item.synopsis}</p>
+                    <section className="section section--articles">
+                        <header className="section__header">
+                            <h2 className="section__title">Featured Activities</h2>
+                        </header>
+                        <div className="wrapper">
+                            <article>
+                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+                                <div className="text">
+                                    <h3 >Rommelmarkt</h3>
+                                    <p >Zie events in de buurt</p>
                                 </div>
-                            </section>
-                        )}
+                            </article>
+                            <article>
+                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+                                <div className="text">
+                                    <h3 >Rommelmarkt</h3>
+                                    <p >Zie events in de buurt</p>
+                                </div>
+                            </article>
+                            <article>
+                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+                                <div className="text">
+                                    <h3 >Rommelmarkt</h3>
+                                    <p >Zie events in de buurt</p>
+                                </div>
+                            </article>
+                        </div>
+                        </section>
+                            <div>
+                            {this.state && this.state.posts && this.state.posts.map((item, index) =>
+                                <section className="blogpost" key={index}>
+                                    <div className="blogexerpt">
+                                        <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
+                                        <p className="exerptDescription loading">{item.synopsis}</p>
+                                    </div>
+                                </section>
+                            )}
                         </div>
                         </div>
 
