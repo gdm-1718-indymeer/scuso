@@ -9,33 +9,49 @@ Import the internal libraries:
 - errorHandler
 */
 import { APIError, handleAPIError } from '../../../utilities';
-import { events } from '../database/schemas';
+import { Event } from '../database/schemas';
+
 
 class EventsController {
     // List all the models
     index = async (req, res, next) => {
         try {
-            const { limit, skip } = req.query;
-            let posts = null;
-            if (limit && skip) {
-                const options = {
-                    page: parseInt(skip, 10) || 1,
-                    limit: parseInt(limit, 10) || 10,
-                    populate: 'category',
-                    sort: { created_at: -1 },
-                };
-                events = await events.paginate({}, options);
-            } else {
-                events = await events.find().populate('category').sort({ created_at: -1 }).exec();
-            }
-
-            if (posts === undefined || posts === null) {
-                throw new APIError(404, 'Collection for events not found!');
-            }
-            return res.status(200).json(posts);
+            const events = Event.find()
+            return res.status(200).json(events);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving events', next);
         }
+    };
+
+    updateScrapedEvents = async (req, res) => {
+        //Scrape the web and update database
+        // const url = 'https://cors-anywhere.herokuapp.com/https://deschuur.org/agenda';
+        // axios.get(url)
+        //     .then(response => {
+        //         let getData = html => {
+        //             let data = [];
+        //             const $ = cheerio.load(html);
+        //             $('.card').each((i, elem) => {
+        //                 data.push({
+        //                     image : $(elem).find('img').attr('src'),
+        //                     title : $(elem).find('h2').text(),
+        //                     bio: $(elem).find('.content').text(),
+        //                     link : 'https://deschuur.org' + $(elem).find('a').attr('href'),
+        //                     data: {
+        //                         day: $(elem).find('.date').children('.day').text(),
+        //                         day_month: $(elem).find('.day_month').text()
+        //                     },
+        //                     label: $(elem).find('.tag').text(),
+        //                     price: $(elem).find('.cost').text(),
+        //                 });
+        //             });
+        //             console.log(data)
+        //         }
+        //         console.log(getData(response.data))
+        //     })
+        //     .catch(error => {
+        //         toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
+        //     })
     };
 
     // Show specific model by id
@@ -62,17 +78,18 @@ class EventsController {
 
     // Store / Create the new model
     store = async (req, res, next) => {
-        console.log("kzit in den try")
         try {
-            const postCreate = new Events({
+            const newEvent = new Event({
                 title: req.body.title,
-                synopsis: req.body.synopsis,
-                body: req.body.body,
-                categoryId: req.body.categoryId,
+                image: req.body.image,
+                bio: req.body.bio,
+                link: req.body.link,
+                data: req.body.data,
+                label: req.body.label,
+                price: req.body.price,
             });
-            const post = await postCreate.save();
-            return res.status(201).json(post);
-            console.log("jeuj")
+            const event = await newEvent.save();
+            return res.status(201).json(event);
         } catch (err) {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while saving the Events!', next);
         }

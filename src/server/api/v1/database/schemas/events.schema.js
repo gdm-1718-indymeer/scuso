@@ -13,7 +13,6 @@ const EventSchema = new Schema(
         data: { type: String, required: false },
         label: { type: String, required: false },
         price: { type: String, required: false },
-
     },
     {
         toJSON: { virtuals: true },
@@ -41,4 +40,4 @@ EventSchema.virtual('Events', {
 });
 
 EventSchema.plugin(mongoosePaginate);
-export default mongoose.model('Events', EventSchema);
+export default mongoose.model('Event', EventSchema);

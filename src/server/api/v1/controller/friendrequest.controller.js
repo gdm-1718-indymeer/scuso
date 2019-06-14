@@ -8,30 +8,14 @@ Import the internal libraries:
 - * from database
 - errorHandler
 */
-import { User } from '../database';
+import { FriendRequest } from '../database';
 import { APIError, handleAPIError } from '../../../utilities';
 
-class UserController {
+class FriendRequestController {
     // List all the models
     index = async (req, res, next) => {
         try {
-            const { limit, skip } = req.query;
-            let posts = null;
-            if (limit && skip) {
-                const options = {
-                    page: parseInt(skip, 10) || 1,
-                    limit: parseInt(limit, 10) || 10,
-                    populate: 'category',
-                    sort: { created_at: -1 },
-                };
-                posts = await User.paginate({}, options);
-            } else {
-                posts = await User.find().populate('category').sort({ created_at: -1 }).exec();
-            }
-
-            if (posts === undefined || posts === null) {
-                throw new APIError(404, 'Collection for posts not found!');
-            }
+            // wut
             return res.status(200).json(posts);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving posts', next);
@@ -52,16 +36,8 @@ class UserController {
         }
     }
 
-    // ViewModel for Insert / Create
-    create = (req, res) => {
-        const vm = {
-            categories: [],
-        };
-        return res.status(200).json(vm);
-    }
-
     // Store / Create the new model
-    store = async (req, res, next) => {
+    create = async (req, res, next) => {
         try {
             const postCreate = new User({
                 username: req.body.username,

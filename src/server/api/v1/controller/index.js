@@ -5,6 +5,7 @@ import CategoryController from './category.controller';
 import PostController from './post.controller';
 import UserController from './user.controller';
 import MessagesController from './messages.controller';
+import EventController from './events.controller';
 
 export {
     AuthController,
@@ -13,4 +14,5 @@ export {
     PostController,
     UserController,
     MessagesController,
+    EventController,
 };
