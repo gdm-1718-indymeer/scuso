@@ -22,13 +22,28 @@ class ConversationList extends Component {
         ]
     };
 
+    getUnique(arr, comp) {
+
+        const unique = arr
+            .map(e => e[comp])
+
+            // store the keys of the unique objects
+            .map((e, i, final) => final.indexOf(e) === i && i)
+
+            // eliminate the dead keys & store unique objects
+            .filter(e => arr[e]).map(e => arr[e]);
+
+        return unique;
+    }
+
     componentDidMount() {
         Api.loadConversations().then((res) => {
             console.log('tester')
             console.log(res)
             this.setState({
-                conversations: res
+                conversations: this.getUnique(res,'from')
             })
+            console.log(this.state)
         }).catch((err) => {
             console.log(err)
         })
