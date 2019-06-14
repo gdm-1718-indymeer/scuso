@@ -93,6 +93,7 @@ class App extends Component {
                         <li><a href="/login">login</a></li>
                         <li><a href="/profile">profile</a></li>
                         <li><a href="/messaging">messages</a></li>
+                        <li><a href="/newsfeed">newsfeed</a></li>
                     </ul>
                     <ul className="secondNav">
                         <li><a href="http://www.maesfranckxruben.be/landingpage/">about</a></li>
