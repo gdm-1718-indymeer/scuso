@@ -78,8 +78,8 @@ class App extends Component {
   }
 
   render() {
+    
     return (
-      
       <div className="App">
         <div className="menubar">
           <div className="hamburger">☰</div>
@@ -114,6 +114,7 @@ class App extends Component {
       </Router>
 
       </div>
+      
     );
   }
 }

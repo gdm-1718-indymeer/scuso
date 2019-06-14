@@ -10,7 +10,6 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-
 let hamburgerclicked = false;
 document.querySelector('.hamburger').addEventListener('click', function(){
     if(hamburgerclicked === true){
@@ -19,12 +18,14 @@ document.querySelector('.hamburger').addEventListener('click', function(){
         document.querySelector('.hamburger').style.transform ='rotate(0deg)'
         document.querySelector('.menubar').style.zIndex = "600"
         document.querySelector('.menubar').style.left = "0"
+        document.querySelector('.hamburger').style.color ='black'
 
         document.querySelector('.discover').style.zIndex = "607"
         hamburgerclicked = false;
     }else{
         document.querySelector('.navigation').style.left = '0';
         document.querySelector('.hamburger').style.transform ='rotate(90deg)'
+        document.querySelector('.hamburger').style.color ='white'
         document.querySelector('.hamburger').style.zIndex ='99999';
         hamburgerclicked = true;
         document.querySelector('.menubar').style.left = "100%"
@@ -32,5 +33,6 @@ document.querySelector('.hamburger').addEventListener('click', function(){
 
     }
 })
+
 
 

@@ -52,7 +52,9 @@ class Chat extends Component {
 
     render() {
         return (
+            
             <div className="messaging-container">
+                <div className="discover dispno"></div>
                 <div className="top-bar"><h3>{this.state.otherPerson && this.state.otherPerson.username}</h3></div>
                 <div className="messages-container">
                     <div>
