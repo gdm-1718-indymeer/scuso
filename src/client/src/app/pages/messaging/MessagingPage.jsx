@@ -25,9 +25,9 @@ class MessagingPage extends Component {
         return (
             <div>
                 <div className="top-bar"><h3>User Name</h3></div>
-                {/*<ConversationList />*/}
+                <ConversationList />
                 {/*<Chat />*/}
-                <NewMessage />
+                {/*<NewMessage />*/}
             </div>
         )
     }

@@ -34,6 +34,16 @@ class MessagesController {
         }
     };
 
+    searchRecipient = async (req, res, next) => {
+        try {
+            console.log(req.params.query)
+            const resp = await User.find({ 'username': { '$regex': req.params.query, '$options': 'i' }})
+            return res.status(200).json(resp);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving conversations', next);
+        }
+    };
+
     //
     // // Show specific model by id
     // show = async (req, res, next) => {

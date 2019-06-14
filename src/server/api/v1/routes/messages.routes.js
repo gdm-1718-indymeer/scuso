@@ -42,6 +42,8 @@ const initializeEndpoints = (parentRouter, authService) => {
      */
     parentRouter.post('/messages/create', messagesController.create);
 
+    parentRouter.get('/users/search/:query', messagesController.searchRecipient);
+
     parentRouter.get('/messages/loadconversations/:id', messagesController.loadConversations);
     parentRouter.get('/messages/remove', messagesController.hakare);
     /**
