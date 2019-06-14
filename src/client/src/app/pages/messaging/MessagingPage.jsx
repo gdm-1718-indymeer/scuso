@@ -16,7 +16,7 @@ class MessagingPage extends Component {
     }
 
     render() {
-        return <ConversationList />
+        return <div className={'main-mess-cont'}><ConversationList /></div>
     }
 }
 

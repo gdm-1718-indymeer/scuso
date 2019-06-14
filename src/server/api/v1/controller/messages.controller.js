@@ -71,7 +71,6 @@ class MessagesController {
         const f = await User.findById(req.body.from)
         const t = await User.findById(req.body.to)
         const newMessage = new Messages({
-            conversation_id: req.body.conversation_id,
             from: req.body.from,
             from_name: f.username,
             to: req.body.to,

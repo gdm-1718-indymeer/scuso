@@ -49,7 +49,6 @@ class NewsFeed extends Component {
         })
     }
     onSubmit(event) {
-		console.log('pushpost pushPost, ')
 		event.preventDefault()
 
 		//request to server to add a new username/password
