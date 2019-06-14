@@ -9,7 +9,7 @@ class ConversationList extends Component {
         conversations: [
             {
                 from: 'Carmen',
-                preview: 'Komde vanavond buite?',
+             preview: 'Komde vanavond buite?',
             },
             {
                 from: 'Pascale',

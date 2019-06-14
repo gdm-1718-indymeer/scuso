@@ -12,17 +12,19 @@ import './PostDetail.scss'
 
 class PostDetail extends Component {
     render() {
-        const { data: post } = this.props;
 
         return (
             <React.Fragment>
-                {post ? (
-                    <article key={ post.id } className={classNames("post--large")}>
-                        <h1 className="post__title">{ post.title }</h1>
-                        <div className="post__synopsis">{ post.synopsis }</div>
-                        <div className="post__body">{Parser(post.body)}</div>
-                    </article>
-                ) : '<p>LOADING</p>'}
+                <div className="body">
+                <div className="headerwithsearch">
+                    <div className="header">
+                    <h2 className="discover">Newsfeed</h2>
+                     <p>What's new?</p> 
+                    </div>
+                </div>
+                <h2>{this.props.with.title}</h2>
+                <p>{this.props.with.body}</p>
+                </div>
             </React.Fragment>
         );
     }

@@ -10,6 +10,7 @@ import Skeleton from 'react-loading-skeleton';
 /*
 Import internal libraries
 */
+import PostDetail from '../../components/post-detail/PostDetail'; 
 import Api from '../../services';
 import PostsList from '../../components/posts-list';
 import axios from 'axios';
@@ -43,7 +44,7 @@ class NewsFeed extends Component {
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
-  
+        
     }
     
     textTruncate(str, length, ending){
@@ -65,14 +66,19 @@ class NewsFeed extends Component {
             [event.target.name]: event.target.value
         })
         if(this.state.body !== ""){
-        let body = this.state.body;
-        let syn = this.textTruncate(body, 100);
+            let body = this.state.body;
+            let syn = this.textTruncate(body, 100);
+            this.setState({
+                synopsis: syn,
+            })
+    }
+    }
+    openBlogpost = async (event, title) => {
+        console.log(title)
         this.setState({
-            synopsis: syn,
+            uid: title
         })
     }
-    }
-    
     onSubmit(event) {
         
         event.preventDefault()
@@ -178,7 +184,10 @@ class NewsFeed extends Component {
     render() {
         const { posts } = this.state.posts;
         
-        return (
+        if(this.state.uid){
+            return <PostDetail with={this.state.uid} />
+        }else {
+            return (
             <React.Fragment>
             
 
@@ -216,7 +225,7 @@ class NewsFeed extends Component {
                     
                             <div>
                             {this.state && this.state.posts && this.state.posts.map((item, index) =>
-                                <section className="blogpost" key={index}>
+                                <section className="blogpost" onClick={(ev) => this.openBlogpost(ev, item)} key={index}>
                                     <div className="blogexerpt">
                                         <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
                                         <p className="exerptDescription loading">{item.synopsis}</p>
@@ -244,7 +253,7 @@ class NewsFeed extends Component {
           pauseOnHover
           />
             </React.Fragment>
-        )
+        )}
     }
     
 }
