@@ -41,22 +41,6 @@ class ConversationList extends Component {
         })
     }
 
-    submitMessage = messageString => {
-        // const message = { name: this.state.name, message: messageString }
-        console.log('Fired')
-        console.log(messageString)
-        Api.sendMessage({
-            conversation_id: 'me_u',
-            content: messageString,
-            sent_by: 'Jonas'
-        }).then((resp) => {
-            this.loadMessages()
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-
-
     openConversation = async (event, from) => {
         console.log(from)
     }
