@@ -22,6 +22,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
@@ -38,6 +39,7 @@ class NewsFeed extends Component {
         ghost:[1,2,3,4,5,6,7],
         title: [],
         body: [],
+        synopsis: [],
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -47,15 +49,36 @@ class NewsFeed extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+        let body = this.state.body;
+        let syn = this.textTruncate(body, 100);
+        this.setState({
+            synopsis: syn,
+        })
     }
+    
+    textTruncate(str, length, ending){
+        if (length == null) {
+          length = 100;
+        }
+        if (ending == null) {
+          ending = '...';
+        }
+        if (str.length > length) {
+          return str.substring(0, length - ending.length) + ending;
+        } else {
+          return str;
+        }
+      };
     onSubmit(event) {
-		event.preventDefault()
+        
+        event.preventDefault()
 
 		//request to server to add a new username/password
 		axios.post('/api/v1/posts', {
             title: this.state.title,
-            synopsis: this.state.body,
             body: this.state.body,
+            synopsis: this.state.synopsis,
+
     		    })
 		.then(response => {
                 console.log(response)
@@ -67,7 +90,7 @@ class NewsFeed extends Component {
         console.log(this.state)
 				console.log('push error: ')
         console.log(error)
-        toast.error('👻 tis nie gelukt moat' ,error, {
+        toast.error(error.message ,error, {
           position: toast.POSITION.BOTTOM_LEFT
         });
 
@@ -163,15 +186,14 @@ class NewsFeed extends Component {
                     </div>
                 </div>
                 <section className="section section--articles">
-                <form>
-          
+                <form className="newsform">
+          <h2 className="newstitle">Create a newsitem</h2>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="text">Title</InputLabel>
               <Input type="text" id="title" onChange={this.handleChange}  value={this.state.title} name="title"/>
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="text">Body</InputLabel>
-              <Input type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
+              <TextField label="body" className="textarea" multiline={true} type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
             </FormControl>
             <Button
               type="submit"
