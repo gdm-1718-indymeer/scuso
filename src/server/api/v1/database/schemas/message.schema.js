@@ -7,8 +7,10 @@ const { Schema } = mongoose;
 let MessageSchema = new mongoose.Schema(
     {
         conversation_id: {type: String, required:true },
-        from: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+        from: { type: String, required: true },
+        from_name: { type: String, required: true },
         to: { type: String, required: true },
+        to_name: { type: String, required: true },
         content: { type: String, required: true, max: 512 },
         timestamp: { type: Date, default: Date.now }
     }
