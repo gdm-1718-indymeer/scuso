@@ -52,14 +52,17 @@ class MessagesController {
     // ViewModel for Insert / Create
 
     create = async (req, res) => {
-        const t = await User.findById(req.body.from)
+        const f = await User.findById(req.body.from)
+        const t = await User.findById(req.body.to)
         const newMessage = new Messages({
             conversation_id: req.body.conversation_id,
             from: req.body.from,
-            from_name: t.username,
+            from_name: f.username,
             to: req.body.to,
+            to_name: t.username,
             content: req.body.content,
         });
+        console.log(t)
         newMessage.save().then(message => res.json(message))
         // return res.status(200).json(newMessage);
     }
