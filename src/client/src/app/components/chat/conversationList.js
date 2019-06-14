@@ -40,8 +40,14 @@ class ConversationList extends Component {
         Api.loadConversations().then((res) => {
             console.log('tester')
             console.log(res)
+            const me = localStorage.getItem('userId')
+            let meFilter = []
+            let newArray = []
+            res.map((mess) => {
+                console.log(mess.from_name + ' / ' + mess.to_name)
+            })
             this.setState({
-                conversations: this.getUnique(res,'from')
+                conversations: newArray
             })
             console.log(this.state)
         }).catch((err) => {

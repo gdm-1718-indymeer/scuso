@@ -35,10 +35,18 @@ const UserSchema = new Schema(
             unique: true,
             match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         },
-        friends: {
-            type: String,
-            required: false,
-        },
+        sentRequest: [{
+            username: { type: String, default: '' },
+        }],
+        request: [{
+            userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            username: { type: String, default: '' },
+        }],
+        friendsList: [{
+            friendId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            friendName: { type: String, default: '' },
+        }],
+        totalRequest: { type: Number, default: 0 },
 
         localProvider: {
             password: {
