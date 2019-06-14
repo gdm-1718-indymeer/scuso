@@ -11,23 +11,28 @@ class Chat extends Component {
     };
 
     loadMessages() {
-        Api.loadMessages()
-            .then((data) => {
-                console.log('RUN')
-                this.setState({
-                    dbMessages: data
-                });
-                console.log(data)
-                this.messagesEnd.scrollIntoView({behavior: "smooth"})
+        Api.checkUser(this.props.with).then((res) => {
+            this.setState({
+                otherPerson: res
             })
-            .catch((error) => {
-                console.log(error)
-                this.messagesEnd.scrollIntoView({behavior: "smooth"})
-            });
+            Api.loadMessages(this.props.with)
+                .then((data) => {
+                    console.log('RUN')
+                    this.setState({
+                        dbMessages: data
+                    });
+                    console.log(data)
+                    this.messagesEnd.scrollIntoView({behavior: "smooth"})
+                })
+                .catch((error) => {
+                    console.log(error)
+                    this.messagesEnd.scrollIntoView({behavior: "smooth"})
+                });
+        })
     }
 
     componentDidMount() {
-        this.loadMessages()
+        this.loadMessages(this.props.with)
     }
 
     submitMessage = messageString => {
@@ -35,7 +40,7 @@ class Chat extends Component {
         console.log(messageString)
         Api.sendMessage({
             from: localStorage.getItem('userId'),
-            to: this.state.otherPerson,
+            to: this.state.otherPerson.id,
             content: messageString,
         }).then((resp) => {
             this.loadMessages()
@@ -48,11 +53,10 @@ class Chat extends Component {
     render() {
         return (
             <div className="messaging-container">
-                <div className="top-bar"><h3>User Name</h3></div>
+                <div className="top-bar"><h3>{this.state.otherPerson && this.state.otherPerson.username}</h3></div>
                 <div className="messages-container">
                     <div>
                         <ChatInput
-                            ws={this.ws}
                             onSubmitMessage={messageString => this.submitMessage(messageString)}
                         />
                         {this.state.dbMessages.map((message, index) =>

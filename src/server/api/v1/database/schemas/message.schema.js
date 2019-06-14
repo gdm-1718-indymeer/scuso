@@ -6,7 +6,6 @@ const { Schema } = mongoose;
 
 let MessageSchema = new mongoose.Schema(
     {
-        conversation_id: {type: String, required:true },
         from: { type: String, required: true },
         from_name: { type: String, required: true },
         to: { type: String, required: true },
