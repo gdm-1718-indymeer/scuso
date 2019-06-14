@@ -43,6 +43,7 @@ const initializeEndpoints = (parentRouter, authService) => {
     parentRouter.post('/messages/create', messagesController.create);
 
     parentRouter.get('/messages/loadconversations/:id', messagesController.loadConversations);
+    parentRouter.get('/messages/remove', messagesController.hakare);
     /**
      * @swagger
      * /api/v1/blogs/{id}:

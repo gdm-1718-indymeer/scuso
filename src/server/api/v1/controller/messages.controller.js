@@ -119,29 +119,36 @@ class MessagesController {
     // }
     //
     // // Delete / Destroy the model
-    // destroy = async (req, res, next) => {
-    //     const { id } = req.params;
-    //
-    //     try {
-    //         let user = null;
-    //
-    //         let { mode } = req.query;
-    //         if (mode) {
-    //             user = await User.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
-    //         } else {
-    //             mode = 'delete';
-    //             user = await User.findOneAndRemove({ _id: id });
-    //         }
-    //
-    //         if (!user) {
-    //             throw new APIError(404, `User with id: ${id} not found!`);
-    //         } else {
-    //             return res.status(200).json({ message: `Successful deleted the User with id: ${id}!`, user, mode });
-    //         }
-    //     } catch (err) {
-    //         return handleAPIError(err.status || 500, err.message || `Some error occurred while deleting the User with id: ${id}!`, next);
-    //     }
-    // }
+    destroy = async (req, res, next) => {
+        const { id } = req.params;
+
+        try {
+            let user = null;
+
+            let { mode } = req.query;
+            if (mode) {
+                user = await User.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
+            } else {
+                mode = 'delete';
+                user = await User.findOneAndRemove({ _id: id });
+            }
+
+            if (!user) {
+                throw new APIError(404, `User with id: ${id} not found!`);
+            } else {
+                return res.status(200).json({ message: `Successful deleted the User with id: ${id}!`, user, mode });
+            }
+        } catch (err) {
+            return handleAPIError(err.status || 500, err.message || `Some error occurred while deleting the User with id: ${id}!`, next);
+        }
+    }
+
+    // TMP TESTING FUNCTION
+    hakare = async () => {
+        Messages.deleteMany({}).then((res) => {
+            console.log(res)
+        })
+    }
 }
 
 export default MessagesController;

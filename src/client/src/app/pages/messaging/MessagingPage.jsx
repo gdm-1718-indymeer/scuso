@@ -4,6 +4,7 @@ Import extenal libraries
 import React, { Component } from 'react';
 import 'whatwg-fetch';
 import ConversationList from '../../components/chat/conversationList';
+import NewMessage from '../../components/chat/newMessage';
 import Chat from '../../components/chat/chat'
 import Api from '../../services/';
 import ChatMessage from "../../components/chat/chatMessage";
@@ -24,8 +25,9 @@ class MessagingPage extends Component {
         return (
             <div>
                 <div className="top-bar"><h3>User Name</h3></div>
-                <ConversationList />
+                {/*<ConversationList />*/}
                 {/*<Chat />*/}
+                <NewMessage />
             </div>
         )
     }

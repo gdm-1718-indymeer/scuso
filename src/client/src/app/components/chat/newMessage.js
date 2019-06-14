@@ -8,39 +8,15 @@ class NewMessage extends Component {
 
     };
 
-
-    submitMessage = messageString => {
-        // const message = { name: this.state.name, message: messageString }
-        console.log(messageString)
-        Api.sendMessage({
-            from: localStorage.getItem('userToken'),
-            to: this.state.otherPerson,
-            content: messageString,
-        }).then((resp) => {
-            this.loadMessages()
-            console.log(resp)
-        }).catch((err) => {
-            console.log(err)
-        })
+    searchRecipient = (val) => {
+        console.log(val)
     }
 
     render() {
         return (
             <div>
-                <ChatInput
-                    ws={this.ws}
-                    onSubmitMessage={messageString => this.submitMessage(messageString)}
-                />
-                {this.state.dbMessages.map((message, index) =>
-                    <ChatMessage
-                        key={index}
-                        message={message.content}
-                        from={message.from}
-                    />,
-                )}
-                <div ref={(el) => {
-                    this.messagesEnd = el;
-                }}/>
+                <input type={'text'} placeholder={'ontvanger...'} className={'search-recipient-input'} />
+                <button className={'search-recipient-btn'} onClick={this.searchRecipient(this.value)}>Search</button>
             </div>
         )
     }
