@@ -18,6 +18,8 @@ import cheerio from 'cheerio';
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import Avatar from 'react-avatar'
+
 class HomePage extends Component {
     constructor(props) {
         super(props);
@@ -46,7 +48,8 @@ class HomePage extends Component {
             <div className="discover"></div>
             <div className="profileBody">
             <header>
-                <img src="https://images.unsplash.com/photo-1560496513-5ea8e6349a24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80" alt="John Doe" className="profile-image"/>
+                <Avatar size="150" name={this.state.users} className="profile-image"/>
+
                 <h1 className="tag name">Hello, I’m {this.state.users}</h1>
                 <p className="tag location">My home is New York, California.</p>
                 </header>
