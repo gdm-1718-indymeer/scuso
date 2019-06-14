@@ -1,19 +1,20 @@
+@import '../../_sass/abstracts/variables';
+
 .profileBody header {
     text-align: center;
     background: url('https://images.unsplash.com/photo-1560496110-85043a260f8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2978&q=80') no-repeat top center ;
     background-size: cover;
     overflow: hidden;
-    padding-top: 60px;
+    padding-top: 141px;
   }
   .profileBody header {
     line-height: 1.5;
   }
   .profileBody header .profile-image {
-    margin-top: 50px;
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 3px solid white;
+    box-shadow: $shadow;
     transition: all .5s;
   }
   .profileBody header .profile-image:hover {
