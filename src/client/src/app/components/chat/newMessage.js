@@ -19,14 +19,19 @@ class NewMessage extends Component {
         })
     }
 
+    handleClick = () => {
+        this.props.view(this.props.id);
+    }
+
     render() {
         return (
             <div>
+                <div className={'discover'}/>
                 <input type={'text'} placeholder={'ontvanger...'} className={'search-recipient-input'} onChange={e => this.setState({query: e.target.value})} />
                 <button className={'search-recipient-btn'} onClick={this.searchRecipient}>Search</button>
                 {this.state.results.map((res, i) =>
                     <div className={'thumb-container'} key={i}>
-                        <p className={'thumb-content'}>{res.username}</p>
+                        <p className={'thumb-content'} onClick={this.handleClick}>{res.username}</p>
                     </div>,
                 )}
             </div>

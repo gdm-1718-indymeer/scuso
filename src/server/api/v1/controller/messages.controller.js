@@ -15,8 +15,15 @@ import { APIError, handleAPIError } from '../../../utilities';
 class MessagesController {
     // List all the models
     index = async (req, res, next) => {
+        console.log(req.params.you)
+        console.log(req.params.other)
         try {
-            const messages = await Messages.find()
+            const messages = await Messages.find({
+                $or: [
+                    { $and: [{'from': req.params.you}, {'to': req.params.other}] },
+                    { $and: [{'from': req.params.other}, {'to': req.params.you}] }
+                ]
+            })
             return res.status(200).json(messages);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving blogs', next);
@@ -24,9 +31,8 @@ class MessagesController {
     };
 
     loadConversations = async (req, res, next) => {
-        console.log('CONTROLLER')
+        console.log('LOADING CONVERSATIONS');
         try {
-            console.log(req.params.id)
             const messages = await Messages.find({ $or:[ {'from':req.params.id}, {'to':req.params.id} ] })
             return res.status(200).json(messages);
         } catch (err) {
@@ -65,7 +71,6 @@ class MessagesController {
         const f = await User.findById(req.body.from)
         const t = await User.findById(req.body.to)
         const newMessage = new Messages({
-            conversation_id: req.body.conversation_id,
             from: req.body.from,
             from_name: f.username,
             to: req.body.to,

@@ -23,8 +23,8 @@ class Api {
             .join('&');
     }
 
-    static loadMessages = async () => {
-        let url = `${this.URL}/messages`;
+    static loadMessages = async (other) => {
+        let url = `${this.URL}/messages/load/${localStorage.getItem('userId')}/${other}`;
         const response = await fetch(`${url}`)
         return await response.json()
     }
@@ -33,9 +33,8 @@ class Api {
     static sendMessage = async (req) => {
         let url = `${this.URL}/messages/create`;
         axios.post(url, {
-            conversation_id: '5cfd52d1d0a74c5c33df48a3_5cfd44a2eb54ec196a385f83',
-            from: '5cfd52d1d0a74c5c33df48a3',
-            to: '5cfd44a2eb54ec196a385f83',
+            from: req.from,
+            to: req.to,
             content: req.content,
         }).then((response) => {
             return response.json()
@@ -44,6 +43,8 @@ class Api {
         })
     }
 
+    
+
     static loadConversations = async () => {
         let url = `${this.URL}/messages/loadconversations/${localStorage.getItem('userId')}`;
         console.log(url)
@@ -51,8 +52,13 @@ class Api {
         return await response.json()
     }
 
-    static checkUser = async () => {
-        let url = `${this.URL}/users/${localStorage.getItem('userId')}`;
+    static checkUser = async (uid) => {
+        let url = '';
+        if(uid){
+            url = `${this.URL}/users/${uid}`;
+        }else{
+            url = `${this.URL}/users/${localStorage.getItem('userId')}`;
+        }
         console.log(url)
         const response = await fetch(`${url}`)
         return await response.json()

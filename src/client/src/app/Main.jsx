@@ -25,6 +25,7 @@ import SignPage from './pages/signup';
 import NewsPage from './pages/news';
 import PostDetailPage from './pages/post-detail';
 import profilePage from './pages/profile';
+import NewsFeed from './pages/newsfeed';
 
 /*
 Import styling
@@ -46,6 +47,7 @@ class Main extends Component {
           <RouteWithLayout path="/admin" layout={ AdminLayout } component={ AdminPage }></RouteWithLayout>
           <RouteWithLayout path="/profile" component={ profilePage }></RouteWithLayout>
           <RouteWithLayout path="/messaging" component={ MessagingPage }></RouteWithLayout>
+          <RouteWithLayout path="/newsfeed" component={ NewsFeed }></RouteWithLayout>
         </Switch>
       </div>
     );
