@@ -35,6 +35,11 @@ const UserSchema = new Schema(
             unique: true,
             match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         },
+        friends: {
+            type: String,
+            required: false,
+        },
+
         localProvider: {
             password: {
                 type: String,
