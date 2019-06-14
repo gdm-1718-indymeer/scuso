@@ -62,6 +62,7 @@ class PostController {
 
     // Store / Create the new model
     store = async (req, res, next) => {
+        console.log("kzit in den try")
         try {
             const postCreate = new Post({
                 title: req.body.title,
@@ -71,6 +72,7 @@ class PostController {
             });
             const post = await postCreate.save();
             return res.status(201).json(post);
+            console.log("jeuj")
         } catch (err) {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while saving the Post!', next);
         }

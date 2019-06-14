@@ -16,30 +16,53 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-class HomePage extends Component {
-    state = {
-        posts: [],
+class NewsFeed extends Component {
+   
+    constructor() {
+        super()
+        this.state = {
+            posts: [],
         events: [],
         ghost:[1,2,3,4,5,6,7],
         title: [],
-        category: [],
-        body: [], 
-    };
-    pushPost(event) {
+        body: [],
+        }
+        this.onSubmit = this.onSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+  
+    }
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+    onSubmit(event) {
 		console.log('pushpost pushPost, ')
 		event.preventDefault()
 
 		//request to server to add a new username/password
-		axios.post('/api/v1/users/', {
+		axios.post('/api/v1/posts', {
             title: this.state.title,
-            synopsis: this.state.email,
+            synopsis: this.state.body,
             body: this.state.body,
     		    })
 		.then(response => {
-				console.log(response)
+                console.log(response)
+                console.log("gepushed")
 				if (!response.data.errmsg) {
-          console.log('successful signup')
+          console.log('submit success')
           this.props.history.push("/login");
 				} else {
 					console.log('username already taken')
@@ -139,74 +162,36 @@ class HomePage extends Component {
             <div className="body">
                 <div className="headerwithsearch">
                     <div className="header">
-                    <h2 className="discover">Discover Activities</h2>
-                     <p>Discover fun new activities below:</p> 
-                     <div className="search-container">
-                        <form >
-                        <input type="text" placeholder="Search Activities" name="search"></input>
-                        <button type="submit"><p className ='magnify'> &#9906;</p></button>
-                        </form>
-                    </div>
+                    <h2 className="discover">Newsfeed</h2>
+                     <p>What's new?</p> 
                     </div>
                 </div>
                 <section className="section section--articles">
-                    <header className="section__header">
-                        <h2 className="section__title">Populair Near you</h2>
-                    </header>
-                    <div className="container">
-                    <div className="section__content section__content--articles">
+                <form>
+          
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="text">Title</InputLabel>
+              <Input type="text" id="title" onChange={this.handleChange}  value={this.state.title} name="title"/>
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="text">Body</InputLabel>
+              <Input type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
+            </FormControl>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={this.handleSubmit}
 
-                    {this.state.ghost.map(() => 
-                        <section className="card">
-                            <Skeleton height={150} />
-                            <div className="card-detail">
-                            <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
-                            <p className="card-description loading">{<Skeleton count={5}/>}</p>
-                            </div>
-                        </section>
-                        )}
+            >
+              Sign in
+            </Button>
+          </form>
                        
 
-                        {this.state && this.state.events && this.state.events.map((item, index) =>
-                        <section className="card" key={index}>
-                            <img className="card-image loading" src={item.image}/>
-                            <div className="card-detail">
-                            <h3 className="card-title loading">{item.title}</h3>
-                            <p className="card-description loading">{item.bio}</p>
-                            <div className="fadeout"></div>
-
-                            </div>
-                        </section>
-                        )}
-                         </div>
-                    <section className="section section--articles">
-                        <header className="section__header">
-                            <h2 className="section__title">Featured Activities</h2>
-                        </header>
-                        <div className="wrapper">
-                            <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-                                <div className="text">
-                                    <h3 >Rommelmarkt</h3>
-                                    <p >Zie events in de buurt</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-                                <div className="text">
-                                    <h3 >Rommelmarkt</h3>
-                                    <p >Zie events in de buurt</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-                                <div className="text">
-                                    <h3 >Rommelmarkt</h3>
-                                    <p >Zie events in de buurt</p>
-                                </div>
-                            </article>
-                        </div>
-                        </section>
+                        
+                    
                             <div>
                             {this.state && this.state.posts && this.state.posts.map((item, index) =>
                                 <section className="blogpost" key={index}>
@@ -220,7 +205,6 @@ class HomePage extends Component {
                        
 
                         <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
-                    </div>
                     <footer className="section__footer">
                         READ MORE
                     </footer>
@@ -243,4 +227,4 @@ class HomePage extends Component {
     
 }
 
-export default (HomePage);
+export default (NewsFeed);

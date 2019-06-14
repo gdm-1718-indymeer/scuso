@@ -44,6 +44,8 @@ class Api {
         })
     }
 
+    
+
     static loadConversations = async () => {
         let url = `${this.URL}/messages/loadconversations/${localStorage.getItem('userId')}`;
         console.log(url)
