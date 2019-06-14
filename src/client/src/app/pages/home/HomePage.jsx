@@ -207,16 +207,7 @@ class HomePage extends Component {
                             </article>
                         </div>
                         </section>
-                            <div>
-                            {this.state && this.state.posts && this.state.posts.map((item, index) =>
-                                <section className="blogpost" key={index}>
-                                    <div className="blogexerpt">
-                                        <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
-                                        <p className="exerptDescription loading">{item.synopsis}</p>
-                                    </div>
-                                </section>
-                            )}
-                        </div>
+                            
                        
 
                         <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
