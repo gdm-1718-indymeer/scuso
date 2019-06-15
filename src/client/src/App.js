@@ -43,6 +43,9 @@ class App extends Component {
     this.updateUser = this.updateUser.bind(this)
   }
 
+
+  // Your web app's Firebase configuration
+  
   componentDidMount() {
     this.getUser()
   }

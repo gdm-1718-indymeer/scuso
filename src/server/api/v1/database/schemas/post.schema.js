@@ -13,9 +13,11 @@ const PostSchema = new Schema(
             type: String, lowercase: true, unique: true, required: true,
         },
         author: { type: String, required: true, },
+        image: {type: String, required: false,},
         published_at: { type: Date, required: false },
         deleted_at: { type: Date, required: false },
         categoryId: { type: Schema.Types.ObjectId, ref: 'Category', required: false },
+
     },
     {
         toJSON: { virtuals: true },

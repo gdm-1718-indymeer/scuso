@@ -3,6 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import * as firebase from 'firebase';
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD_ILCmLttiyDdLhUqo_Cf6O2agEd5mtxU",
+    authDomain: "scuso-cb1ee.firebaseapp.com",
+    databaseURL: "https://scuso-cb1ee.firebaseio.com",
+    projectId: "scuso-cb1ee",
+    storageBucket: "scuso-cb1ee.appspot.com",
+    messagingSenderId: "966229664157",
+    appId: "1:966229664157:web:43854b941ba198e0"
+  };
+
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

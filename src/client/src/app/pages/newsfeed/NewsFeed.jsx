@@ -29,6 +29,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import * as firebase from 'firebase'
 
 class NewsFeed extends Component {
    
@@ -42,6 +43,7 @@ class NewsFeed extends Component {
         body: [],
         synopsis: [],
         author: [],
+        image: [],
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -77,6 +79,7 @@ class NewsFeed extends Component {
               
             
         }
+        
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -96,9 +99,10 @@ class NewsFeed extends Component {
         })
     }
     onSubmit(event) {
+      
         
         event.preventDefault()
-
+        
 		//request to server to add a new username/password
 		axios.post('/api/v1/posts', {
             title: this.state.title,
@@ -141,7 +145,23 @@ class NewsFeed extends Component {
         }
     
     }
-    
+    putinState(){
+      if (firebase) {
+        const fileUpload = document.getElementById('image');
+
+        fileUpload.addEventListener('change', (evt) => {
+            if (fileUpload.value !== '') {
+                let fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
+                const storageRef = firebase.storage().ref(`images/${fileName}`);
+
+                storageRef.put(evt.target.files[0]);
+                this.setState({
+                  image: fileName,
+                })
+            }
+        });
+    }
+    }
     deleteGhost() {
         this.setState({ ghost: [] })
     }
@@ -225,6 +245,7 @@ class NewsFeed extends Component {
             <FormControl margin="normal" required fullWidth>
               <TextField label="body" className="textarea" multiline={true} type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
             </FormControl>
+              <Input type="file" id="image" onChange={this.putinState}  value={this.state.title} name="image"/>
             <Button
               type="submit"
               fullWidth
