@@ -35,49 +35,41 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      auth: ['login', 'signup']
     }
-
-    this.getUser = this.getUser.bind(this)
     this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
+
   }
 
 
   // Your web app's Firebase configuration
   
   componentDidMount() {
-    this.getUser()
+    let storage = localStorage.getItem('userId');
+    if( storage !== null){
+      console.log('ture')
+      this.setState({ auth: ['Logout']})
+    }else{
+      this.setState({ auth: ['login', 'signup']})
+
+    }
   }
 
-  updateUser (userObject) {
-    this.setState(userObject)
-  }
+  deleteStorage = (e) =>{
 
-  getUser() {
-    /*
-    axios.get('/api/v1/users').then(response => {
-      console.log('Get user response: ')
-      console.log(response.data.id, 'test')
-      const key = localStorage.getItem('userId');
+    const el = e.target.className;
+    console.log(el)
+    if (el == "Logout") {
+        // ...do your state change...
+        localStorage.removeItem("userId")
+        localStorage.removeItem("userToken")
+        localStorage.removeItem("notiSeen")
 
-      if (response.data.id === key) {
-        console.log('Get User: There is a user saved in the server session: ')
 
-        this.setState({
-          loggedIn: true,
-          username: response.data.username
-        })
-        localStorage.setItem('flag' , true);
-      } else {
-        console.log('Get user: no user');
-        this.setState({
-          loggedIn: false,
-          username: null
-        })
-        localStorage.setItem('flag' , false)
-      }
-    })*/
+        window.location.reload("/")
+
+    }
   }
 
   render() {
@@ -92,25 +84,21 @@ class App extends Component {
             <div className="navigation">
                     <div className="mainnavigation">
                     <ul className="mainNav">
-                        <li><a href="/">home</a></li>
-                        <li><a href="/login">login</a></li>
-                        <li><a href="/profile">profile</a></li>
-                        <li><a href="/messaging">messages</a></li>
-                        <li><a href="/newsfeed">newsfeed</a></li>
-                    </ul>
-                    <ul className="secondNav">
-                        <li><a href="http://www.maesfranckxruben.be/landingpage/">about</a></li>
+                        <li><a href="/"> Home 🏠</a></li>
+                        <li><a href="/newsfeed"> Newsfeed 📰</a></li>
+                        <li><a href="/profile">Profile 👤</a></li>
+                        <li><a href="/messaging">Messages 📩 </a></li>
+                        {this.state.auth.map((auth) => (
+                            <div className="auth">
+                              <li><a href={"/" + auth} onClick={this.deleteStorage} className={auth}>{auth}</a></li> 
+                           </div>
 
+                          ))}
                     </ul>
                     </div>
             </div>
             </nav>
-        {/*<Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />*/}
-        {/* greet user if logged in: */}
-        {this.state.loggedIn &&
-          <p>Join the party, {this.state.username}!</p>
-        }
-        {/* Routes to different components */}
+
        <Router>
        <Main />
 
