@@ -14,6 +14,7 @@ const PostSchema = new Schema(
         },
         author: { type: String, required: true, },
         image: {type: String, required: false,},
+        imageurl: {type: String, required: false,},
         published_at: { type: Date, required: false },
         deleted_at: { type: Date, required: false },
         categoryId: { type: Schema.Types.ObjectId, ref: 'Category', required: false },

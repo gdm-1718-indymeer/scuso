@@ -34,6 +34,7 @@ class PostDetail extends Component {
                             <div className="info">
                                 <p><strong>Slug: </strong>{this.props.with.slug}</p>
                                 <p className="author"><strong>Author: </strong>{this.props.with.author}</p>
+                                <p className="author"><strong>filename: </strong>{this.props.with.image}</p>
                             </div>
                         </div>
                     </div>
