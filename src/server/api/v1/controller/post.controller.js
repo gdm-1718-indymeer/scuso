@@ -71,6 +71,7 @@ class PostController {
                 categoryId: req.body.categoryId,
                 author: req.body.author,
                 image: req.body.image,
+                imageurl: req.body.imageurl,
             });
             const post = await postCreate.save();
             return res.status(201).json(post);
