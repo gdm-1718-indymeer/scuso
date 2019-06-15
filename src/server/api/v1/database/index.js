@@ -1,4 +1,4 @@
-import { Blog, Category, Post, User, Messages } from './schemas';
+import { Blog, Category, Post, User, Messages, FriendRequest } from './schemas';
 import Seeder from './seeder';
 
 export {
@@ -8,4 +8,5 @@ export {
     Seeder,
     User,
     Messages,
+    FriendRequest,
 };

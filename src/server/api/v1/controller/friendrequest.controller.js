@@ -9,42 +9,44 @@ Import the internal libraries:
 - errorHandler
 */
 import { FriendRequest } from '../database';
+import { User } from '../database'
 import { APIError, handleAPIError } from '../../../utilities';
 
 class FriendRequestController {
-    // List all the models
-    index = async (req, res, next) => {
-        try {
-            // wut
-            return res.status(200).json(posts);
-        } catch (err) {
-            return handleAPIError(500, err.message || 'Some error occurred while retrieving posts', next);
-        }
-    };
 
-    // Show specific model by id
-    show = async (req, res, next) => {
+    // Load all friend-request
+    
+
+    // Accept friend request
+    accept = async (req, res, next) => {
         try {
-            const { id } = req.params;
-            const item = await User.findById(id).populate('category').exec();
-            if (item === undefined || item === null) {
-                throw new APIError(404, `User with id: ${id} not found!`);
-            }
-            return res.status(200).json(item);
+            const request = await FriendRequest.findById(req.params.reqid).populate('category')
+            console.log(request)
+            // return res.status(200).json(item);
         } catch (err) {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while retrieving posts', next);
         }
     }
 
-    // Store / Create the new model
+    // Deny friend request
+    deny = async (req, res, next) => {
+        try {
+            const request = await FriendRequest.findById(req.params.reqid).populate('category')
+            console.log(request)
+            // return res.status(200).json(item);
+        } catch (err) {
+            return handleAPIError(err.status || 500, err.message || 'Some error occurred while retrieving posts', next);
+        }
+    }
+
+    // Store / Create / Send a new friend-request // DONE
     create = async (req, res, next) => {
         try {
-            const postCreate = new User({
-                username: req.body.username,
-                email: req.body.email,
-                password: req.body.password,
+            const newFR = new FriendRequest({
+                from: req.body.from,
+                to: req.body.to,
             });
-            const user = await postCreate.save();
+            const user = await newFR.save();
             console.log(user);
             return res.status(201).json(user);
         } catch (err) {
@@ -116,4 +118,4 @@ class FriendRequestController {
     }
 }
 
-export default UserController;
+export default FriendRequestController;

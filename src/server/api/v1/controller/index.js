@@ -6,6 +6,7 @@ import PostController from './post.controller';
 import UserController from './user.controller';
 import MessagesController from './messages.controller';
 import EventController from './events.controller';
+import FriendRequestController from './friendrequest.controller';
 
 export {
     AuthController,
@@ -15,4 +16,5 @@ export {
     UserController,
     MessagesController,
     EventController,
+    FriendRequestController,
 };

@@ -5,6 +5,7 @@ import Post from './post.schema';
 import User from './user.schema';
 import Messages from './message.schema';
 import Event from './events.schema';
+import FriendRequest from './friendrequest.schema';
 
 export {
     Blog,
@@ -13,4 +14,5 @@ export {
     User,
     Messages,
     Event,
+    FriendRequest,
 };
