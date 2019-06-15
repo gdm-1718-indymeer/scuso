@@ -19,7 +19,7 @@ class FriendRequestController {
         try {
             console.log(req.params.uid)
             const requests = await FriendRequest.find({ 'to':req.params.uid })
-            // console.log(requests)
+            console.log(requests)
             return res.status(200).json(requests);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving friend-requests', next);
