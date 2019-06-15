@@ -147,7 +147,8 @@ class NewsFeed extends Component {
                 console.log("gepushed")
 				if (!response.data.errmsg) {
           console.log('submit success')
-				}
+                }
+                window.location.reload();
 			}).catch(error => {
         console.log(this.state)
 				console.log('push error: ')
