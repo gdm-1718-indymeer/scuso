@@ -83,29 +83,6 @@ class NewsFeed extends Component {
         }
       };
       handleChange(event) {
-          
-         /*let fileName;
-        console.log(fileName);
-       if (firebase) {
-            const fileUpload = document.getElementById('image');
-            fileUpload.addEventListener('change', (evt) => {
-                if (fileUpload.value !== '') {
-                    fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
-                    const storageRef = firebase.storage().ref(`images/${fileName}`);
-                    toast('fileUploadValue is nie nul');                    
-                    storageRef.put(evt.target.files[0]);
-                    
-                }else{
-                    toast('fileupload is nul')
-                }
-                
-            });
-        }
-        this.setState({
-            imageurl: fileName,
-        })*/
-       
-        
         console.log('OIOIOIOIOIOIOIOI')
         console.log(event)
         this.setState({
@@ -165,17 +142,12 @@ class NewsFeed extends Component {
         let storage = localStorage.getItem('userId');
         if( storage ){
           Api.checkUser().then((response) => {
-
             this.setState({
               author: response.username,
             })
         })
         }else{
-          toast(`👋 You have to be logged in to send a newsitem`);
-
-              
-              
-            
+          toast(`👋 You have to be logged in to send a newsitem`);   
         }
     }
     
@@ -184,39 +156,6 @@ class NewsFeed extends Component {
         this.setState({ ghost: [] })
     }
     loadPosts = () => {
-        const url = 'https://cors-anywhere.herokuapp.com/https://deschuur.org/agenda';
-
-        axios.get(url)
-        .then(response => {
-            let getData = html => {
-                let data = [];
-                const $ = cheerio.load(html);
-                $('.card').each((i, elem) => {
-                  data.push({
-                    image : $(elem).find('img').attr('src'),
-                    title : $(elem).find('h2').text(),
-                    bio: $(elem).find('.content').text(),
-                    link : 'https://deschuur.org' + $(elem).find('a').attr('href'),
-                    data: {
-                        day: $(elem).find('.date').children('.day').text(),
-                        day_month: $(elem).find('.day_month').text()
-                    },
-                    label: $(elem).find('.tag').text(),
-                    price: $(elem).find('.cost').text(),
-                  });
-                });
-                console.log(data)
-                this.setState({ events: data })
-              }
-              
-            getData(response.data)
-            this.deleteGhost();
-
-        })
-        .catch(error => {
-            toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
-        })
-
         Api.findAllPosts()
             .then((data) => {
                 console.log('postloader')
@@ -290,26 +229,22 @@ onProgress={this.handleProgress}
               Send
             </Button>
           </form>
-                       
-
-                        
-                    
-                            <div>
-                            {this.state && this.state.posts && this.state.posts.map((item, index) =>
-                                <section className="blogpost" onClick={(ev) => this.openBlogpost(ev, item)} key={index}>
-                                    <div className="blogexerpt">
-                                        <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
-                                        <p className="exerptDescription loading">{item.synopsis}</p>
-                                    </div>
-                                </section>
-                            )}
+            <div>
+                {this.state && this.state.posts && this.state.posts.map((item, index) =>
+                    <section className="blogpost" onClick={(ev) => this.openBlogpost(ev, item)} key={index}>
+                        <div className="blogexerpt">
+                            <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
+                            <p className="exerptDescription loading">{item.synopsis}</p>
                         </div>
+                    </section>
+                )}
+            </div>
                        
 
-                        <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
-                    <footer className="section__footer">
-                        READ MORE
-                    </footer>
+            <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
+                <footer className="section__footer">
+                    READ MORE
+                </footer>
                 </section>
             </div>
                 <ToastContainer
