@@ -44,6 +44,7 @@ class NewsFeed extends Component {
         synopsis: [],
         author: [],
         image: [],
+        imageurl:[],
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -64,6 +65,19 @@ class NewsFeed extends Component {
         }
       };
       handleChange(event) {
+        if (firebase) {
+            const fileUpload = document.getElementById('image');
+            fileUpload.addEventListener('change', (evt) => {
+                if (fileUpload.value !== '') {
+                    let fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
+                    const storageRef = firebase.storage().ref(`images/${fileName}`);
+                    toast('fileUploadValue is nie nul');                    
+                    storageRef.put(evt.target.files[0]);
+                }else{
+                    toast('fileupload is nul')
+                }
+            });
+        }
         let storage = localStorage.getItem('userId');
         if( storage ){
           Api.checkUser().then((response) => {
@@ -79,9 +93,10 @@ class NewsFeed extends Component {
               
             
         }
-        
+        console.log('OIOIOIOIOIOIOIOI')
+        console.log(event)
         this.setState({
-            [event.target.name]: event.target.value
+            [`${event.target.name}`]: event.target.value
         })
         if(this.state.body !== ""){
             let body = this.state.body;
@@ -113,7 +128,6 @@ class NewsFeed extends Component {
 		.then(response => {
                 console.log(response)
                 console.log("gepushed")
-                window.location.reload();
 				if (!response.data.errmsg) {
           console.log('submit success')
 				}
@@ -145,23 +159,8 @@ class NewsFeed extends Component {
         }
     
     }
-    putinState(){
-      if (firebase) {
-        const fileUpload = document.getElementById('image');
-
-        fileUpload.addEventListener('change', (evt) => {
-            if (fileUpload.value !== '') {
-                let fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
-                const storageRef = firebase.storage().ref(`images/${fileName}`);
-
-                storageRef.put(evt.target.files[0]);
-                this.setState({
-                  image: fileName,
-                })
-            }
-        });
-    }
-    }
+    
+    
     deleteGhost() {
         this.setState({ ghost: [] })
     }
@@ -245,7 +244,7 @@ class NewsFeed extends Component {
             <FormControl margin="normal" required fullWidth>
               <TextField label="body" className="textarea" multiline={true} type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
             </FormControl>
-              <Input type="file" id="image" onChange={this.putinState}  value={this.state.image} name="image"/>
+              <Input type="file" id="image" onChange={this.handleChange}  value={this.state.image} name="image"/>
             <Button
               type="submit"
               fullWidth
