@@ -30,6 +30,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as firebase from 'firebase'
+import FileUploader from 'react-firebase-file-uploader'
 
 class NewsFeed extends Component {
    
@@ -44,13 +45,25 @@ class NewsFeed extends Component {
         synopsis: [],
         author: [],
         image: [],
-        imageurl:[],
+        imageurl:'',
+        isUploading: false,
+        progress: 0,
+        avatarURL: '',
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         
     }
-    
+    handleUploadStart = () => this.setState({isUploading: true, progress: 0});
+    handleProgress = (progress) => this.setState({progress});
+    handleUploadError = (error) => {
+    this.setState({isUploading: false});
+    console.error(error);
+    }
+    handleUploadSuccess = (filename) => {
+    this.setState({image: filename, progress: 100, isUploading: false});
+    firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({imageurl: url}));
+    };
     textTruncate(str, length, ending){
         if (length == null) {
           length = 100;
@@ -68,7 +81,7 @@ class NewsFeed extends Component {
           
         let fileName;
         console.log(fileName);
-        if (firebase) {
+        /*if (firebase) {
             const fileUpload = document.getElementById('image');
             fileUpload.addEventListener('change', (evt) => {
                 if (fileUpload.value !== '') {
@@ -85,7 +98,7 @@ class NewsFeed extends Component {
         }
         this.setState({
             imageurl: fileName,
-        })
+        })*/
         let storage = localStorage.getItem('userId');
         if( storage ){
           Api.checkUser().then((response) => {
@@ -257,7 +270,22 @@ class NewsFeed extends Component {
             <FormControl margin="normal" required fullWidth>
               <TextField label="body" className="textarea" multiline={true} type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
             </FormControl>
-              <Input type="file" id="image" onChange={this.handleChange}  value={this.state.image} name="image"/>
+            {this.state.isUploading &&
+<p>Progress: {this.state.progress}</p>
+}
+{this.state.imageurl &&
+<img src={this.state.imageurl} />
+}
+<FileUploader
+accept="image/*"
+name="image"
+randomizeFilename
+storageRef={firebase.storage().ref('image/')}
+onUploadStart={this.handleUploadStart}
+onUploadError={this.handleUploadError}
+onUploadSuccess={this.handleUploadSuccess}
+onProgress={this.handleProgress}
+/>
             <Button
               type="submit"
               fullWidth
