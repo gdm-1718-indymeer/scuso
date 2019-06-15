@@ -7,12 +7,16 @@ const { Schema } = mongoose;
 const EventSchema = new Schema(
     {
         title: { type: String, required: false },
-        image: { type: String, required: false },
-        bio: { type: String, required: false },
+        imageurl: { type: String, required: false },
+        body: { type: String, required: false },
         link: { type: String, required: false },
         data: { type: String, required: false },
         label: { type: String, required: false },
         price: { type: String, required: false },
+        author: { type: String, required: false },
+        slug: {
+            type: String, lowercase: true, unique: true, required: true,
+        },
     },
     {
         toJSON: { virtuals: true },
