@@ -30,6 +30,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as firebase from 'firebase'
+import FileUploader from 'react-firebase-file-uploader'
 
 class NewsFeed extends Component {
    
@@ -43,14 +44,31 @@ class NewsFeed extends Component {
         body: [],
         synopsis: [],
         author: [],
-        image: [],
-        imageurl:[],
+        image: '',
+        imageurl:'',
+        isUploading: false,
+        progress: 0,
+        avatarURL: '',
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
         
     }
-    
+        handleUploadStart = () => this.setState({isUploading: true, progress: 0});
+        handleProgress = (progress) => this.setState({progress});
+        handleUploadError = (error) => {
+        this.setState({isUploading: false});
+        toast.error(error.message);
+        }
+        handleUploadSuccess = (filename) => {
+        this.setState({image: filename, progress: 100, isUploading: false});
+        firebase.storage().ref('test').child(filename).getDownloadURL().then(((url) => {
+          this.setState({imageurl: url})          
+          return url;
+      })
+    )
+    };
+
     textTruncate(str, length, ending){
         if (length == null) {
           length = 100;
@@ -65,45 +83,42 @@ class NewsFeed extends Component {
         }
       };
       handleChange(event) {
-        if (firebase) {
+          
+         /*let fileName;
+        console.log(fileName);
+       if (firebase) {
             const fileUpload = document.getElementById('image');
             fileUpload.addEventListener('change', (evt) => {
                 if (fileUpload.value !== '') {
-                    let fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
+                    fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
                     const storageRef = firebase.storage().ref(`images/${fileName}`);
                     toast('fileUploadValue is nie nul');                    
                     storageRef.put(evt.target.files[0]);
+                    
                 }else{
                     toast('fileupload is nul')
                 }
+                
             });
         }
-        let storage = localStorage.getItem('userId');
-        if( storage ){
-          Api.checkUser().then((response) => {
-
-            this.setState({
-              author: response.username,
-            })
-        })
-        }else{
-          toast(`👋 You have to be logged in to send a newsitem`);
-
-              
-              
-            
-        }
+        this.setState({
+            imageurl: fileName,
+        })*/
+       
+        
         console.log('OIOIOIOIOIOIOIOI')
         console.log(event)
         this.setState({
-            [`${event.target.name}`]: event.target.value
+            [`${event.target.name}`]: event.target.value,
         })
+        
         if(this.state.body !== ""){
             let body = this.state.body;
             let syn = this.textTruncate(body, 100);
             this.setState({
                 synopsis: syn,
             })
+        
     }
     }
     
@@ -124,13 +139,16 @@ class NewsFeed extends Component {
             body: this.state.body,
             synopsis: this.state.synopsis,
             author: this.state.author,
+            image: this.state.image,
+            imageurl: this.state.imageurl,
     		    })
 		.then(response => {
                 console.log(response)
                 console.log("gepushed")
 				if (!response.data.errmsg) {
           console.log('submit success')
-				}
+                }
+                window.location.reload();
 			}).catch(error => {
         console.log(this.state)
 				console.log('push error: ')
@@ -144,20 +162,21 @@ class NewsFeed extends Component {
     
     componentWillMount() {
         this.loadPosts();
-        let storage = localStorage.getItem('notiSeen');
-        if( storage === 'true'){
-        }else{
-            Api.checkUser().then((response) => {
+        let storage = localStorage.getItem('userId');
+        if( storage ){
+          Api.checkUser().then((response) => {
 
-                    toast(`👋 hello, how are you ${response.username}?`);
-                    localStorage.setItem('notiSeen', 'true');
-                }
-    
-              )
+            this.setState({
+              author: response.username,
+            })
+        })
+        }else{
+          toast(`👋 You have to be logged in to send a newsitem`);
+
+              
               
             
         }
-    
     }
     
     
@@ -244,7 +263,22 @@ class NewsFeed extends Component {
             <FormControl margin="normal" required fullWidth>
               <TextField label="body" className="textarea" multiline={true} type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
             </FormControl>
-              <Input type="file" id="image" onChange={this.handleChange}  value={this.state.image} name="image"/>
+            {this.state.isUploading &&
+<p>Progress: {this.state.progress}</p>
+}
+{this.state.imageurl &&
+<img src={this.state.imageurl} />
+}
+<FileUploader
+accept="image/*"
+name="image"
+randomizeFilename
+storageRef={firebase.storage().ref('test/')}
+onUploadStart={this.handleUploadStart}
+onUploadError={this.handleUploadError}
+onUploadSuccess={this.handleUploadSuccess}
+onProgress={this.handleProgress}
+/>
             <Button
               type="submit"
               fullWidth
