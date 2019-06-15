@@ -47,7 +47,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 30,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -172,13 +172,14 @@ class Signup extends Component {
 
     return (
       <React.Fragment>
-          
+                  <div className="discover"></div>
+
         <CssBaseline />
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h2" variant="h5">
             Sign in
           </Typography>
       

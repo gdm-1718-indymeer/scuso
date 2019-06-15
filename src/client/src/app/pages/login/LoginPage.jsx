@@ -52,7 +52,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 30,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -102,7 +102,6 @@ class LoginPage extends Component {
       }
     })
   }
-  notify = () => toast("Wow so easy !");
 
   
   render() {
@@ -114,13 +113,14 @@ class LoginPage extends Component {
     return (
    
       <React.Fragment>
-        
+        <div className="discover"></div>
+
         <CssBaseline />
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h2" variant="h5">
             Sign in
           </Typography>
           <form className={classes.form}>
@@ -148,7 +148,6 @@ class LoginPage extends Component {
             </Button>
           </form>
         </Paper>
-        <button onClick={this.notify}>Notify !</button>
         <ToastContainer
           position="bottom-left"
           autoClose={5000}
