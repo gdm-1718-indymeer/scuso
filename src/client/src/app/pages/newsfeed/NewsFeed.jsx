@@ -245,7 +245,7 @@ class NewsFeed extends Component {
             <FormControl margin="normal" required fullWidth>
               <TextField label="body" className="textarea" multiline={true} type="text" id="body" onChange={this.handleChange}  value={this.state.body} name="body"/>
             </FormControl>
-              <Input type="file" id="image" onChange={this.putinState}  value={this.state.title} name="image"/>
+              <Input type="file" id="image" onChange={this.putinState}  value={this.state.image} name="image"/>
             <Button
               type="submit"
               fullWidth
