@@ -15,7 +15,16 @@ import { APIError, handleAPIError } from '../../../utilities';
 class FriendRequestController {
 
     // Load all friend-request
-    
+    loadRequests = async (req, res, next) => {
+        try {
+            console.log(req.params.uid)
+            const requests = await FriendRequest.find({ 'to':req.params.uid })
+            // console.log(requests)
+            return res.status(200).json(requests);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving friend-requests', next);
+        }
+    };
 
     // Accept friend request
     accept = async (req, res, next) => {
