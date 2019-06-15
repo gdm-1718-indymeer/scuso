@@ -29,7 +29,7 @@ class PostDetail extends Component {
                                 <h2>{this.props.with.title}</h2>
                                 
                                 <p>{this.props.with.body}</p>
-                                <img className="imagedetail" src={"https://firebasestorage.googleapis.com/v0/b/scuso-cb1ee.appspot.com/o/image%2F"+this.props.with.image+"?alt=media&token=acc2b707-6c02-44c1-96e9-2020e59163a4"} />
+                                <img className="imagedetail" src={this.props.with.imageurl} />
                             </div>
                             <div className="info">
                                 <p><strong>Slug: </strong>{this.props.with.slug}</p>
