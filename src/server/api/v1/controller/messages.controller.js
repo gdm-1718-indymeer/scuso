@@ -68,17 +68,26 @@ class MessagesController {
     // ViewModel for Insert / Create
 
     create = async (req, res) => {
-        const f = await User.findById(req.body.from)
-        const t = await User.findById(req.body.to)
+        console.log('eey')
+        const fromto = Messages.find({'conversation_id':`${req.body.from}_${req.body.to}`})
+        const tofrom = Messages.find({'conversation_id':`${req.body.to}_${req.body.from}`})
+        if (fromto !== undefined && fromto !== null) {
+            console.log('FROM TO')
+        }if (tofrom !== undefined && tofrom !== null) {
+            console.log('TO ROM')
+        }else{
+            console.log('OEI')
+        }
+
         const newMessage = new Messages({
             from: req.body.from,
-            from_name: f.username,
+            from_name: req.body.from_name,
             to: req.body.to,
-            to_name: t.username,
+            to_name: req.body.to_name,
             content: req.body.content,
         });
-        console.log(t)
-        newMessage.save().then(message => res.json(message))
+        // console.log(newMessage)
+        // newMessage.save().then(message => res.json(message))
         // return res.status(200).json(newMessage);
     }
 

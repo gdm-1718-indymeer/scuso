@@ -118,7 +118,6 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Update post
      */
-    parentRouter.put('/posts/:id', postController.update);
     /**
      * @swagger
      * /api/v1/posts/{id}:
