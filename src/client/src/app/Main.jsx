@@ -26,6 +26,7 @@ import NewsPage from './pages/news';
 import PostDetailPage from './pages/post-detail';
 import profilePage from './pages/profile';
 import NewsFeed from './pages/newsfeed';
+import EventPage from './pages/events'
 
 /*
 Import styling
@@ -48,6 +49,8 @@ class Main extends Component {
           <RouteWithLayout path="/profile" component={ profilePage }></RouteWithLayout>
           <RouteWithLayout path="/messaging" component={ MessagingPage }></RouteWithLayout>
           <RouteWithLayout path="/newsfeed" component={ NewsFeed }></RouteWithLayout>
+          <RouteWithLayout path="/events" component={ EventPage }></RouteWithLayout>
+
         </Switch>
       </div>
     );

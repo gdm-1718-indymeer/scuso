@@ -116,4 +116,4 @@ class FriendRequestController {
     }
 }
 
-export default UserController;
+export default FriendRequestController;
