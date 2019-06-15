@@ -87,6 +87,7 @@ class EventsController {
                 data: req.body.data,
                 label: req.body.label,
                 price: req.body.price,
+                
             });
             const event = await newEvent.save();
             return res.status(201).json(event);

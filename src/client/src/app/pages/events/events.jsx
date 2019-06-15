@@ -14,18 +14,35 @@ import Api from '../../services';
 import PostsList from '../../components/posts-list';
 import axios from 'axios';
 import cheerio from 'cheerio';
+import Popup from '../../components/popup/popup';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-class HomePage extends Component {
-    state = {
-        posts: [],
-        events: [],
-        ghost:[1,2,3,4,5,6,7],
-        title: [],
-        category: [],
-        body: [], 
-    };
+class EventPage extends Component {
+    constructor(props){
+        super(props);
+            this.state = {
+                posts: [],
+                events: [],
+                ghost:[1,2,3,4,5,6,7],
+                title: [],
+                category: [],
+                body: [], 
+                showPopup: false,
+            };
+        }
     pushPost(event) {
 		console.log('pushpost pushPost, ')
 		event.preventDefault()
@@ -54,7 +71,11 @@ class HomePage extends Component {
 
 			})
   }
-    
+  togglePopup() {  
+    this.setState({  
+         showPopup: !this.state.showPopup  
+    });  
+     }  
     componentWillMount() {
         this.loadPosts();
         let storage = localStorage.getItem('notiSeen');
@@ -110,7 +131,7 @@ class HomePage extends Component {
             toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
         })
 
-       Api.findAllPosts()
+        Api.findAllPosts()
             .then((data) => {
                 console.log('postloader')
                 this.setState(prevState => ({
@@ -137,28 +158,27 @@ class HomePage extends Component {
             
 
             <div className="body">
-                <div className="headerwithsearch">
-                    <div className="header">
-                    <h2 className="discover">Discover Activities</h2>
-                     <p>Discover fun new activities below:</p> 
-                     <div className="search-container">
-                        <form >
-                        <input type="text" placeholder="Search Activities" name="search"></input>
-                        <button type="submit"><p className ='magnify'> &#9906;</p></button>
-                        </form>
-                    </div>
-                    </div>
-                </div>
+                <div className="discover"></div>
                 <section className="section section--articles">
                     <header className="section__header">
-                        <h2 className="section__title">Events Near you</h2>
-                        <a href="/events">View All</a>
+                        <h2 className="section__title">Discover the events</h2>
                     </header>
-                    <div className="container">
-                    <div className="section__content section__content--articles">
+                    <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
 
-                    {this.state.ghost.map((index) =>
-                        <section className="card" key={index}>
+                        {this.state.showPopup ?  
+                        <Popup  
+                                text='Click "Close Button" to hide popup'  
+                                
+                                closePopup={this.togglePopup.bind(this)}  
+                        />  
+                        : null  
+                        }
+                        
+                    <div className="container">
+                    <div className="section__content section__content--events">
+
+                    {this.state.ghost.map(() => 
+                        <section className="card">
                             <Skeleton height={150} />
                             <div className="card-detail">
                             <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
@@ -179,37 +199,7 @@ class HomePage extends Component {
                             </div>
                         </section>
                         )}
-                         </div>
-                    <section className="section section--articles">
-                        <header className="section__header">
-                            <h2 className="section__title">Featured Activities</h2>
-                        </header>
-                        <div className="wrapper">
-                            <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-                                <div className="text">
-                                    <h3 >Rommelmarkt</h3>
-                                    <p >Zie events in de buurt</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-                                <div className="text">
-                                    <h3 >Rommelmarkt</h3>
-                                    <p >Zie events in de buurt</p>
-                                </div>
-                            </article>
-                            <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-                                <div className="text">
-                                    <h3 >Rommelmarkt</h3>
-                                    <p >Zie events in de buurt</p>
-                                </div>
-                            </article>
-                        </div>
-                        </section>
-                            
-                       
+                         </div>               
 
                         <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
                     </div>
@@ -235,4 +225,4 @@ class HomePage extends Component {
     
 }
 
-export default (HomePage);
+export default (EventPage);
