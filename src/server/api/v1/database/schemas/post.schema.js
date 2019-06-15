@@ -12,6 +12,7 @@ const PostSchema = new Schema(
         slug: {
             type: String, lowercase: true, unique: true, required: true,
         },
+        author: { type: String, required: true, },
         published_at: { type: Date, required: false },
         deleted_at: { type: Date, required: false },
         categoryId: { type: Schema.Types.ObjectId, ref: 'Category', required: false },

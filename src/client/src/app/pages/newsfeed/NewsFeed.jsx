@@ -41,6 +41,7 @@ class NewsFeed extends Component {
         title: [],
         body: [],
         synopsis: [],
+        author: [],
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -61,7 +62,20 @@ class NewsFeed extends Component {
         }
       };
       handleChange(event) {
-          
+        let storage = localStorage.getItem('userId');
+        if( storage === 'true'){
+        }else{
+            Api.checkUser().then((response) => {
+
+                    this.setState({
+                      author: response.username,
+                    })
+                }
+    
+              )
+              
+            
+        }
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -73,6 +87,7 @@ class NewsFeed extends Component {
             })
     }
     }
+    
     openBlogpost = async (event, title) => {
         console.log(title)
         this.setState({
@@ -88,7 +103,7 @@ class NewsFeed extends Component {
             title: this.state.title,
             body: this.state.body,
             synopsis: this.state.synopsis,
-
+            author: this.state.author,
     		    })
 		.then(response => {
                 console.log(response)

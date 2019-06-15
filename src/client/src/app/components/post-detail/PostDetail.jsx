@@ -24,6 +24,7 @@ class PostDetail extends Component {
                 </div>
                 <h2>{this.props.with.title}</h2>
                 <p>{this.props.with.body}</p>
+                <p>{this.props.with.author}</p>
                 </div>
             </React.Fragment>
         );
