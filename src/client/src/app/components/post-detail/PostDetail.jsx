@@ -29,14 +29,14 @@ class PostDetail extends Component {
                                 <h2>{this.props.with.title}</h2>
                                 
                                 <p>{this.props.with.body}</p>
-                                
+                                <img className="imagedetail" src={"https://firebasestorage.googleapis.com/v0/b/scuso-cb1ee.appspot.com/o/image%2F"+this.props.with.image+"?alt=media&token=acc2b707-6c02-44c1-96e9-2020e59163a4"} />
                             </div>
                             <div className="info">
                                 <p><strong>Slug: </strong>{this.props.with.slug}</p>
                                 <p className="author"><strong>Author: </strong>{this.props.with.author}</p>
                                 <p className="author"><strong>filepath: </strong>{this.props.with.image}</p>
                                 <p className="author"><strong>filename: </strong>{this.props.with.imageurl}</p>
-                                <img src={"https://firebasestorage.googleapis.com/v0/b/scuso-cb1ee.appspot.com/o/image%2F"+this.props.with.image+"?alt=media&token=acc2b707-6c02-44c1-96e9-2020e59163a4"}>
+                                
                             </div>
                         </div>
                     </div>
