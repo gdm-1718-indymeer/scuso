@@ -156,8 +156,8 @@ class HomePage extends Component {
                     <div className="container">
                     <div className="section__content section__content--articles">
 
-                    {this.state.ghost.map(() => 
-                        <section className="card">
+                    {this.state.ghost.map((index) =>
+                        <section className="card" key={index}>
                             <Skeleton height={150} />
                             <div className="card-detail">
                             <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
