@@ -8,42 +8,17 @@ import { FriendRequestController } from '../controller';
 const friendRequestController = new FriendRequestController();
 
 const initializeEndpoints = (parentRouter, authService) => {
-    /**
-     * @swagger
-     * /api/v1/blogs:
-     *   get:
-     *     tags:
-     *       - Blogs
-     *     description: Returns all blogs
-     *     produces:
-     *       - application/json
-     *     responses:
-     *       200:
-     *         description: An array of blogs
-     */
-    parentRouter.get('/friendrequests/load/:uid/', friendRequestController.index, function(req, res) {
-        res.send(req.user);
-    });
 
+    // Load friend-requests based on userId
+    parentRouter.get('/friendrequest/load/:uid/', friendRequestController.loadRequests);
 
-    // parentRouter.get('/conversations', messagesController.conversations);
-    /**
-     * @swagger
-     * /api/v1/blogs/create:
-     *   get:
-     *     tags:
-     *       - Blog
-     *     description: Returns specific viewmodel such as blogs
-     *     produces:
-     *       - application/json
-     *     responses:
-     *       200:
-     *         description: Create post
-     */
+    // Create friend-request based on sender's userId and receiver's userId
     parentRouter.post('/friendrequest/create', friendRequestController.create);
 
+    // Deny friend requests based on requestId and authenticated by receiver's userId
     parentRouter.get('/friendrequest/deny/:reqid', friendRequestController.deny);
 
+    // Accept friend requests based on requestId and authenticated by receiver's userId
     parentRouter.get('/friendrequest/accept/:reqid', friendRequestController.accept);
 
     /**
