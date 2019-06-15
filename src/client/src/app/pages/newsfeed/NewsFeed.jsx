@@ -63,16 +63,17 @@ class NewsFeed extends Component {
       };
       handleChange(event) {
         let storage = localStorage.getItem('userId');
-        if( storage === 'true'){
-        }else{
-            Api.checkUser().then((response) => {
+        if( storage ){
+          Api.checkUser().then((response) => {
 
-                    this.setState({
-                      author: response.username,
-                    })
-                }
-    
-              )
+            this.setState({
+              author: response.username,
+            })
+        })
+        }else{
+          toast(`👋 You have to be logged in to send a newsitem`);
+
+              
               
             
         }
@@ -108,6 +109,7 @@ class NewsFeed extends Component {
 		.then(response => {
                 console.log(response)
                 console.log("gepushed")
+                window.location.reload();
 				if (!response.data.errmsg) {
           console.log('submit success')
 				}
