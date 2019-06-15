@@ -65,19 +65,27 @@ class NewsFeed extends Component {
         }
       };
       handleChange(event) {
+          
+        let fileName;
+        console.log(fileName);
         if (firebase) {
             const fileUpload = document.getElementById('image');
             fileUpload.addEventListener('change', (evt) => {
                 if (fileUpload.value !== '') {
-                    let fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
+                    fileName = evt.target.files[0].name.replace(/\s+/g, '-').toLowerCase();
                     const storageRef = firebase.storage().ref(`images/${fileName}`);
                     toast('fileUploadValue is nie nul');                    
                     storageRef.put(evt.target.files[0]);
+                    
                 }else{
                     toast('fileupload is nul')
                 }
+                
             });
         }
+        this.setState({
+            imageurl: fileName,
+        })
         let storage = localStorage.getItem('userId');
         if( storage ){
           Api.checkUser().then((response) => {
@@ -93,17 +101,20 @@ class NewsFeed extends Component {
               
             
         }
+        
         console.log('OIOIOIOIOIOIOIOI')
         console.log(event)
         this.setState({
-            [`${event.target.name}`]: event.target.value
+            [`${event.target.name}`]: event.target.value,
         })
+        
         if(this.state.body !== ""){
             let body = this.state.body;
             let syn = this.textTruncate(body, 100);
             this.setState({
                 synopsis: syn,
             })
+        
     }
     }
     
@@ -124,6 +135,8 @@ class NewsFeed extends Component {
             body: this.state.body,
             synopsis: this.state.synopsis,
             author: this.state.author,
+            image: this.state.image,
+            imageurl: this.state.imageurl,
     		    })
 		.then(response => {
                 console.log(response)
