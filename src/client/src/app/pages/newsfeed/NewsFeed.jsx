@@ -93,9 +93,10 @@ class NewsFeed extends Component {
               
             
         }
-        
+        console.log('OIOIOIOIOIOIOIOI')
+        console.log(event)
         this.setState({
-            [event.target.name]: event.target.value
+            [`${event.target.name}`]: event.target.value
         })
         if(this.state.body !== ""){
             let body = this.state.body;
