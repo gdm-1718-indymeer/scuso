@@ -180,7 +180,7 @@ class HomePage extends Component {
                                     <form>
                                         <input type="text" placeholder="Search Activities" name="search"
     onChange={(e) => this.searchEvents(e.target.value)}/>
-                                        <button><p className={'magnify'}> &#9906;</p></button>
+                                        {/*<button><p className={'magnify'}> &#9906;</p></button>*/}
                                     </form>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@ class HomePage extends Component {
                             <div className="container">
                                 <div className="section__content section__content--articles">
                                     {this.state.searchResponse.map((item, index) =>
-                                        <section className="card" key={index}>
+                                        <section className="card" key={index} onClick={() => this.goToPostDetailPage(item.id)}>
                                             <img className="card-image" src={item.imageurl}/>
                                             <div className="card-detail">
                                                 <h3 className="card-title">{item.title}</h3>
@@ -222,7 +222,7 @@ class HomePage extends Component {
                                     <form>
                                         <input type="text" placeholder="Search Activities" name="search"
                                                onChange={(e) => this.searchEvents(e.target.value)}/>
-                                        <button><p className={'magnify'}> &#9906;</p></button>
+                                        {/*<button><p className={'magnify'}> &#9906;</p></button>*/}
                                     </form>
                                 </div>
                             </div>
