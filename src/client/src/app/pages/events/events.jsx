@@ -131,9 +131,10 @@ class EventPage extends Component {
             toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
         })
 
-        Api.findAllPosts()
+        Api.findAllEvents()
             .then((data) => {
                 console.log('postloader')
+                console.log(data)
                 this.setState(prevState => ({
                     ...prevState,
                     posts: data
