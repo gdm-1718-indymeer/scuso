@@ -12,7 +12,7 @@ const EventSchema = new Schema(
         label: { type: String, required: false },
         price: { type: String, required: false },
         author: { type: String, required: false },
-    }
+    },
 );
 
 export default mongoose.model('Event', EventSchema);
