@@ -179,7 +179,17 @@ class eventsLists extends Component {
                             </div>
                         </section>
                         )}
-                       
+                        {this.state.events.map((item, index) =>
+                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
+                            <div className="fadeout"></div>
+
+                            </div>
+                        </section>
+                        )}
                         
                         {this.state && this.state.events && this.state.eventsscrape.map((itemscrape, index) =>
                         <section className="card" key={index}>
@@ -192,17 +202,7 @@ class eventsLists extends Component {
                             </div>
                         </section>
                         )}
-                {this.state.events.map((item, index) =>
-                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
-                            <img className="card-image loading" src={item.imageurl}/>
-                            <div className="card-detail">
-                            <h3 className="card-title loading">{item.title}</h3>
-                            <p className="card-description loading">{item.body}</p>
-                            <div className="fadeout"></div>
-
-                            </div>
-                        </section>
-                        )}
+               
                         </div></div></section>
             </React.Fragment>
         )

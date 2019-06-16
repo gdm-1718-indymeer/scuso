@@ -80,8 +80,7 @@ class Popup extends React.Component {
     console.log(this.state)
     }
 
-    onSubmit(e){
-      e.preventDefault()
+    onSubmit(){
 
       if (localStorage.getItem('userId')){
     
@@ -96,13 +95,13 @@ class Popup extends React.Component {
         }
         eventPost(user).then(res => {
           if(res){
-            this.props.history.push('/events')
           }
         })
       }else{
         toast('You can only add events if you are logged in')
       }
-        
+      window.location.reload()
+ 
       }
 
   render() {  

@@ -478,6 +478,8 @@ article {
       width: 100%;
       height: auto;
       transition: all 0.3s ease;
+      max-height: 250px;
+      object-fit: cover;
      
     }
     
