@@ -57,6 +57,16 @@ class HomePage extends Component {
         })
     
     }
+
+    deleteItem = (e) =>{
+        let id = e.currentTarget.id;
+        console.log(id)
+        Api.deleteItem(id).then((response) => {
+            console.log(response)
+            toast.success('tis verwijderd');
+
+        })
+    }
    
 
 
@@ -88,16 +98,19 @@ class HomePage extends Component {
                 </main>
                 <section className="flex">
                 <div className="sectionCard created">
-                    <h2>Events created by me</h2>
+                    <h2>Events created by {this.state.users}</h2>
                     <div className="section__content section__content--articles">
 
                     { this.state.events.map((item, index) =>
                         <section className="card" key={index}>
+                            <div class="edit">✎</div>
+                            <div onClick={this.deleteItem} id={item.id} class="delete">˟</div>
+
+
                             <img className="card-image loading" src={item.imageurl}/>
                             <div className="card-detail">
                             <h3 className="card-title loading">{item.title}</h3>
                             <p className="card-description loading">{item.body}</p>
-                            <div class="edit"><a href="#">✎</a></div>
 
 
                             <div className="fadeout"></div>
@@ -111,7 +124,7 @@ class HomePage extends Component {
                 <section className="flex">
 
                 <div className="sectionCard created">
-                    <h2>Events created by me</h2>
+                    <h2>Posts created by {this.state.users}</h2>
                     <div className="section__content section__content--articles">
                         { this.state.posts.map( (post, index) => (
                             <article key={ post.id } className={classNames("post--small")}>

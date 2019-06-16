@@ -68,16 +68,39 @@
   .profileBody .skills li:nth-child(odd) {
     background: #0399ff;
   }
-  .profileBody .card:hover .edit {
-    display: block;
+  .profileBody .card:hover .edit ,  .profileBody .card:hover .delete  {
+    display: table-cell;
+    background-color: white;
+    color: $color_darkb;
+    height: 20px;
+    width: 20px;
+    line-height: 23px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: $shadow;
+    cursor: pointer; 
+    transition: cubic-bezier(0.215, 0.610, 0.355, 1);
   }
-  
-  .edit {
-    padding-top: 7px;	
-    padding-right: 7px;
+  .profileBody .card:hover .delete {
+    line-height: 29px;
+    color: red;
+  }
+  .delete {
+    padding: 7px;
+    /* padding-right: 7px; */
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 2px;
+    top: 47px;
+    display: none;
+    font-size: 34px;
+    line-height: -16px;
+  }
+  .edit {
+    padding: 7px;
+    /* padding-right: 7px; */
+    position: absolute;
+    right: 2px;
+    top: 6px;
     display: none;
   }
   
