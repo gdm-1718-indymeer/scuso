@@ -24,6 +24,16 @@ class EventsController {
         }
     };
 
+    category = async (req, res, next) => {
+        try {
+            const events = await Event.find({ 'label':req.params.category }).sort({ created_at: -1 }).exec();
+            console.log(events)
+            return res.status(200).json(events);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving events', next);
+        }
+    };
+
     showAuth = async (req, res, next) => {
         try {
             const events = await Event.find({'author': req.params.author}).sort({ created_at: -1 }).exec();
