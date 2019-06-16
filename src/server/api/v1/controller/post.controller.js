@@ -37,6 +37,16 @@ class PostController {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving posts', next);
         }
     };
+    // show user posts
+
+    showPosts = async (req, res, next) => {
+        try {
+            const posts = await Post.find({'userid': req.params.id}).sort({ created_at: -1 }).exec();
+            return res.status(200).json(posts);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving events', next);
+        }
+    }
 
     // Show specific model by id
     show = async (req, res, next) => {

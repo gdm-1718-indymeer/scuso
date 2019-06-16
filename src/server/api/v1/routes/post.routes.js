@@ -35,6 +35,20 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Create post
      */
+    parentRouter.get('/posts/show/:id', postController.showPosts);
+    /**
+     * @swagger
+     * /api/v1/posts/create:
+     *   get:
+     *     tags:
+     *       - Post
+     *     description: Returns specific viewmodel such as categories
+     *     produces:
+     *       - application/json
+     *     responses:
+     *       200:
+     *         description: Create post
+     */
     parentRouter.get('/posts/create/', postController.create);
     /**
      * @swagger
