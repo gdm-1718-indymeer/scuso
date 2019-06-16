@@ -56,7 +56,10 @@ class Api {
     }
 
 
-
+    static DeleteEvent = async (id) => {
+        const response = await fetch(`${this.URL}/events/${id}`);
+        return await response.json();
+    }
     static loadConversations = async () => {
         let url = `${this.URL}/messages/loadconversations/${localStorage.getItem('userId')}`;
         console.log(url)

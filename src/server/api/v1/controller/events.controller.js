@@ -172,7 +172,7 @@ class EventsController {
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
             } else {
-                return res.status(200).json({ message: `Successful deleted the Post with id: ${id}!`, events, mode });
+                return res.status(200).json({ message: `Successful deleted the Post with id: ${id}!`, Event, mode });
             }
         } catch (err) {
             return handleAPIError(err.status || 500, err.message || `Some error occurred while deleting the Post with id: ${id}!`, next);

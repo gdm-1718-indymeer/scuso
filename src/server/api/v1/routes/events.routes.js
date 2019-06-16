@@ -144,7 +144,8 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: Delete blog
      */
-    // parentRouter.delete('/blogs/:id', eventController.destroy);
+    // 
+    parentRouter.delete('/events/:id', eventController.destroy);
 };
 
 export default initializeEndpoints;
