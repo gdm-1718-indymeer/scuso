@@ -10,7 +10,7 @@ export const eventPost = user => {
         author: user.author,
         imageurl: user.imageurl,
         body: user.body,
-        title: user.email,
+        title: user.title,
         data: user.data,
         price: user.price,
         label: user.label

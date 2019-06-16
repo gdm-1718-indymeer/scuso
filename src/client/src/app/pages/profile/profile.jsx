@@ -44,6 +44,7 @@ class HomePage extends Component {
 
         Api.fetchEventsId().then((response) => {
             this.setState({events: response})
+            console.log(response)
 
         })
     
