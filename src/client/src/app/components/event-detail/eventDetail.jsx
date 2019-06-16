@@ -36,6 +36,7 @@ class EventDetail extends Component {
                                 <p className="author"><strong>Author: </strong>{this.props.with.author}</p>
                                 <p className="author"><strong>filepath: </strong>{this.props.with.image}</p>
                                 <p className="author"><strong>filename: </strong>{this.props.with.imageurl}</p>
+                                <p className="author"><strong>category: </strong>{this.props.with.label}</p>
                                 
                             </div>
                         </div>

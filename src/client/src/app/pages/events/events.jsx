@@ -82,7 +82,14 @@ class EventPage extends Component {
         if(parameter === "?cat=rommelmarkt"){
             this.state.param = "rommelmarkt";
             
+        }else if(parameter === "?cat=kickoff"){
+            this.state.param = "kickoff"
+        }else if(parameter === "?cat=openaanbod"){
+            this.state.param = "open aanbod"
+        }else if(parameter === "?cat=openlab"){
+            this.state.param = "open lab"
         }
+        
         console.log(this.state.param)
         let storage = localStorage.getItem('notiSeen');
         if( storage === 'true'){
