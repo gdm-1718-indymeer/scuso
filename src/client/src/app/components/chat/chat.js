@@ -38,7 +38,8 @@ class Chat extends Component {
                     other: {
                         id: this.props.with.from,
                         name: this.props.with.from_name
-                    }
+                    },
+                    to_name: this.props.with.from_name
                 })
             }else{
                 other = this.props.with.to
@@ -50,7 +51,8 @@ class Chat extends Component {
                     other: {
                         id: this.props.with.to,
                         name: this.props.with.to_name
-                    }
+                    },
+                    to_name: this.props.with.to_name
                 })
             }
         }
@@ -117,7 +119,7 @@ class Chat extends Component {
             
             <div className="messaging-container">
                 <div className="discover dispno"></div>
-                <div className="top-bar"><h3>{this.state.otherPerson && this.state.otherPerson.username}</h3></div>
+                <h3 className={'other-user-name'}>{this.state.to_name}</h3>
                 <div className="messages-container">
                     <div>
                         <ChatInput
