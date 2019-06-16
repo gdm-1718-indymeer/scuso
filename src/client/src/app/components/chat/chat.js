@@ -12,6 +12,7 @@ class Chat extends Component {
 
     loadMessages() {
         Api.checkUser(this.props.with).then((res) => {
+            console.log('CONVERSATION USER: ' + res.username)
             this.setState({
                 otherPerson: res
             })

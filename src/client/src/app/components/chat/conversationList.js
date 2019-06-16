@@ -22,21 +22,29 @@ class ConversationList extends Component {
         ]
     };
 
+    getUnique(arr, comp) {
+
+        console.log('UNIQUE')
+
+        const unique = arr
+            .map(e => e[comp])
+
+            // store the keys of the unique objects
+            .map((e, i, final) => final.indexOf(e) === i && i)
+
+            // eliminate the dead keys & store unique objects
+            .filter(e => arr[e]).map(e => arr[e]);
+
+        return unique;
+    }
+
     componentDidMount() {
-
-
-        this.setState({
-            auth: {
-                target: 'Logout'
-            }
-        })
-
-
         Api.loadConversations().then((res) => {
             console.log('tester')
             console.log(res)
+            const filteredArr = this.getUnique(res,'conversation_id')
             this.setState({
-                conversations: res
+                conversations: filteredArr
             })
             console.log(this.state)
         }).catch((err) => {
@@ -60,8 +68,8 @@ class ConversationList extends Component {
                     <div className={'discover'}/>
                     {this.state.conversations.map((state, index) =>
                         <div className={'thumb-container'} key={index}
-                             onClick={(ev) => this.openConversation(ev, state.from)}>
-                            <p className={'thumb-from'}>{state.from_name}</p>
+                             onClick={(ev) => this.openConversation(ev, state.to)}>
+                            <p className={'thumb-from'}>{state.to_name}</p>
                             <p className={'thumb-content'}>{state.content}</p>
                         </div>,
                     )}
