@@ -82,13 +82,13 @@ class Popup extends React.Component {
         e.preventDefault()
     
         const user = {
-        author: this.state.author,
-          title: this.state.title,
-          imageurl: this.state.imageurl,
-          body: this.state.body,
-          data: this.state.data,
-          price: this.state.price,
-          label: this.state.label,
+            author: this.state.author,
+            title: this.state.title,
+            imageurl: this.state.imageurl,
+            body: this.state.body,
+            data: this.state.data,
+            price: this.state.price,
+            label: this.state.label,
         }
         eventPost(user).then(res => {
           if(res){

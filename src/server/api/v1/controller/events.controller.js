@@ -78,6 +78,7 @@ class EventsController {
 
     // Store / Create the new model
     store = async (req, res, next) => {
+        console.log('instore')
         try {
             const newEvent = new Event({
                 title: req.body.title,
@@ -89,6 +90,7 @@ class EventsController {
                 author: req.body.author,
                 
             });
+            console.log(newEvent)
             const event = await newEvent.save();
             return res.status(201).json(event);
         } catch (err) {
