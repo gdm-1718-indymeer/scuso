@@ -396,11 +396,11 @@ class eventsLists extends Component {
                     <header className="section__header">
                         <h2 className="section__title Events">Discover the events</h2>
                     </header>
-                    <a href="#" onClick={this.togglePopup.bind(this)} class="float">
+                    <a href="#" onClick={this.togglePopup.bind(this)} className="float">
                         +
                     </a>
-                    <div class="label-container">
-                        <div class="label-text">Create an event</div>  
+                    <div className="label-container">
+                        <div className="label-text">Create an event</div>
                     </div>
 
 
@@ -416,8 +416,8 @@ class eventsLists extends Component {
                     <div className="container">
                     <div className="section__content section__content--events">
 
-                    {this.state.ghost.map(() => 
-                        <section className="card">
+                    {this.state.ghost.map((index) =>
+                        <section className="card" key={index}>
                             <Skeleton height={150} />
                             <div className="card-detail">
                             <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>

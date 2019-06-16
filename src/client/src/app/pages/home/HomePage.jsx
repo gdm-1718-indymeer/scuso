@@ -178,8 +178,7 @@ class HomePage extends Component {
                                 <p>Discover fun new activities below:</p>
                                 <div className="search-container">
                                     <form>
-                                        <input type="text" placeholder="Search Activities" name="search"
-    onChange={(e) => this.searchEvents(e.target.value)}/>
+                                        <input type="text" placeholder="Search Activities" name="search" onChange={(e) => this.searchEvents(e.target.value)}/>
                                         {/*<button><p className={'magnify'}> &#9906;</p></button>*/}
                                     </form>
                                 </div>
