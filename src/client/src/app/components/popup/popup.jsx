@@ -76,19 +76,19 @@ class Popup extends React.Component {
     this.setState({
         [event.target.name]: event.target.value
     })
-    console.log(this.state.label)
+    console.log(this.state)
     }
     onSubmit(e){
         e.preventDefault()
     
         const user = {
-          title: this.state.email,
-          imageurl: this.state.password,
+        author: this.state.author,
+          title: this.state.title,
+          imageurl: this.state.imageurl,
           body: this.state.body,
           data: this.state.data,
           price: this.state.price,
           label: this.state.label,
-          author: this.state.author,
         }
         eventPost(user).then(res => {
           if(res){
@@ -144,8 +144,7 @@ return (
 
       </Select>
     </FormControl>
-
-<FormControl margin="normal" required fullWidth>
+    <FormControl margin="normal" required fullWidth>
       <TextField
         id="datetime-local"
         name='data'
@@ -157,6 +156,11 @@ return (
         }}
       />
 </FormControl>
+<FormControl margin="normal" required fullWidth>
+    <InputLabel htmlFor="text">Prijs</InputLabel>
+    <Input type="text" id="prijs"  name="price" onChange={this.handleChange}  value={this.state.price}/>
+</FormControl>
+
 
 
 <Button

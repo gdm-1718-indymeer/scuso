@@ -83,7 +83,6 @@ class EventsController {
                 title: req.body.title,
                 imageurl: req.body.imageurl,
                 body: req.body.body,
-                link: req.body.link,
                 data: req.body.data,
                 label: req.body.label,
                 price: req.body.price,
