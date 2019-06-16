@@ -31,6 +31,7 @@ import mongoose from 'mongoose';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import passport from 'passport';
+import webpush from 'web-push';
 
 /*
 Import internal libraries
@@ -41,6 +42,8 @@ Import internal libraries
 import apiV1Router from './api/v1/routes';
 import { logger } from './utilities';
 import { Seeder } from './api/v1/database';
+
+
 
 // Mongoose (MongoDb port)
 const mongoDbConnectionString = config.mongoDbConnectionstring;
@@ -91,6 +94,9 @@ const swaggerSpecs = swaggerJsdoc(swaggerOptions);
 
 // Create the express application
 const app = express();
+
+
+
 if (config.nodeEnvironment === 'Development') {
     app.use(morganMiddleware);
 }
@@ -115,6 +121,23 @@ app.get('/swagger.json', (req, res) => {
 app.get('/docs', (req, res) => {
     res.render('redoc', {});
 });
+
+//WEBPUSH
+const publicVapidKey ='BEWjVFc3LSrD-gFKFzdroLsbOIOLXIndtrKR2JgndLszVNjpufToQazxkPb-l4Gt46RlQ0wS6uHzpGL8BZDjeAg'
+const privateVapidKey ='hgm_K_tabHzt0KBEJhctaSNefgUPIhnqbQNG2rTkI-0'
+
+webpush.setVapidDetails('mailto:stasseynsjonas@gmail.com', publicVapidKey, privateVapidKey)
+
+app.post('/subscribe', (req, res) => {
+    const subscription = req.body
+    res.status(201).json()
+
+    const payload = JSON.stringify({ title: 'Push Test 25565' })
+
+    webpush.sendNotification(subscription, payload).catch((err) => {
+        console.error(err)
+    })
+})
 
 
 /*io.on('connection', function(socket){

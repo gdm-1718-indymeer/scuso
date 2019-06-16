@@ -120,7 +120,7 @@ class HomePage extends Component {
                     posts: data
                 }));
                 var array = [...this.state.posts]; // make a separate copy of the array
-                    array.splice(array,1);
+                    array.splice(array,4);
                     this.setState({posts: array});    
                     console.log(this.state.posts)            
             })
@@ -173,7 +173,17 @@ class HomePage extends Component {
                         </section>
                         )}
                        
+                       { this.state.posts.map((item, index) =>
+                        <section className="card" key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
+                            <div className="fadeout"></div>
 
+                            </div>
+                        </section>
+                        )}
                         {this.state && this.state.events && this.state.events.map((item, index) =>
                         <section className="card" key={index}>
                             <img className="card-image loading" src={item.image}/>
@@ -185,17 +195,7 @@ class HomePage extends Component {
                             </div>
                         </section>
                         )}
-                         { this.state.posts.map((item, index) =>
-                        <section className="card" key={index}>
-                            <img className="card-image loading" src={item.imageurl}/>
-                            <div className="card-detail">
-                            <h3 className="card-title loading">{item.title}</h3>
-                            <p className="card-description loading">{item.body}</p>
-                            <div className="fadeout"></div>
-
-                            </div>
-                        </section>
-                        )}
+                        
                          </div>
                     <section className="section section--articles">
                         <header className="section__header">
@@ -210,16 +210,23 @@ class HomePage extends Component {
                                 </div>
                             </article>
                             <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+                                <img className="image" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" />
                                 <div className="text">
-                                    <h3 >Rommelmarkt</h3>
+                                    <h3 >Kickoff</h3>
                                     <p >Zie events in de buurt</p>
                                 </div>
                             </article>
                             <article>
-                                <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+                                <img className="image" src="https://images.unsplash.com/photo-1503721827581-14e4c8676769?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" />
                                 <div className="text">
-                                    <h3 >Rommelmarkt</h3>
+                                    <h3 >Open aanbod</h3>
+                                    <p >Zie events in de buurt</p>
+                                </div>
+                            </article>
+                            <article>
+                                <img className="image" src="https://images.unsplash.com/photo-1511306162219-1c5a469ab86c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" />
+                                <div className="text">
+                                    <h3 >Open Lab</h3>
                                     <p >Zie events in de buurt</p>
                                 </div>
                             </article>

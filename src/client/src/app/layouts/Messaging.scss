@@ -107,3 +107,24 @@
 .main-mess-cont {
   //margin-top: 95px;
 }
+
+.new-message-icon {
+  text-align: center;
+  font-size: 2em;
+  background-color: #D97D54;
+  display: inline-block;
+  padding-top: 0.9vh;
+  color: white;
+  font-weight: bolder;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 15vw;
+  height: 15vw;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: fixed;
+  right: 8vw;
+  bottom: 10vw;
+}

@@ -12,30 +12,47 @@ class Chat extends Component {
 
     loadMessages() {
         let other = ''
-        if(this.props.with.to === localStorage.getItem('userId')){
-            other = this.props.with.from
-            this.setState({
-                me: {
-                    id: this.props.with.to,
-                    name: this.props.with.to_name
-                },
-                other: {
-                    id: this.props.with.from,
-                    name: this.props.with.from_name
-                }
+        let me_name = ''
+        if(this.props.new){
+            Api.checkUser(localStorage.getItem('userId')).then((resp) => {
+                me_name = resp.username
+                console.log('LMA?NOR: ' + me_name)
+                other = this.props.with.id
+                let other_name = this.props.with.username
+                console.log(other)
+                this.setState({
+                    from: localStorage.getItem('userId'),
+                    from_name: me_name,
+                    to: other,
+                    to_name: other_name
+                })
             })
         }else{
-            other = this.props.with.to
-            this.setState({
-                me: {
-                    id: this.props.with.from,
-                    name: this.props.with.from_name
-                },
-                other: {
-                    id: this.props.with.to,
-                    name: this.props.with.to_name
-                }
-            })
+            if(this.props.with.to == localStorage.getItem('userId')){
+                other = this.props.with.from
+                this.setState({
+                    me: {
+                        id: this.props.with.to,
+                        name: this.props.with.to_name
+                    },
+                    other: {
+                        id: this.props.with.from,
+                        name: this.props.with.from_name
+                    }
+                })
+            }else{
+                other = this.props.with.to
+                this.setState({
+                    me: {
+                        id: this.props.with.from,
+                        name: this.props.with.from_name
+                    },
+                    other: {
+                        id: this.props.with.to,
+                        name: this.props.with.to_name
+                    }
+                })
+            }
         }
         Api.checkUser(other).then((res) => {
             console.log('CONVERSATION USER: ' + res.username)
@@ -65,14 +82,30 @@ class Chat extends Component {
     submitMessage = messageString => {
         // const message = { name: this.state.name, message: messageString }
         console.log(messageString)
-        Api.sendMessage({
-            from: localStorage.getItem('userId'),
-            from_name: this.state.me.name,
-            to: this.state.other.id,
-            to_name: this.state.other.name,
-            content: messageString,
-        }).then((resp) => {
-            this.loadMessages()
+        let messageParams = {}
+        if(this.props.new){
+            console.log("FROMNAME: " + this.state.from_name)
+            messageParams = {
+                from: localStorage.getItem('userId'),
+                from_name: this.state.from_name,
+                to: this.state.to,
+                to_name: this.state.to_name,
+                content: messageString,
+            }
+        }else{
+            messageParams = {
+                from: localStorage.getItem('userId'),
+                from_name: this.state.me.name,
+                to: this.state.other.id,
+                to_name: this.state.other.name,
+                content: messageString,
+            }
+        }
+        console.log(messageParams)
+        Api.sendMessage(messageParams).then((resp) => {
+            setTimeout(() => {
+                this.loadMessages()
+            }, 200)
             console.log(resp)
         }).catch((err) => {
             console.log(err)

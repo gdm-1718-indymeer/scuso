@@ -57,7 +57,7 @@ class Api {
         console.log(url)
         const response = await fetch(`${url}`);
         return await response.json()
-    }
+    }  
 
     static checkUser = async (uid) => {
         let url = '';
@@ -65,6 +65,18 @@ class Api {
             url = `${this.URL}/users/${uid}`;
         }else{
             url = `${this.URL}/users/${localStorage.getItem('userId')}`;
+        }
+        console.log(url)
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
+    
+    static fetchEventsId = async (uid) => {
+        let url = '';
+        if(uid){
+            url = `${this.URL}/events/${uid}`;
+        }else{
+            url = `${this.URL}/events/${localStorage.getItem('userId')}`;
         }
         console.log(url)
         const response = await fetch(`${url}`)

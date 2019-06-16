@@ -2,7 +2,7 @@
 
 .profileBody header {
     text-align: center;
-    background: url('https://images.unsplash.com/photo-1560496110-85043a260f8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2978&q=80') no-repeat top center ;
+    background: url('https://source.unsplash.com/random') no-repeat top center ;
     background-size: cover;
     overflow: hidden;
     padding-top: 141px;
@@ -33,7 +33,11 @@
     background-color: #222;
     color: yellow;
   }
-  .profileBody .card {
+  .profileBody .created{
+    width: 100%;
+    max-width: inherit !important;
+  }
+  .profileBody .sectionCard {
     margin: 30px;
     padding: 20px 40px 40px;
     max-width: 500px;
@@ -43,7 +47,7 @@
     border-radius: 6px;
     transition: all .5s;
   }
-  .profileBody .card:hover {
+  .profileBody .sectionCard:hover {
     border-color: #ff99ff;
   }
   

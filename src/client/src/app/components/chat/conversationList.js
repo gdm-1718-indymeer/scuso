@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Chat from './chat'
 import Api from "../../services";
+import NewMessage from "./newMessage";
 
 const URL = 'ws://localhost:3030';
 
@@ -52,6 +53,12 @@ class ConversationList extends Component {
         })
     }
 
+    newMessage = async () => {
+        this.setState({
+            new: true,
+        })
+    }
+
     openConversation = async (event, contact) => {
         console.log(contact)
         this.setState({
@@ -62,7 +69,9 @@ class ConversationList extends Component {
     render() {
         if(this.state.contact){
             return <Chat with={this.state.contact} />
-        }else {
+        }else if(this.state.new) {
+            return <NewMessage />
+        }else{
             return (
                 <div className={'conversation-list-container'}>
                     <div className={'discover'}/>
@@ -73,6 +82,7 @@ class ConversationList extends Component {
                             <p className={'thumb-content'}>{state.content}</p>
                         </div>,
                     )}
+                    <div className={'new-message-icon'} onClick={() => this.newMessage()}>+</div>
                 </div>
             )
         }

@@ -23,6 +23,9 @@ const initializeEndpoints = (parentRouter, authService) => {
      */
     parentRouter.get('/events/', eventController.index);
 
+    parentRouter.get('/events/auth', eventController.showAuth);
+
+
     parentRouter.get('/events/updatedata', eventController.updateScrapedEvents);
     /**
      * @swagger
