@@ -72,7 +72,9 @@ class Chat extends Component {
             to_name: this.state.other.name,
             content: messageString,
         }).then((resp) => {
-            this.loadMessages()
+            setTimeout(() => {
+                this.loadMessages()
+            }, 200)
             console.log(resp)
         }).catch((err) => {
             console.log(err)

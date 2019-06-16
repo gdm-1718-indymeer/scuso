@@ -73,6 +73,7 @@ class ConversationList extends Component {
                             <p className={'thumb-content'}>{state.content}</p>
                         </div>,
                     )}
+                    <div className={}
                 </div>
             )
         }
