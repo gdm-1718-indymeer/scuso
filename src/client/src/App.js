@@ -61,6 +61,7 @@ class App extends Component {
     const el = e.target.className;
     console.log(el)
     if (el == "Logout") {
+        e.preventDefault();
         // ...do your state change...
         localStorage.removeItem("userId")
         localStorage.removeItem("userToken")

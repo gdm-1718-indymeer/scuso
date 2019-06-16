@@ -30,6 +30,11 @@ class HomePage extends Component {
     
     
     componentWillMount() {
+        if (localStorage.getItem('userId')){
+
+        }else{
+          window.location = '/login'
+        }
         Api.checkUser().then((response) => {
             this.setState({users: response.username})
             console.log(response.username)
