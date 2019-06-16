@@ -23,15 +23,6 @@ class ConversationList extends Component {
     };
 
     componentDidMount() {
-
-
-        this.setState({
-            auth: {
-                target: 'Logout'
-            }
-        })
-
-
         Api.loadConversations().then((res) => {
             console.log('tester')
             console.log(res)
