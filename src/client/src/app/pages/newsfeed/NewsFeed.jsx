@@ -50,6 +50,7 @@ class NewsFeed extends Component {
         progress: 0,
         avatarURL: '',
         redirect: false,
+        userid: [],
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -119,6 +120,7 @@ class NewsFeed extends Component {
             author: this.state.author,
             image: this.state.image,
             imageurl: this.state.imageurl,
+            userid: this.state.userid,
     		    })
 		.then(response => {
                 console.log(response)
@@ -150,6 +152,7 @@ class NewsFeed extends Component {
           Api.checkUser().then((response) => {
             this.setState({
               author: response.username,
+              userid: response.id
             })
         })
         }else{
