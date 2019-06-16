@@ -82,6 +82,17 @@ class Api {
         const response = await fetch(`${url}`)
         return await response.json()
     }
+    static fetchPostId = async (uid) => {
+        let url = '';
+        if(uid){
+            url = `${this.URL}/posts/show/${uid}`;
+        }else{
+            url = `${this.URL}/posts/show/${localStorage.getItem('userId')}`;
+        }
+        console.log(url)
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
 
     static searchRecipient = async (query) => {
         let url = `${this.URL}/users/search/${query}`;
