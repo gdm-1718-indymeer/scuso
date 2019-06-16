@@ -653,6 +653,9 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
     height: 280px;
   }
 }
+.blogpost{
+  overflow: hidden !important;
+}
 
 @media only screen and (max-width: 800px) {
   .card{
