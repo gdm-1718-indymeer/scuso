@@ -26,6 +26,7 @@ class HomePage extends Component {
         category: [],
         body: [], 
         userid: [],
+        
     };
     pushPost(event) {
 		console.log('pushpost pushPost, ')

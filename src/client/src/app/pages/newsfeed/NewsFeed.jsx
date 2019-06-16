@@ -141,11 +141,11 @@ class NewsFeed extends Component {
   }
     
     componentWillMount() {
-      if (localStorage.getItem('userId')){
+      /*if (localStorage.getItem('userId')){
 
       }else{
         window.location = '/login'
-      }
+      }*/
         this.loadPosts();
         let storage = localStorage.getItem('userId');
         if( storage ){
@@ -241,6 +241,7 @@ onProgress={this.handleProgress}
             <div className="newsfeed clearfix">
                 {this.state && this.state.posts && this.state.posts.map((item, index) =>
                     <section className="blogpost" onClick={(ev) => this.openBlogpost(ev, item)} key={index}>
+                      <img src={item.imageurl} alt="newsfeedimage" className="imageblogpost" />
                         <div className="blogexerpt">
                             <h3 className="exerptTitle loading">{item.title || <Skeleton count={5}/>}</h3>
                             <p className="exerptDescription loading">{item.synopsis}</p>
