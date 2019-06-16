@@ -145,13 +145,15 @@ class HomePage extends Component {
 
                 <div className="sectionCard created">
                     <h2>Posts created by {this.state.users}</h2>
-                    <div className="section__content section__content--articles">
+                    <div className="section__content clearfix">
                         { this.state.posts.map( (post, index) => (
-                            <article key={ post.id } onClick={(ev) => this.openBlogpost(ev, post)} key={ index } className={classNames("post--small")}>
-                                <h1 className="post__title">{ post.title }</h1>
-                                <div className="post__synopsis">{ post.synopsis }</div>
-                                <button onClick={(ev) => this.readMoreHandler(ev, post.id)}>More</button>
-                            </article>
+                            <section className="blogpost blogposts" onClick={(ev) => this.openBlogpost(ev, post)} key={index}>
+                            <img src={post.imageurl} alt="newsfeedimage" className="imageblogpost" />
+                              <div className="blogexerpt">
+                                  <h3 className="exerptTitle loading">{post.title || <Skeleton count={5}/>}</h3>
+                                  <p className="exerptDescription loading">{post.synopsis}</p>
+                              </div>
+                          </section>
                         ))}
                                         </div> 
                 </div>

@@ -107,15 +107,41 @@
   .edit a {
     color: #000;
   }
+  .blogposts{
+    margin: 35px;  
+    width: 33% !important;
+    overflow: hidden !important;
+  }
+  
 /* Styles for larger screens */
 @media screen and (max-width: 720px){
   .profileBody .created{
     max-width: 500px !important;
     width: initial;
   }
+  .profileBody h1, .profileBody h2{
+    font-size: 1.5em !important;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .sectionCard{
+    margin: 20px !important;
+  }
+  .card{
+    margin: 15px 0 !important;
+    width: 300px !important;
+  }
+  .profileBody .sectionCard{
+    padding: 20px 10px !important;
+  }
+  .blogposts{
+    margin: 15px 0px;  
+    width: 80% !important;
+    overflow: hidden !important;
+  }
 }
-@media screen and (min-width: 720px) {
-  
+@media screen and (min-width: 800px) {
+    
     .profileBody .flex {
         display: -ms-flexbox;      /* TWEENER - IE 10 */
         display: flex; 
@@ -124,6 +150,7 @@
         justify-content: space-around;
         margin: 0 auto;
     }
+    
   
     .profileBody header {
       min-height: 470px;
