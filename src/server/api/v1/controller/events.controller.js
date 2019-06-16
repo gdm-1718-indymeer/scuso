@@ -16,7 +16,12 @@ class EventsController {
     // List all the models
     index = async (req, res, next) => {
         try {
-            const events = await Event.find().sort({ created_at: -1 }).limit(3).exec();
+            let events
+            if(req.params.limit){
+                events = await Event.find().sort({ created_at: -1 }).limit(3).exec();
+            }else{
+                events = await Event.find().sort({ created_at: -1 }).exec();
+            }
             console.log(events)
             return res.status(200).json(events);
         } catch (err) {
