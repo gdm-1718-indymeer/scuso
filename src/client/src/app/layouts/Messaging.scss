@@ -128,3 +128,14 @@
   right: 8vw;
   bottom: 10vw;
 }
+
+.back-to-conversations {
+  font-size: 1.6em;
+  z-index: 9999;
+  position: fixed;
+  top: 2.2vh;
+  margin: 0;
+  right: 4vw;
+  transform: rotate(180deg);
+  cursor: pointer;
+}

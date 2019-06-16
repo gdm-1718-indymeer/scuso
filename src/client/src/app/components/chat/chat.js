@@ -114,12 +114,17 @@ class Chat extends Component {
         })
     }
 
+    back = () => {
+        window.location.reload()
+    }
+
     render() {
         return (
             
             <div className="messaging-container">
                 <div className="discover dispno"></div>
                 <h3 className={'other-user-name'}>{this.state.to_name}</h3>
+                <h3 className={'back-to-conversations'} onClick={(ev) => this.back()}>➔</h3>
                 <div className="messages-container">
                     <div>
                         <ChatInput
