@@ -669,6 +669,12 @@ h2::after{
   vertical-Align: middle;
 
 }
+.headerimg{
+  width: 100px;
+  top: 20px;
+  position: fixed;
+  z-index: 800;
+}
 .info{
   background: white;
 }
@@ -709,6 +715,9 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
   .card{
     width: 45%;
     margin: 30px auto;
+  }
+  .headerimg{
+    width: 60px;
   }
   nav ul li a{
     font-size: 1.3em;
