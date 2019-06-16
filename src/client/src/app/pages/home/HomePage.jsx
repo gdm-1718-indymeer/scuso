@@ -144,8 +144,10 @@ class HomePage extends Component {
     }
 
     searchEvents = (e) => {
-        e.preventDefault();
         console.log(this.state.searchQuery)
+        this.setState({
+            searchQuery: e
+        })
         Api.searchEvents(this.state.searchQuery).then((response) => {
             console.log(response)
             this.setState({
@@ -169,15 +171,15 @@ class HomePage extends Component {
                                 <p>Discover fun new activities below:</p>
                                 <div className="search-container">
                                     <form >
-                                        <input type="text" placeholder="Search Activities" name="search" onChange={e => this.setState({searchQuery: e.target.value})}></input>
-                                        <button onClick={(e) => this.searchEvents(e)}><p className={'magnify'}> &#9906;</p></button>
+                                        <input type="text" placeholder="Search Activities" name="search" onChange={(e) => this.searchEvents(e.target.value)}></input>
+                                        <button><p className={'magnify'}> &#9906;</p></button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <section className="section section--articles">
                             <header className="section__header">
-                                <h2 className="section__title">Events Near you</h2>
+                                <h2 className="section__title">Search results for "{this.state.searchQuery}"</h2>
                                 <a href="/events">View All</a>
                             </header>
                             <div className="container">
@@ -205,8 +207,8 @@ class HomePage extends Component {
                      <p>Discover fun new activities below:</p> 
                      <div className="search-container">
                         <form >
-                        <input type="text" placeholder="Search Activities" name="search" onChange={e => this.setState({searchQuery: e.target.value})}></input>
-                        <button onClick={(e) => this.searchEvents(e)}><p className={'magnify'}> &#9906;</p></button>
+                            <input type="text" placeholder="Search Activities" name="search" onChange={(e) => this.searchEvents(e.target.value)}></input>
+                            <button><p className={'magnify'}> &#9906;</p></button>
                         </form>
                     </div>
                     </div>
