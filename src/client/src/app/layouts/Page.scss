@@ -6,11 +6,19 @@ body {
   font-family: $font-family-europa;
   font-weight: $euroReg;
 }
+.body{
+  min-height: 100vh;
+}
 h1{
   color:white;
   font-size: 4em;
   position: relative;
   z-index: 700;
+}
+.newsfeed{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 h1::before{
   content:"";
@@ -40,23 +48,23 @@ ul{
   list-style-type: none;
 }
 .blogpost{
-  width: 60%;
-  margin: 15px auto;
+  width: 20%;
+  float: left;;
+  margin: 15px 25px;
   padding: 25px;
   transition: all 0.2s ease
 }
-.blogpost:nth-child(even){
+
+.blogpost{
   background: #FFF;
-}
-.blogpost:nth-child(odd){
-  background: #EFEFEF;
+  -webkit-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+  -moz-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+  box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
 }
 .blogpost:hover{
   transform: scale(1.02);
   cursor: pointer;
-  -webkit-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
--moz-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
-box-shadow: 0px 0px 35px -10px rgba(133,133,133,0.48);
+ 
 
 }
 .navigation{

@@ -235,7 +235,7 @@ onProgress={this.handleProgress}
               Send
             </Button>
           </form>
-            <div>
+            <div className="newsfeed clearfix">
                 {this.state && this.state.posts && this.state.posts.map((item, index) =>
                     <section className="blogpost" onClick={(ev) => this.openBlogpost(ev, item)} key={index}>
                         <div className="blogexerpt">

@@ -66,7 +66,7 @@ class App extends Component {
         localStorage.removeItem("userId")
         localStorage.removeItem("userToken")
         localStorage.removeItem("notiSeen")
-
+        
 
         window.location.reload("/")
 
