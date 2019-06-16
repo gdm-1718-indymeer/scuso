@@ -103,8 +103,8 @@ class HomePage extends Component {
 
                     { this.state.events.map((item, index) =>
                         <section className="card" key={index}>
-                            <div class="edit">✎</div>
-                            <div onClick={this.deleteItem} id={item.id} class="delete">˟</div>
+                            <div className="edit">✎</div>
+                            <div onClick={this.deleteItem} id={item.id} className="delete">˟</div>
 
 
                             <img className="card-image loading" src={item.imageurl}/>
