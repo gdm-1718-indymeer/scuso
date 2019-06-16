@@ -26,6 +26,10 @@ class Popup extends React.Component {
             author: '',
             image: '',
             imageurl:'',
+            body:'',
+            title: '',
+            data:'',
+            price:'',
             isUploading: false,
             progress: 0,
         }
@@ -42,11 +46,7 @@ class Popup extends React.Component {
               author: response.username,
             })
         })
-        }else{
-
-              
-              
-            
+        }else{  
         }
     }
     
@@ -67,7 +67,9 @@ class Popup extends React.Component {
     this.setState({
         [`${event.target.name}`]: event.target.value,
     })
-    console.log(this.state)
+    console.log(this.state.label)
+    console.log(this.state.data)
+
     }
     onSubmit(e){
         e.preventDefault()
@@ -113,12 +115,13 @@ onProgress={this.handleProgress}
 <FormControl required fullWidth >
         <InputLabel htmlFor="name">Label</InputLabel>
             <Select
-                native required
-                    inputProps={{
-                         name: 'label',
-                         id: 'label'
-                        }}
-                        onChange={this.handleChange}  value={this.state.label}
+                ref={ref => {
+                    this._select = ref
+                }}
+                        onChange={this.handleChange}  
+                        value={this.state.label}
+                        defaultValue={this.state.label}
+
             >
                 <option value="" />
                 <option value={"kick-off"}>kick-off</option>
@@ -152,6 +155,7 @@ onProgress={this.handleProgress}
     >
     Send
 </Button>
+
 <button onClick={this.props.closePopup}>close me</button>  
 </div>  
 </div>  
