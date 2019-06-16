@@ -27,14 +27,6 @@
     line-height: 1.6em;
     top: 40%;
 }
-
 .imagedetail{
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    transition: all 0.2s ease;
-}
-.imagedetail:hover{
-    border-radius: 25px;
-    box-shadow: $shadow;
+    width: 50%;
 }
