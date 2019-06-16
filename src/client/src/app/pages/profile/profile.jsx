@@ -25,6 +25,7 @@ class HomePage extends Component {
         super(props);
         this.state = {
             users: [],
+            events: [],
         }
     }
     
@@ -39,6 +40,11 @@ class HomePage extends Component {
             this.setState({users: response.username})
             console.log(response.username)
             toast(` 🕵️‍ stalking you i see`);
+        })
+
+        Api.fetchEventsId().then((response) => {
+            this.setState({events: response})
+
         })
     
     }
@@ -56,17 +62,16 @@ class HomePage extends Component {
                 <Avatar size="150" name={this.state.users} className="profile-image"/>
 
                 <h1 className="tag name">Hello, I’m {this.state.users}</h1>
-                <p className="tag location">My home is New York, California.</p>
                 </header>
 
                 <main className="flex">
-                <div className="card">
+                <div className="sectionCard">
                     <h2>Background</h2>
                     <p>I’m an aspiring web developer who loves everything about the web. I've lived in lots of different places and have worked in lots of different jobs. I’m excited to bring my life experience to the process of building fantastic looking websites.</p>
                     <p>I'm a life-long learner who's always interested in expanding my skills.</p>
                 </div> 
 
-                <div className="card">
+                <div className="sectionCard">
                     <h2>Goals</h2>
                     <p>I want to master the process of building web sites and increase my knowledge, skills and abilities in:</p>
                     <ul className="skills">
@@ -80,6 +85,25 @@ class HomePage extends Component {
                 </div> 
 
                 </main>
+                <section className="flex">
+                <div className="sectionCard created">
+                    <h2>Events created by me</h2>
+                    <div className="section__content section__content--articles">
+
+                    { this.state.events.map((item, index) =>
+                        <section className="card" key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
+                            <div className="fadeout"></div>
+
+                            </div>
+                        </section>
+                        )}
+                </div> 
+                </div>
+                </section>
             </div>
                 <ToastContainer
           position="bottom-left"

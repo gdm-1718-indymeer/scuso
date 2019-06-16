@@ -49,7 +49,7 @@ class Popup extends React.Component {
           Api.checkUser().then((response) => {
 
             this.setState({
-              author: response.username,
+              author: response.id,
             })
         })
         }else{  

@@ -24,6 +24,16 @@ class EventsController {
         }
     };
 
+    showAuth = async (req, res, next) => {
+        try {
+            const events = await Event.find({'author': req.params.author}).sort({ created_at: -1 }).exec();
+            console.log(events)
+            return res.status(200).json(events);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving events', next);
+        }
+    };
+
     updateScrapedEvents = async (req, res) => {
         //Scrape the web and update database
         // const url = 'https://cors-anywhere.herokuapp.com/https://deschuur.org/agenda';
@@ -58,14 +68,11 @@ class EventsController {
     // Show specific model by id
     show = async (req, res, next) => {
         try {
-            const { id } = req.params;
-            const item = await Event.findById(id).populate('category').exec();
-            if (item === undefined || item === null) {
-                throw new APIError(404, `Post with id: ${id} not found!`);
-            }
-            return res.status(200).json(item);
+            const events = await Event.find({'author': req.params.id}).sort({ created_at: -1 }).exec();
+            console.log(events)
+            return res.status(200).json(events);
         } catch (err) {
-            return handleAPIError(err.status || 500, err.message || 'Some error occurred while retrieving posts', next);
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving events', next);
         }
     }
 
