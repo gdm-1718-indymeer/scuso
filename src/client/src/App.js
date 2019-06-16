@@ -48,7 +48,6 @@ class App extends Component {
   componentDidMount() {
     let storage = localStorage.getItem('userId');
     if( storage !== null){
-      console.log('ture')
       this.setState({ auth: ['Logout']})
     }else{
       this.setState({ auth: ['login', 'signup']})
@@ -61,12 +60,12 @@ class App extends Component {
     const el = e.target.className;
     console.log(el)
     if (el == "Logout") {
-      e.preventDefault();
+        e.preventDefault();
         // ...do your state change...
         localStorage.removeItem("userId")
         localStorage.removeItem("userToken")
         localStorage.removeItem("notiSeen")
-
+        
 
         window.location.reload("/")
 

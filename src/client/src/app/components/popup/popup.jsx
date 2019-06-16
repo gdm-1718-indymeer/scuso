@@ -18,6 +18,7 @@ import * as firebase from 'firebase'
 import FileUploader from 'react-firebase-file-uploader'
 import Api from '../../services'
 import {eventPost} from './UserFunction'
+import { toast } from 'react-toastify';
 
 const fontArray = ["kickoff", "rommelmarkt", "open aanbod", "openlab"  ]
 class Popup extends React.Component {  
@@ -78,8 +79,11 @@ class Popup extends React.Component {
     })
     console.log(this.state)
     }
+
     onSubmit(e){
-        e.preventDefault()
+      e.preventDefault()
+
+      if (localStorage.getItem('userId')){
     
         const user = {
             author: this.state.author,
@@ -95,6 +99,10 @@ class Popup extends React.Component {
             this.props.history.push('/events')
           }
         })
+      }else{
+        toast('You can only add events if you are logged in')
+      }
+        
       }
 
   render() {  

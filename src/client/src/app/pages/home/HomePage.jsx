@@ -56,6 +56,7 @@ class HomePage extends Component {
   }
     
     componentWillMount() {
+        
         this.loadPosts();
         let storage = localStorage.getItem('notiSeen');
         if( storage === 'true'){

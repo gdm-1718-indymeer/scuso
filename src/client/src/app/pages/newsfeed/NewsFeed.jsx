@@ -31,7 +31,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as firebase from 'firebase'
 import FileUploader from 'react-firebase-file-uploader'
-
+import {Redirect} from 'react-router-dom'
 class NewsFeed extends Component {
    
     constructor() {
@@ -49,6 +49,7 @@ class NewsFeed extends Component {
         isUploading: false,
         progress: 0,
         avatarURL: '',
+        redirect: false,
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -138,6 +139,11 @@ class NewsFeed extends Component {
   }
     
     componentWillMount() {
+      if (localStorage.getItem('userId')){
+
+      }else{
+        window.location = '/login'
+      }
         this.loadPosts();
         let storage = localStorage.getItem('userId');
         if( storage ){
@@ -229,7 +235,7 @@ onProgress={this.handleProgress}
               Send
             </Button>
           </form>
-            <div>
+            <div className="newsfeed clearfix">
                 {this.state && this.state.posts && this.state.posts.map((item, index) =>
                     <section className="blogpost" onClick={(ev) => this.openBlogpost(ev, item)} key={index}>
                         <div className="blogexerpt">

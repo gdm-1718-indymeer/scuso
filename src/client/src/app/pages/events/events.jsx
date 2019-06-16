@@ -11,7 +11,7 @@ import Skeleton from 'react-loading-skeleton';
 Import internal libraries
 */
 import Api from '../../services';
-import PostsList from '../../components/posts-list';
+import EventsList from './eventsList';
 import axios from 'axios';
 import cheerio from 'cheerio';
 import Popup from '../../components/popup/';
@@ -102,7 +102,6 @@ class EventPage extends Component {
 
         axios.get(url)
         .then(response => {
-            console.log(response)
             let getData = html => {
                 let data = [];
                 const $ = cheerio.load(html);
@@ -132,20 +131,6 @@ class EventPage extends Component {
             toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
         })
 
-        Api.findAllEvents()
-            .then((data) => {
-                console.log('postloader')
-                console.log(data)
-                this.setState(prevState => ({
-                    ...prevState,
-                    posts: data
-                }));
-                console.log(this.state.posts)
-            })
-            .catch((error) => {
-                toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
-
-            });
     }
    
     goToPostDetailPage = (id) => {
@@ -153,7 +138,7 @@ class EventPage extends Component {
     }
 
     render() {
-        const { posts } = this.state.posts;
+        const { events } = this.state.events;
         
         return (
             <React.Fragment>
@@ -201,9 +186,10 @@ class EventPage extends Component {
                             </div>
                         </section>
                         )}
+                                                <EventsList posts={events} onReadMore={this.goToPostDetailPage} />
+
                          </div>               
 
-                        <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
                     </div>
                     <footer className="section__footer">
                         READ MORE
