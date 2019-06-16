@@ -9,6 +9,7 @@ import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -18,8 +19,9 @@ import FileUploader from 'react-firebase-file-uploader'
 import Api from '../../services'
 import {eventPost} from './UserFunction'
 
-
+const fontArray = ["kickoff", "rommelmarkt", "open aanbod", "openlab"  ]
 class Popup extends React.Component {  
+    
     constructor(){
         super();
         this.state={
@@ -30,11 +32,14 @@ class Popup extends React.Component {
             title: '',
             data:'',
             price:'',
+            label: 'None',
             isUploading: false,
             progress: 0,
         }
+        
         this.onSubmit = this.onSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+
         
     }
     componentWillMount() {
@@ -49,7 +54,9 @@ class Popup extends React.Component {
         }else{  
         }
     }
-    
+    renderValue = (value) => {
+        return value && value[0];
+    }
     handleUploadStart = () => this.setState({isUploading: true, progress: 0});
     handleProgress = (progress) => this.setState({progress});
     handleUploadError = (error) => {
@@ -63,13 +70,13 @@ class Popup extends React.Component {
     })
     )
     };
+
+  
     handleChange(event) {   
     this.setState({
-        [`${event.target.name}`]: event.target.value,
+        [event.target.name]: event.target.value
     })
     console.log(this.state.label)
-    console.log(this.state.data)
-
     }
     onSubmit(e){
         e.preventDefault()
@@ -80,6 +87,7 @@ class Popup extends React.Component {
           body: this.state.body,
           data: this.state.data,
           price: this.state.price,
+          label: this.state.label,
           author: this.state.author,
         }
         eventPost(user).then(res => {
@@ -99,38 +107,44 @@ return (
     <InputLabel htmlFor="text">Title</InputLabel>
     <Input type="text" id="title"  name="title" onChange={this.handleChange}  value={this.state.title}/>
 </FormControl>
+
 <FileUploader
-accept="image/*"
-name="image"
-randomizeFilename
-storageRef={firebase.storage().ref('test/')}
-onUploadStart={this.handleUploadStart}
-onUploadError={this.handleUploadError}
-onUploadSuccess={this.handleUploadSuccess}
-onProgress={this.handleProgress}
+    accept="image/*"
+    name="image"
+    randomizeFilename
+    storageRef={firebase.storage().ref('test/')}
+    onUploadStart={this.handleUploadStart}
+    onUploadError={this.handleUploadError}
+    onUploadSuccess={this.handleUploadSuccess}
+    onProgress={this.handleProgress}
 />
 <FormControl margin="normal" required fullWidth>
     <TextField label="Bio" className="textarea" multiline={true} type="text" id="body"  name="body" onChange={this.handleChange}  value={this.state.body}/>
 </FormControl>
-<FormControl required fullWidth >
-        <InputLabel htmlFor="name">Label</InputLabel>
-            <Select
-                ref={ref => {
-                    this._select = ref
-                }}
-                        onChange={this.handleChange}  
-                        value={this.state.label}
-                        defaultValue={this.state.label}
 
-            >
-                <option value="" />
-                <option value={"kick-off"}>kick-off</option>
-                <option value={"rommelmarkt"}>rommelmarkt</option>
-                <option value={"open aanbod"}>open aanbod</option>
-                <option value={"openlab"}>openlab"</option>
 
-            </Select>
- </FormControl>
+<FormControl fullWidth>
+       <InputLabel htmlFor="select-font">Label</InputLabel>
+       <Select
+         value={this.state.label}
+          onChange={this.handleChange}
+   
+          inputProps={{
+            name: "label",
+            id: "abel"
+          }}
+        >
+        <MenuItem value="nothing">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value="kick-off">kick-off</MenuItem>
+          <MenuItem value="rommelmarkt">rommelmarkt</MenuItem>
+          <MenuItem value="open aanbod">open aanbod</MenuItem>
+          <MenuItem value="open lab">open lab</MenuItem>
+
+      </Select>
+    </FormControl>
+
 <FormControl margin="normal" required fullWidth>
       <TextField
         id="datetime-local"

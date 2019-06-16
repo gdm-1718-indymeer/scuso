@@ -13,6 +13,7 @@ export const eventPost = user => {
         title: user.email,
         data: user.data,
         price: user.price,
+        label: user.label
 
     })
     .then(res => {
