@@ -10,6 +10,7 @@ import Skeleton from 'react-loading-skeleton';
 /*
 Import internal libraries
 */
+import eventDetail from '../../components/event-detail/eventDetail'
 import Api from '../../services';
 import EventsList from './eventsList';
 import axios from 'axios';
@@ -41,6 +42,7 @@ class EventPage extends Component {
                 category: [],
                 body: [], 
                 showPopup: false,
+                param: false,
             };
         }
     pushPost(event) {
@@ -71,13 +73,17 @@ class EventPage extends Component {
 
 			})
   }
-  togglePopup() {  
-    this.setState({  
-         showPopup: !this.state.showPopup  
-    });  
-     }  
+    
     componentWillMount() {
-        this.loadPosts();
+        let parameter = '';
+        console.log(window.location.search)
+        parameter = window.location.search
+        console.log(parameter)
+        if(parameter === "?cat=rommelmarkt"){
+            this.state.param = "rommelmarkt";
+            
+        }
+        console.log(this.state.param)
         let storage = localStorage.getItem('notiSeen');
         if( storage === 'true'){
         }else{
@@ -94,45 +100,9 @@ class EventPage extends Component {
     
     }
     
-    deleteGhost() {
-        this.setState({ ghost: [] })
-    }
-    loadPosts = () => {
-        const url = 'https://cors-anywhere.herokuapp.com/https://deschuur.org/agenda';
-
-        axios.get(url)
-        .then(response => {
-            let getData = html => {
-                let data = [];
-                const $ = cheerio.load(html);
-                $('.card').each((i, elem) => {
-                  data.push({
-                    image : $(elem).find('img').attr('src'),
-                    title : $(elem).find('h2').text(),
-                    bio: $(elem).find('.content').text(),
-                    link : 'https://deschuur.org' + $(elem).find('a').attr('href'),
-                    data: {
-                        day: $(elem).find('.date').children('.day').text(),
-                        day_month: $(elem).find('.day_month').text()
-                    },
-                    label: $(elem).find('.tag').text(),
-                    price: $(elem).find('.cost').text(),
-                  });
-                });
-                console.log(data)
-                this.setState({ events: data })
-              }
-              
-            getData(response.data)
-            this.deleteGhost();
-
-        })
-        .catch(error => {
-            toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
-        })
-
-    }
-   
+    
+    
+    
     goToPostDetailPage = (id) => {
         this.props.history.push(`/news/${id}`);
     }
@@ -145,57 +115,16 @@ class EventPage extends Component {
             
 
             <div className="body">
-                <div className="discover"></div>
-                <section className="section section--articles">
-                    <header className="section__header">
-                        <h2 className="section__title">Discover the events</h2>
-                    </header>
-                    <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
-
-                        {this.state.showPopup ?  
-                        <Popup  
-                                text='Click "Close Button" to hide popup'  
-                                
-                                closePopup={this.togglePopup.bind(this)}  
-                        />  
-                        : null  
-                        }
-
-                    <div className="container">
-                    <div className="section__content section__content--events">
-
-                    {this.state.ghost.map(() => 
-                        <section className="card">
-                            <Skeleton height={150} />
-                            <div className="card-detail">
-                            <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
-                            <p className="card-description loading">{<Skeleton count={5}/>}</p>
-                            </div>
-                        </section>
-                        )}
-                       
-
-                        {this.state && this.state.events && this.state.events.map((item, index) =>
-                        <section className="card" key={index}>
-                            <img className="card-image loading" src={item.image}/>
-                            <div className="card-detail">
-                            <h3 className="card-title loading">{item.title}</h3>
-                            <p className="card-description loading">{item.bio}</p>
-                            <div className="fadeout"></div>
-
-                            </div>
-                        </section>
-                        )}
-                                                <EventsList posts={events} onReadMore={this.goToPostDetailPage} />
+                
+                                                <EventsList parameters={this.state.param} posts={events} onReadMore={this.goToPostDetailPage} />
 
                          </div>               
 
-                    </div>
+                    
                     <footer className="section__footer">
                         READ MORE
                     </footer>
-                </section>
-            </div>
+                
                 <ToastContainer
           position="bottom-left"
           autoClose={5000}
@@ -210,6 +139,7 @@ class EventPage extends Component {
             </React.Fragment>
         )
     }
+    
     
 }
 
