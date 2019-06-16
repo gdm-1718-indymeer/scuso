@@ -183,14 +183,16 @@ class HomePage extends Component {
                                         {/*<button><p className={'magnify'}> &#9906;</p></button>*/}
                                     </form>
                                 </div>
+
                             </div>
                         </div>
+                        <div className="container">
+
                         <section className="section section--articles">
                             <header className="section__header">
                                 <h2 className="section__title">Search results for "{this.state.searchQuery}"</h2>
                                 <a href="/events">View All</a>
                             </header>
-                            <div className="container">
                                 <div className="section__content section__content--articles">
                                     {this.state.searchResponse.map((item, index) =>
                                         <section className="card" key={index} onClick={() => this.goToPostDetailPage(item.id)}>
@@ -204,9 +206,10 @@ class HomePage extends Component {
                                     )}
                                     <PostsList posts={posts} onReadMore={this.goToPostDetailPage}/>
                                 </div>
-                            </div>
 
                         </section>
+                        </div>
+
                     </div>
                 </React.Fragment>
             )
@@ -227,6 +230,8 @@ class HomePage extends Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="container">
+
                         <section className="section section--articles">
                             <header className="section__header">
                                 <h2 className="section__title">Events Near you</h2>
@@ -270,6 +275,11 @@ class HomePage extends Component {
                                     )}
 
                                 </div>
+                                </div>
+                                </section>
+                                </div>
+                                <div className="container">
+
                                 <section className="section section--articles">
                                     <header className="section__header">
                                         <h2 className="section__title">Featured Activities</h2>
@@ -317,13 +327,12 @@ class HomePage extends Component {
                                         </a>
                                     </div>
                                 </section>
-
+                                        </div>
 
                                 <PostsList posts={posts} onReadMore={this.goToPostDetailPage}/>
                             </div>
 
-                        </section>
-                    </div>
+                        
                     <ToastContainer
                         position="bottom-left"
                         autoClose={5000}

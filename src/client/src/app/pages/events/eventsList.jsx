@@ -194,10 +194,13 @@ class eventsLists extends Component {
         }else if(this.props.parameters === "rommelmarkt"){
             return(
                 <React.Fragment>
+                    <header>
+                    <img className="introImage" src="https://images.unsplash.com/photo-1508997449629-303059a039c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" alt="events" />
+                    </header>
                     <div className="discover"></div>
                 <section className="section section--articles">
                     <header className="section__header">
-                        <h2 className="section__title">Discover the events</h2>
+                        <h2 className="section__title ">Discover the events</h2>
                     </header>
                     <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
 
@@ -239,6 +242,9 @@ class eventsLists extends Component {
         }else if(this.props.parameters === "kickoff"){
             return(
                 <React.Fragment>
+                    <header>
+                    <img className="introImage" src="https://images.unsplash.com/photo-1508997449629-303059a039c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" alt="events" />
+                    </header>
                     <div className="discover"></div>
                 <section className="section section--articles">
                     <header className="section__header">
@@ -284,6 +290,9 @@ class eventsLists extends Component {
         }else if(this.props.parameters === "open aanbod"){
             return(
                 <React.Fragment>
+                    <header>
+                    <img className="introImage" src="https://images.unsplash.com/photo-1508997449629-303059a039c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" alt="events" />
+                    </header>
                     <div className="discover"></div>
                 <section className="section section--articles">
                     <header className="section__header">
@@ -329,6 +338,9 @@ class eventsLists extends Component {
         }else if(this.props.parameters === "open lab"){
             return(
                 <React.Fragment>
+                    <header>
+                    <img className="introImage" src="https://images.unsplash.com/photo-1508997449629-303059a039c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" alt="events" />
+                    </header>
                     <div className="discover"></div>
                 <section className="section section--articles">
                     <header className="section__header">
@@ -376,10 +388,13 @@ class eventsLists extends Component {
 
         return (
             <React.Fragment>
+                <header>
+                    <img className="introImage" src="https://images.unsplash.com/photo-1508997449629-303059a039c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" alt="events" />
+                    </header>
                 <div className="discover"></div>
                 <section className="section section--articles">
                     <header className="section__header">
-                        <h2 className="section__title">Discover the events</h2>
+                        <h2 className="section__title Events">Discover the events</h2>
                     </header>
                     <a href="#" onClick={this.togglePopup.bind(this)} class="float">
                         +
