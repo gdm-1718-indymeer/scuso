@@ -60,7 +60,7 @@ nav ul li a{
   text-align: left;
 }
 .imageblogpost{
-  width: 100%;
+  width: 120%;
   height: 250px;
   object-fit: contain;
   position: relative;
@@ -725,6 +725,9 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
     height: 280px;
   }
 }
+.blogpost{
+  overflow: hidden !important;
+}
 
 @media only screen and (max-width: 800px) {
   .card{
@@ -743,6 +746,13 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
   }
   .search-container input{
     width: 50%;
+  }
+  .blogpost{
+    width: 80%;
+    overflow: hidden;
+  }
+  .newsform{
+    width: 80%;
   }
 }
 
