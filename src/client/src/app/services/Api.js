@@ -10,8 +10,13 @@ class Api {
         }   
         const response = await fetch(`${url}`);
         return await response.json();
-    }
+    };
 
+    static findAllEvents = async () => {
+        let url = `${this.URL}/events`;
+        const response = await fetch(`${url}`);
+        return await response.json();
+    }
     static findOnePost = async (id) => {
         const response = await fetch(`${this.URL}/posts/${id}`);
         return await response.json();

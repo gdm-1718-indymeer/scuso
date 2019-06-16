@@ -102,6 +102,7 @@ class EventPage extends Component {
 
         axios.get(url)
         .then(response => {
+            console.log(response)
             let getData = html => {
                 let data = [];
                 const $ = cheerio.load(html);
@@ -131,9 +132,10 @@ class EventPage extends Component {
             toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
         })
 
-        Api.findAllPosts()
+        Api.findAllEvents()
             .then((data) => {
                 console.log('postloader')
+                console.log(data)
                 this.setState(prevState => ({
                     ...prevState,
                     posts: data
