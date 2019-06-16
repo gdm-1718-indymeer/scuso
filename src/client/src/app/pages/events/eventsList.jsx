@@ -36,6 +36,9 @@ class eventsLists extends Component {
                 posts: [],
                 events: [],
                 eventsrommelmarkt: [],
+                eventsaanbod: [],
+                eventslab: [],
+                eventskickoff: [],
                 ghost:[1,2,3,4,5,6,7],
                 title: [],
                 category: [],
@@ -93,6 +96,42 @@ class eventsLists extends Component {
                     eventsrommelmarkt: data
                 }));
                 console.log(this.state.eventsrommelmarkt)
+            })
+            .catch((error) => {
+
+            });
+            Api.findByCategory("kick-off")
+            .then((data) => {
+                console.log('postloader')
+                this.setState(prevState => ({
+                    ...prevState,
+                    eventskickoff: data
+                }));
+                console.log(this.state.eventskickoff)
+            })
+            .catch((error) => {
+
+            });
+            Api.findByCategory("open aanbod")
+            .then((data) => {
+                console.log('postloader')
+                this.setState(prevState => ({
+                    ...prevState,
+                    eventsaanbod: data
+                }));
+                console.log(this.state.eventsaanbod)
+            })
+            .catch((error) => {
+
+            });
+            Api.findByCategory("open lab")
+            .then((data) => {
+                console.log('postloader')
+                this.setState(prevState => ({
+                    ...prevState,
+                    eventslab: data
+                }));
+                console.log(this.state.eventslab)
             })
             .catch((error) => {
 
@@ -155,7 +194,181 @@ class eventsLists extends Component {
         }else if(this.props.parameters === "rommelmarkt"){
             return(
                 <React.Fragment>
-                    
+                    <div className="discover"></div>
+                <section className="section section--articles">
+                    <header className="section__header">
+                        <h2 className="section__title">Discover the events</h2>
+                    </header>
+                    <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
+
+                        {this.state.showPopup ?  
+                        <Popup  
+                                text='Click "Close Button" to hide popup'  
+                                
+                                closePopup={this.togglePopup.bind(this)}  
+                        />  
+                        : null  
+                        }
+
+                    <div className="container">
+                    <div className="section__content section__content--events">
+
+                    {this.state.ghost.map(() => 
+                        <section className="card">
+                            <Skeleton height={150} />
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
+                            <p className="card-description loading">{<Skeleton count={5}/>}</p>
+                            </div>
+                        </section>
+                        )}
+                        {this.state.eventsrommelmarkt.map((item, index) =>
+                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
+                            <div className="fadeout"></div>
+
+                            </div>
+                        </section>
+                        )}
+                        </div></div></section>
+                </React.Fragment>
+            )
+        }else if(this.props.parameters === "kickoff"){
+            return(
+                <React.Fragment>
+                    <div className="discover"></div>
+                <section className="section section--articles">
+                    <header className="section__header">
+                        <h2 className="section__title">Discover the events</h2>
+                    </header>
+                    <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
+
+                        {this.state.showPopup ?  
+                        <Popup  
+                                text='Click "Close Button" to hide popup'  
+                                
+                                closePopup={this.togglePopup.bind(this)}  
+                        />  
+                        : null  
+                        }
+
+                    <div className="container">
+                    <div className="section__content section__content--events">
+
+                    {this.state.ghost.map(() => 
+                        <section className="card">
+                            <Skeleton height={150} />
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
+                            <p className="card-description loading">{<Skeleton count={5}/>}</p>
+                            </div>
+                        </section>
+                        )}
+                        {this.state.eventskickoff.map((item, index) =>
+                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
+                            <div className="fadeout"></div>
+
+                            </div>
+                        </section>
+                        )}
+                        </div></div></section>
+                </React.Fragment>
+            )
+        }else if(this.props.parameters === "open aanbod"){
+            return(
+                <React.Fragment>
+                    <div className="discover"></div>
+                <section className="section section--articles">
+                    <header className="section__header">
+                        <h2 className="section__title">Discover the events</h2>
+                    </header>
+                    <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
+
+                        {this.state.showPopup ?  
+                        <Popup  
+                                text='Click "Close Button" to hide popup'  
+                                
+                                closePopup={this.togglePopup.bind(this)}  
+                        />  
+                        : null  
+                        }
+
+                    <div className="container">
+                    <div className="section__content section__content--events">
+
+                    {this.state.ghost.map(() => 
+                        <section className="card">
+                            <Skeleton height={150} />
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
+                            <p className="card-description loading">{<Skeleton count={5}/>}</p>
+                            </div>
+                        </section>
+                        )}
+                        {this.state.eventsaanbod.map((item, index) =>
+                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
+                            <div className="fadeout"></div>
+
+                            </div>
+                        </section>
+                        )}
+                        </div></div></section>
+                </React.Fragment>
+            )
+        }else if(this.props.parameters === "open lab"){
+            return(
+                <React.Fragment>
+                    <div className="discover"></div>
+                <section className="section section--articles">
+                    <header className="section__header">
+                        <h2 className="section__title">Discover the events</h2>
+                    </header>
+                    <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
+
+                        {this.state.showPopup ?  
+                        <Popup  
+                                text='Click "Close Button" to hide popup'  
+                                
+                                closePopup={this.togglePopup.bind(this)}  
+                        />  
+                        : null  
+                        }
+
+                    <div className="container">
+                    <div className="section__content section__content--events">
+
+                    {this.state.ghost.map(() => 
+                        <section className="card">
+                            <Skeleton height={150} />
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{ <Skeleton count={5}/>}</h3>
+                            <p className="card-description loading">{<Skeleton count={5}/>}</p>
+                            </div>
+                        </section>
+                        )}
+                        {this.state.eventslab.map((item, index) =>
+                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
+                            <div className="fadeout"></div>
+
+                            </div>
+                        </section>
+                        )}
+                        </div></div></section>
                 </React.Fragment>
             )
         }else{

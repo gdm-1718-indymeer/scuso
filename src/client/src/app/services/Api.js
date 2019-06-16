@@ -57,7 +57,10 @@ class Api {
 
 
     static DeleteEvent = async (id) => {
-        const response = await fetch(`${this.URL}/events/${id}`);
+        console.log(id)
+        const response = await fetch(`${this.URL}/events/${id}`, {
+            method: 'DELETE'
+        });
         return await response.json();
     }
     static loadConversations = async () => {

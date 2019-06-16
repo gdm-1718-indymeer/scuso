@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import ChatInput from './chatInput'
 import ChatMessage from './chatMessage'
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import Api from "../../services";
 import Chat from "./chat";
 
@@ -12,12 +14,17 @@ class NewMessage extends Component {
 
     searchRecipient = () => {
         console.log(this.state.query)
-        Api.searchRecipient(this.state.query).then((resp) => {
-            console.log(resp)
-            this.setState({
-                results: resp
+        if(this.state.query === '') {
+            console.log('LEEG')
+            toast('Gelieve een zoekterm in te voeren')
+        }else{
+            Api.searchRecipient(this.state.query).then((resp) => {
+                console.log(resp)
+                this.setState({
+                    results: resp
+                })
             })
-        })
+        }
     }
 
     goToConv = (event, user) => {
