@@ -114,32 +114,29 @@ class Chat extends Component {
         })
     }
 
-    back = () => {
-        window.location.reload()
-    }
-
     render() {
+        const user = this.state.other_name;
         return (
-            
-            <div className="messaging-container">
-                <div className="discover dispno"></div>
-                <h3 className={'other-user-name'}>{this.state.to_name}</h3>
-                <h3 className={'back-to-conversations'} onClick={(ev) => this.back()}>➔</h3>
-                <div className="messages-container">
-                    <div>
-                        <ChatInput
-                            onSubmitMessage={messageString => this.submitMessage(messageString)}
-                        />
-                        {this.state.dbMessages.map((message, index) =>
-                            <ChatMessage
-                                key={index}
-                                message={message.content}
-                                from={message.from}
-                            />,
-                        )}
-                        <div ref={(el) => {
-                            this.messagesEnd = el;
-                        }}/>
+            <div>
+                <div className="messaging-container">
+                    <div className="discover dispno"></div>
+                    <h3 className={'other-user-name'}>{this.state.to_name}</h3>
+                    <div className="messages-container">
+                        <div>
+                            <ChatInput
+                                onSubmitMessage={messageString => this.submitMessage(messageString)}
+                            />
+                            {this.state.dbMessages.map((message, index) =>
+                                <ChatMessage
+                                    key={index}
+                                    message={message.content}
+                                    from={message.from}
+                                />,
+                            )}
+                            <div ref={(el) => {
+                                this.messagesEnd = el;
+                            }}/>
+                        </div>
                     </div>
                 </div>
             </div>

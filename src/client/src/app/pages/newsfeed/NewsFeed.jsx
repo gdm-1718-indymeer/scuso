@@ -215,7 +215,7 @@ class NewsFeed extends Component {
 <p>Progress: {this.state.progress}</p>
 }
 {this.state.imageurl &&
-<img src={this.state.imageurl} />
+<img className="imageprogress" src={this.state.imageurl} />
 }
 <FileUploader
 accept="image/*"

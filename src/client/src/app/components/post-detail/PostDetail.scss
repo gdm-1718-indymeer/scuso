@@ -9,10 +9,12 @@
     text-align: left;
     margin: 0 auto;
     line-height: 1.7em;
+    padding-bottom: 150px
 }
 .detailpost h2{
     font-size: 4em;
     line-height: 1.3em;
+    background: white;
 }
 .author{
     font-style: italic;
@@ -33,8 +35,4 @@
     height: 300px;
     object-fit: cover;
     transition: all 0.2s ease;
-}
-.imagedetail:hover{
-    border-radius: 25px;
-    box-shadow: $shadow;
 }

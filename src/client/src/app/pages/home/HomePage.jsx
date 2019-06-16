@@ -10,6 +10,7 @@ import Skeleton from 'react-loading-skeleton';
 /*
 Import internal libraries
 */
+import EventDetail from '../../components/event-detail/eventDetail';
 import Api from '../../services';
 import PostsList from '../../components/posts-list';
 import axios from 'axios';
@@ -75,7 +76,13 @@ class HomePage extends Component {
         }
     
     }
-    
+    openNewsPost = async (event, title) => {
+        console.log('hallo')
+        console.log(title)
+        this.setState({
+            uid: title
+        })
+    }
     deleteGhost() {
         this.setState({ ghost: [] })
     }
@@ -138,7 +145,9 @@ class HomePage extends Component {
 
     render() {
         const { posts } = this.state.posts;
-        
+        if(this.state.uid){
+            return <EventDetail with={this.state.uid} />
+        }else{
         return (
             <React.Fragment>
             
@@ -164,7 +173,7 @@ class HomePage extends Component {
                     <div className="container">
                     <div className="section__content section__content--articles">
 
-                    {this.state.ghost.map((index) =>
+                    {this.state.ghost.map((item, index) =>
                         <section className="card" key={index}>
                             <Skeleton height={150} />
                             <div className="card-detail">
@@ -175,7 +184,7 @@ class HomePage extends Component {
                         )}
                        
                        { this.state.posts.map((item, index) =>
-                        <section className="card" key={index}>
+                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
                             <img className="card-image loading" src={item.imageurl}/>
                             <div className="card-detail">
                             <h3 className="card-title loading">{item.title}</h3>
@@ -257,7 +266,7 @@ class HomePage extends Component {
           pauseOnHover
           />
             </React.Fragment>
-        )
+        )}
     }
     
 }
