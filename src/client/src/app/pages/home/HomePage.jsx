@@ -111,19 +111,23 @@ class HomePage extends Component {
             toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
         })
 
-       Api.findAllPosts()
+       Api.findAllEvents()
             .then((data) => {
                 console.log('postloader')
                 this.setState(prevState => ({
                     ...prevState,
                     posts: data
                 }));
-                console.log(this.state.posts)
+                var array = [...this.state.posts]; // make a separate copy of the array
+                    array.splice(array,1);
+                    this.setState({posts: array});    
+                    console.log(this.state.posts)            
             })
             .catch((error) => {
                 toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
 
             });
+        console.log(this.state.posts)
     }
    
     goToPostDetailPage = (id) => {
@@ -175,6 +179,17 @@ class HomePage extends Component {
                             <div className="card-detail">
                             <h3 className="card-title loading">{item.title}</h3>
                             <p className="card-description loading">{item.bio}</p>
+                            <div className="fadeout"></div>
+
+                            </div>
+                        </section>
+                        )}
+                         { this.state.posts.map((item, index) =>
+                        <section className="card" key={index}>
+                            <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-detail">
+                            <h3 className="card-title loading">{item.title}</h3>
+                            <p className="card-description loading">{item.body}</p>
                             <div className="fadeout"></div>
 
                             </div>

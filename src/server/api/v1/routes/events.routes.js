@@ -21,7 +21,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *       200:
      *         description: An array of blogs
      */
-    parentRouter.get('/events', eventController.index);
+    parentRouter.get('/events/', eventController.index);
 
     parentRouter.get('/events/updatedata', eventController.updateScrapedEvents);
     /**
