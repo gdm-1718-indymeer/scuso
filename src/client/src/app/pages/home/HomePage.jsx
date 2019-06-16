@@ -201,13 +201,14 @@ class HomePage extends Component {
                             <h2 className="section__title">Featured Activities</h2>
                         </header>
                         <div className="wrapper">
-                            <article>
+                            <a href="/events?category=rommelmarkt"><article>
                                 <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
                                 <div className="text">
                                     <h3 >Rommelmarkt</h3>
                                     <p >Zie events in de buurt</p>
                                 </div>
                             </article>
+                            </a>
                             <article>
                                 <img className="image" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
                                 <div className="text">

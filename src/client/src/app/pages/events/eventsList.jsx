@@ -84,7 +84,7 @@ class eventsLists extends Component {
         }
     }
     componentDidMount(){
-
+        
         Api.findAllEvents()
             .then((data) => {
                 console.log('postloader')
@@ -140,7 +140,15 @@ class eventsLists extends Component {
     render() {
         if(this.state.uid){
             return <EventDetail with={this.state.uid} />
+        }else if(this.props.parameters === "rommelmarkt"){
+            return(
+                <React.Fragment>
+                    
+                </React.Fragment>
+            )
         }else{
+            
+
         return (
             <React.Fragment>
                 <div className="discover"></div>
@@ -172,7 +180,7 @@ class eventsLists extends Component {
                         </section>
                         )}
                        
-
+                        
                         {this.state && this.state.events && this.state.eventsscrape.map((itemscrape, index) =>
                         <section className="card" key={index}>
                             <img className="card-image loading" src={itemscrape.image}/>

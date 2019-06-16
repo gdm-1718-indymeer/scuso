@@ -42,6 +42,7 @@ class EventPage extends Component {
                 category: [],
                 body: [], 
                 showPopup: false,
+                param: false,
             };
         }
     pushPost(event) {
@@ -72,9 +73,17 @@ class EventPage extends Component {
 
 			})
   }
-  
+    
     componentWillMount() {
-        
+        let parameter = '';
+        console.log(window.location.search)
+        parameter = window.location.search
+        console.log(parameter)
+        if(parameter === "?cat=rommelmarkt"){
+            this.state.param = "rommelmarkt";
+            
+        }
+        console.log(this.state.param)
         let storage = localStorage.getItem('notiSeen');
         if( storage === 'true'){
         }else{
@@ -107,7 +116,7 @@ class EventPage extends Component {
 
             <div className="body">
                 
-                                                <EventsList posts={events} onReadMore={this.goToPostDetailPage} />
+                                                <EventsList parameters={this.state.param} posts={events} onReadMore={this.goToPostDetailPage} />
 
                          </div>               
 
