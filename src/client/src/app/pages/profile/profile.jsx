@@ -61,7 +61,7 @@ class HomePage extends Component {
     deleteItem = (e) =>{
         let id = e.currentTarget.id;
         console.log(id)
-        Api.deleteItem(id).then((response) => {
+        Api.DeleteEvent(id).then((response) => {
             console.log(response)
             toast.success('tis verwijderd');
 
