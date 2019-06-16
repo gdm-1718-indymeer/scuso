@@ -88,8 +88,8 @@ class App extends Component {
                         <li><a href="/newsfeed"> Newsfeed 📰</a></li>
                         <li><a href="/profile">Profile 👤</a></li>
                         <li><a href="/messaging">Messages 📩 </a></li>
-                        {this.state.auth.map((auth) => (
-                            <div className="auth">
+                        {this.state.auth.map((auth, index) => (
+                            <div className="auth" key={index}>
                               <li><a href={"/" + auth} onClick={this.deleteStorage} className={auth}>{auth}</a></li> 
                            </div>
 
