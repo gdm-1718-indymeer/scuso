@@ -179,7 +179,7 @@ class HomePage extends Component {
                                 <div className="search-container">
                                     <form>
                                         <input type="text" placeholder="Search Activities" name="search"
-                                               onChange={(e) => this.searchEvents(e.target.value)}></input>
+    onChange={(e) => this.searchEvents(e.target.value)}/>
                                         <button><p className={'magnify'}> &#9906;</p></button>
                                     </form>
                                 </div>
@@ -202,7 +202,6 @@ class HomePage extends Component {
                                             </div>
                                         </section>
                                     )}
-                                    
                                     <PostsList posts={posts} onReadMore={this.goToPostDetailPage}/>
                                 </div>
                             </div>
