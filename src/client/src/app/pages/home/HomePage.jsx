@@ -162,6 +162,26 @@ class HomePage extends Component {
         }else if(this.state.searchResponse){
             return (
                 <React.Fragment>
+                    <div className="body">
+                        <div className="headerwithsearch">
+                            <div className="header">
+                                <h2 className="discover">Discover Activities</h2>
+                                <p>Discover fun new activities below:</p>
+                                <div className="search-container">
+                                    <form >
+                                        <input type="text" placeholder="Search Activities" name="search" onChange={e => this.setState({searchQuery: e.target.value})}></input>
+                                        <button onClick={(e) => this.searchEvents(e)}><p className={'magnify'}> &#9906;</p></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <section className="section section--articles">
+                            <header className="section__header">
+                                <h2 className="section__title">Events Near you</h2>
+                                <a href="/events">View All</a>
+                            </header>
+                            <div className="container">
+                                <div className="section__content section__content--articles">
                     {this.state.searchResponse.map((item, index) =>
                         <section className="card" key={index}>
                             <img className="card-image" src={item.imageurl}/>
@@ -172,6 +192,7 @@ class HomePage extends Component {
                             </div>
                         </section>
                     )}
+                                </div></div></section></div>
                 </React.Fragment>
             )
         }else{
