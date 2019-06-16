@@ -62,6 +62,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      */
     parentRouter.get('/events/:id', eventController.show);
     parentRouter.get('/events/filter/:category', eventController.category);
+    parentRouter.get('/events/search/:query', eventController.search);
     /**
      * @swagger
      * /api/v1/blogs:

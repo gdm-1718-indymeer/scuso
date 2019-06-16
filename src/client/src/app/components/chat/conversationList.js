@@ -3,7 +3,6 @@ import Chat from './chat'
 import Api from "../../services";
 import NewMessage from "./newMessage";
 
-const URL = 'ws://localhost:3030';
 
 class ConversationList extends Component {
     state = {

@@ -112,6 +112,13 @@ class Api {
         return await response.json()
     }
 
+    static searchEvents = async (query) => {
+        let url = `${this.URL}/events/search/${query}`;
+        console.log(url)
+        const response = await fetch(`${url}`)
+        return await response.json()
+    }
+
 }
 
 export default Api;

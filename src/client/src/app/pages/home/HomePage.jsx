@@ -27,7 +27,8 @@ class HomePage extends Component {
         category: [],
         body: [], 
         userid: [],
-
+        searchQuery: '',
+        searchResponse: false
     };
     pushPost(event) {
 		console.log('pushpost pushPost, ')
@@ -114,7 +115,6 @@ class HomePage extends Component {
               
             getData(response.data)
             this.deleteGhost();
-
         })
         .catch(error => {
             toast.error(error.message, { position: toast.POSITION.BOTTOM_LEFT })
@@ -143,15 +143,40 @@ class HomePage extends Component {
         this.props.history.push(`/news/${id}`);
     }
 
+    searchEvents = (e) => {
+        e.preventDefault();
+        console.log(this.state.searchQuery)
+        Api.searchEvents(this.state.searchQuery).then((response) => {
+            console.log(response)
+            this.setState({
+                searchResponse: response
+            })
+            console.log(response)
+        })
+    }
+
     render() {
         const { posts } = this.state.posts;
         if(this.state.uid){
             return <EventDetail with={this.state.uid} />
+        }else if(this.state.searchResponse){
+            return (
+                <React.Fragment>
+                    {this.state.searchResponse.map((item, index) =>
+                        <section className="card" key={index}>
+                            <img className="card-image" src={item.imageurl}/>
+                            <div className="card-detail">
+                                <h3 className="card-title">{item.title}</h3>
+                                <p className="card-description">{item.body}</p>
+                                <div className="fadeout"></div>
+                            </div>
+                        </section>
+                    )}
+                </React.Fragment>
+            )
         }else{
         return (
             <React.Fragment>
-            
-
             <div className="body">
                 <div className="headerwithsearch">
                     <div className="header">
@@ -159,8 +184,8 @@ class HomePage extends Component {
                      <p>Discover fun new activities below:</p> 
                      <div className="search-container">
                         <form >
-                        <input type="text" placeholder="Search Activities" name="search"></input>
-                        <button type="submit"><p className ='magnify'> &#9906;</p></button>
+                        <input type="text" placeholder="Search Activities" name="search" onChange={e => this.setState({searchQuery: e.target.value})}></input>
+                        <button onClick={(e) => this.searchEvents(e)}><p className={'magnify'}> &#9906;</p></button>
                         </form>
                     </div>
                     </div>
