@@ -29,6 +29,18 @@ h1::before{
   top: -8px;
   left: -10px;
 }
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
 h2.discover{
   z-index: 700;
 }
@@ -462,9 +474,8 @@ article {
   
     img{
       width: 100%;
-    height: 250px;
-    transition: all 0.3s ease;
-    object-fit: cover;
+      height: auto;
+      transition: all 0.3s ease;
      
     }
     
