@@ -79,6 +79,9 @@ class Chat extends Component {
 
     componentDidMount() {
         this.loadMessages(this.props.with)
+        setInterval(() => {
+            this.loadMessages(this.props.with)
+        }, 3000)
     }
 
     submitMessage = messageString => {
