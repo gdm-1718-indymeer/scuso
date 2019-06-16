@@ -14,7 +14,7 @@ import Api from '../../services';
 import PostsList from '../../components/posts-list';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import Popup from '../../components/popup/popup';
+import Popup from '../../components/popup/';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -173,7 +173,7 @@ class EventPage extends Component {
                         />  
                         : null  
                         }
-                        
+
                     <div className="container">
                     <div className="section__content section__content--events">
 

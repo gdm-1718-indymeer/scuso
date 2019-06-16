@@ -16,7 +16,7 @@ class EventsController {
     // List all the models
     index = async (req, res, next) => {
         try {
-            const events = Event.find()
+            const events = Event.find();
             return res.status(200).json(events);
         } catch (err) {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving events', next);
@@ -58,7 +58,7 @@ class EventsController {
     show = async (req, res, next) => {
         try {
             const { id } = req.params;
-            const item = await events.findById(id).populate('category').exec();
+            const item = await Event.findById(id).populate('category').exec();
             if (item === undefined || item === null) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
             }
@@ -81,12 +81,13 @@ class EventsController {
         try {
             const newEvent = new Event({
                 title: req.body.title,
-                image: req.body.image,
-                bio: req.body.bio,
+                imageurl: req.body.imageurl,
+                body: req.body.body,
                 link: req.body.link,
                 data: req.body.data,
                 label: req.body.label,
                 price: req.body.price,
+                author: req.body.author,
                 
             });
             const event = await newEvent.save();
@@ -101,13 +102,13 @@ class EventsController {
         const { id } = req.params;
 
         try {
-            const Events = await events.findById(id).exec();
+            const Events = await Event.findById(id).exec();
 
             if (!Events) {
                 throw new APIError(404, `event with id: ${id} not found!`);
             } else {
                 const vm = {
-                    events,
+                    Events,
                     categories: [],
                 };
                 return res.status(200).json(vm);
@@ -123,7 +124,7 @@ class EventsController {
 
         try {
             const postUpdate = req.body;
-            const post = await events.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
+            const post = await Event.findOneAndUpdate({ _id: id }, postUpdate, { new: true }).exec();
 
             if (!post) {
                 throw new APIError(404, `Post with id: ${id} not found!`);
@@ -143,10 +144,10 @@ class EventsController {
 
             let { mode } = req.query;
             if (mode) {
-                post = await events.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
+                post = await Event.findByIdAndUpdate({ _id: id }, { deleted_at: (mode === 'softdelete' ? Date.now() : null) }, { new: true });
             } else {
                 mode = 'delete';
-                post = await events.findOneAndRemove({ _id: id });
+                post = await Event.findOneAndRemove({ _id: id });
             }
 
             if (!post) {
