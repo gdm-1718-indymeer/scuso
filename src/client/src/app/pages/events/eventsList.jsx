@@ -35,6 +35,7 @@ class eventsLists extends Component {
             this.state = {
                 posts: [],
                 events: [],
+                eventsrommelmarkt: [],
                 ghost:[1,2,3,4,5,6,7],
                 title: [],
                 category: [],
@@ -84,7 +85,18 @@ class eventsLists extends Component {
         }
     }
     componentDidMount(){
-        
+        Api.findByCategory("rommelmarkt")
+            .then((data) => {
+                console.log('postloader')
+                this.setState(prevState => ({
+                    ...prevState,
+                    eventsrommelmarkt: data
+                }));
+                console.log(this.state.eventsrommelmarkt)
+            })
+            .catch((error) => {
+
+            });
         Api.findAllEvents()
             .then((data) => {
                 console.log('postloader')
