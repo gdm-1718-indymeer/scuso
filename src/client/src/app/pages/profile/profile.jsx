@@ -12,6 +12,8 @@ import classNames from 'classnames';
 /*
 Import internal libraries
 */
+import PostDetail from '../../components/post-detail/PostDetail'
+import EventDetail from '../../components/event-detail/eventDetail'
 import Api from '../../services';
 import './profile.scss'
 import PostsList from '../../components/posts-list';
@@ -67,11 +69,27 @@ class HomePage extends Component {
 
         })
     }
-   
-
+    openNewsPost = async (event, title) => {
+        console.log('hallo')
+        console.log(title)
+        this.setState({
+            uid: title
+        })
+    }
+    openBlogpost = async (event, title) => {
+        console.log('hallo')
+        console.log(title)
+        this.setState({
+            uid2: title
+        })
+    }
 
     render() {
-        
+        if(this.state.uid){
+            return <EventDetail with={this.state.uid} />
+        }else if(this.state.uid2){
+            return <PostDetail with={this.state.uid2} />
+        }else{
         return (
             <React.Fragment>
             
@@ -102,7 +120,7 @@ class HomePage extends Component {
                     <div className="section__content section__content--articles">
 
                     { this.state.events.map((item, index) =>
-                        <section className="card" key={index}>
+                        <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
                             <div className="edit">✎</div>
                             <div onClick={this.deleteItem} id={item.id} className="delete">˟</div>
 
@@ -127,7 +145,7 @@ class HomePage extends Component {
                     <h2>Posts created by {this.state.users}</h2>
                     <div className="section__content section__content--articles">
                         { this.state.posts.map( (post, index) => (
-                            <article key={ post.id } className={classNames("post--small")}>
+                            <article onClick={(ev) => this.openBlogpost(ev, post)} key={ index } className={classNames("post--small")}>
                                 <h1 className="post__title">{ post.title }</h1>
                                 <div className="post__synopsis">{ post.synopsis }</div>
                                 <button onClick={(ev) => this.readMoreHandler(ev, post.id)}>More</button>
@@ -151,6 +169,7 @@ class HomePage extends Component {
           />
             </React.Fragment>
         )
+    }
     }
     
 }
