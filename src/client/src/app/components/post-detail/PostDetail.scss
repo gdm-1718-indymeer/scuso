@@ -36,3 +36,11 @@
     object-fit: cover;
     transition: all 0.2s ease;
 }
+@media only screen and (max-width: 800px) {
+    .info{
+        position: static;
+    }
+    .detailpost h2{
+        font-size: 1.3em;
+    }
+  }
