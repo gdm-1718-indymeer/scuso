@@ -249,9 +249,7 @@ class HomePage extends Component {
 
                         <PostsList posts={posts} onReadMore={this.goToPostDetailPage} />
                     </div>
-                    <footer className="section__footer">
-                        READ MORE
-                    </footer>
+               
                 </section>
             </div>
                 <ToastContainer

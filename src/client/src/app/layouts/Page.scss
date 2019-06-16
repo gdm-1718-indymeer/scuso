@@ -55,6 +55,7 @@ nav ul li a{
 }
 .exerptTitle{
   text-align: left;
+  text-transform: capitalize;
 }
 .exerptDescription{
   text-align: left;
@@ -413,6 +414,7 @@ article {
       0 15px 60px 0 rgba(0,0,0,0.08),
       0 5px 25px 0 rgba(0,0,0,.08);
       transform: scale(1.1);
+      cursor: pointer;
     }
         &:after {
           content: '';
@@ -516,6 +518,7 @@ article {
       0 15px 60px 0 rgba(0,0,0,0.08),
       0 5px 25px 0 rgba(0,0,0,.08);
       transform: scale(1.1);
+      cursor: pointer;
     }
         &:after {
           content: '';
