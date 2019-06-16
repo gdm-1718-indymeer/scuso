@@ -14,21 +14,44 @@
   
   }  
   .popup_inner {  
-    position: absolute;  
-    left: 25%;  
-    right: 25%;  
-    top: 25%;  
-    bottom: 25%;  
-    margin: auto;  
-    border-radius: 20px;  
-    background: white;  
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 17%;
+    margin: auto;
+    border-radius: 20px;
+    background: white;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 35px;
+    padding: 1% 4%;
     & h2{
         color: black;
         font-size: 1.5em;
         margin-left: 0;
+    }
+    & div {
+      margin-top: 2%;
+    }
+    & button {
+      margin-top: 2%;
+    }
+    & .closeButton{
+      font-size: 17px;
+
+        position: relative;
+        top: 50px;
+        display: block;
+        margin: auto;
+        padding: 10px 30px;
+        cursor: pointer;
+        color: #fff;
+        border: 0;
+        border-radius: 3px;
+        outline: none;
+        background: #d23255;
+        box-shadow: 0 5px 1px #da5858;
+        margin-bottom: 2%;
     }
   }
  

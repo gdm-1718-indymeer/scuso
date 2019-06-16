@@ -114,17 +114,20 @@ return (
     <InputLabel htmlFor="text">Title</InputLabel>
     <Input type="text" id="title"  name="title" onChange={this.handleChange}  value={this.state.title}/>
 </FormControl>
+<FormControl fullWidth>
+  <InputLabel htmlFor="text">Upload Photo</InputLabel>
 
-<FileUploader
-    accept="image/*"
-    name="image"
-    randomizeFilename
-    storageRef={firebase.storage().ref('test/')}
-    onUploadStart={this.handleUploadStart}
-    onUploadError={this.handleUploadError}
-    onUploadSuccess={this.handleUploadSuccess}
-    onProgress={this.handleProgress}
-/>
+  <FileUploader
+      accept="image/*"
+      name="image"
+      randomizeFilename
+      storageRef={firebase.storage().ref('test/')}
+      onUploadStart={this.handleUploadStart}
+      onUploadError={this.handleUploadError}
+      onUploadSuccess={this.handleUploadSuccess}
+      onProgress={this.handleProgress}
+  />
+</FormControl>
 <FormControl margin="normal" required fullWidth>
     <TextField label="Bio" className="textarea" multiline={true} type="text" id="body"  name="body" onChange={this.handleChange}  value={this.state.body}/>
 </FormControl>
@@ -181,7 +184,7 @@ return (
     Send
 </Button>
 
-<button onClick={this.props.closePopup}>close me</button>  
+<button className="closeButton" onClick={this.props.closePopup}>close me</button>  
 </div>  
 </div>  
 );  

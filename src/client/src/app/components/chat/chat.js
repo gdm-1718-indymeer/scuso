@@ -115,7 +115,6 @@ class Chat extends Component {
     }
 
     render() {
-        const user = this.state.other_name;
         return (
             <div>
                 <div className="messaging-container">

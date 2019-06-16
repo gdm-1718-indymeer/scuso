@@ -381,11 +381,17 @@ class eventsLists extends Component {
                     <header className="section__header">
                         <h2 className="section__title">Discover the events</h2>
                     </header>
-                    <button onClick={this.togglePopup.bind(this)}> Click To Launch Popup</button>  
+                    <a href="#" onClick={this.togglePopup.bind(this)} class="float">
+                        +
+                    </a>
+                    <div class="label-container">
+                        <div class="label-text">Create an event</div>  
+                    </div>
+
 
                         {this.state.showPopup ?  
                         <Popup  
-                                text='Click "Close Button" to hide popup'  
+                                text='Create Event '  
                                 
                                 closePopup={this.togglePopup.bind(this)}  
                         />  
@@ -407,6 +413,8 @@ class eventsLists extends Component {
                         {this.state.events.map((item, index) =>
                         <section className="card" onClick={(ev) => this.openNewsPost(ev, item)} key={index}>
                             <img className="card-image loading" src={item.imageurl}/>
+                            <div className="card-price">{item.price}</div>
+
                             <div className="card-detail">
                             <h3 className="card-title loading">{item.title}</h3>
                             <p className="card-description loading">{item.body}</p>
@@ -419,6 +427,8 @@ class eventsLists extends Component {
                         {this.state && this.state.events && this.state.eventsscrape.map((itemscrape, index) =>
                         <section className="card" key={index}>
                             <img className="card-image loading" src={itemscrape.image}/>
+                            <div className="card-price">{itemscrape.price}</div>
+
                             <div className="card-detail">
                             <h3 className="card-title loading">{itemscrape.title}</h3>
                             <p className="card-description loading">{itemscrape.bio}</p>
