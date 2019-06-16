@@ -108,6 +108,12 @@
     color: #000;
   }
 /* Styles for larger screens */
+@media screen and (max-width: 720px){
+  .profileBody .created{
+    max-width: 500px !important;
+    width: initial;
+  }
+}
 @media screen and (min-width: 720px) {
   
     .profileBody .flex {
@@ -127,7 +133,7 @@
       max-width: 1200px;
       padding: 0 30px;
     }
-  
+   
   
     .profileBody  main {
       padding-top: 20px;

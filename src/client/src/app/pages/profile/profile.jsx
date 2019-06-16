@@ -63,7 +63,8 @@ class HomePage extends Component {
         console.log(id)
         Api.DeleteEvent(id).then((response) => {
             console.log(response)
-            toast.success('tis verwijderd');
+            toast.success('Het is verwijderd');
+            window.location.reload();
 
         })
     }
