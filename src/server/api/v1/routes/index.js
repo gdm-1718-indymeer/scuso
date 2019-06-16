@@ -16,6 +16,9 @@ import blogRouter from './blog.routes';
 import categoryRouter from './category.routes';
 import postRouter from './post.routes';
 import userRouter from './user.routes';
+import messagesRouter from './messages.routes';
+import eventRouter from './events.routes';
+import friendRequestRouter from './friendrequest.routes';
 
 // Initialize the AuthService
 const authService = new AuthService();
@@ -27,5 +30,8 @@ blogRouter(apiV1Router, authService);
 categoryRouter(apiV1Router, authService);
 postRouter(apiV1Router, authService);
 userRouter(apiV1Router, authService);
+messagesRouter(apiV1Router, authService);
+eventRouter(apiV1Router, authService);
+friendRequestRouter(apiV1Router, authService);
 
 export default apiV1Router;

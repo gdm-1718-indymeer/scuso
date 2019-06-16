@@ -4,6 +4,9 @@ import BlogController from './blog.controller';
 import CategoryController from './category.controller';
 import PostController from './post.controller';
 import UserController from './user.controller';
+import MessagesController from './messages.controller';
+import EventController from './events.controller';
+import FriendRequestController from './friendrequest.controller';
 
 export {
     AuthController,
@@ -11,4 +14,7 @@ export {
     CategoryController,
     PostController,
     UserController,
+    MessagesController,
+    EventController,
+    FriendRequestController,
 };

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate';
 import slug from 'slug';
+import { stringify } from 'querystring';
 
 const { Schema } = mongoose;
 
@@ -12,9 +13,14 @@ const PostSchema = new Schema(
         slug: {
             type: String, lowercase: true, unique: true, required: true,
         },
+        author: { type: String, required: true, },
+        image: {type: String, required: false,},
+        imageurl: {type: String, required: false,},
+        userid: { type: String, required: false },
         published_at: { type: Date, required: false },
         deleted_at: { type: Date, required: false },
         categoryId: { type: Schema.Types.ObjectId, ref: 'Category', required: false },
+
     },
     {
         toJSON: { virtuals: true },

@@ -20,6 +20,14 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema(
     {
+        username: {
+            type: String,
+            required: false,
+        },
+        password: {
+            type: String,
+            required: false,
+        },
         email: {
             type: String,
             required: true,
@@ -27,6 +35,11 @@ const UserSchema = new Schema(
             unique: true,
             match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         },
+        friendsList: [{
+            friend_id: { type: String, required: true },
+            friendName: { type: String, required: true },
+        }],
+
         localProvider: {
             password: {
                 type: String,
@@ -63,16 +76,16 @@ UserSchema.pre('validate', function (next) {
 UserSchema.pre('save', function (next) {
     const user = this;
 
-    if (!user.isModified('localProvider.password')) return next();// only hash the password if it has been modified (or is new)
+    if (!user.isModified('password')) return next();// only hash the password if it has been modified (or is new)
 
     try {
         return bcrypt.genSalt(config.auth.bcrypt.SALT_WORK_FACTOR, (errSalt, salt) => {
             if (errSalt) throw errSalt;
 
-            return bcrypt.hash(user.localProvider.password, salt, (errHash, hash) => {
+            return bcrypt.hash(user.password, salt, (errHash, hash) => {
                 if (errHash) throw errHash;
 
-                user.localProvider.password = hash;
+                user.password = hash;
                 return next();
             });
         });
@@ -83,7 +96,7 @@ UserSchema.pre('save', function (next) {
 
 UserSchema.methods.comparePassword = function (candidatePassword, cb) {
     const user = this;
-    bcrypt.compare(candidatePassword, user.password, (err, isMatch) => {
+    bcrypt.compare(candidatePassword, user.localProvider.password, (err, isMatch) => {
         if (err) return cb(err, null);
         return cb(null, isMatch);
     });

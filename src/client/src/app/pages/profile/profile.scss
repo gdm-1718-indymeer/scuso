@@ -1,0 +1,183 @@
+@import '../../_sass/abstracts/variables';
+
+.profileBody header {
+    text-align: center;
+    background: url('https://source.unsplash.com/random') no-repeat top center ;
+    background-size: cover;
+    overflow: hidden;
+    padding-top: 141px;
+  }
+  .profileBody header {
+    line-height: 1.5;
+  }
+  .profileBody header .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: $shadow;
+    transition: all .5s;
+  }
+  .profileBody header .profile-image:hover {
+    transform: scale(1.2) rotate(5deg);
+  }
+  .profileBody .tag {
+    background-color: #efefef;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    display: table;
+    margin: 10px auto;
+    z-index: 2;
+  } 
+  .profileBody .location {
+    background-color: #222;
+    color: yellow;
+  }
+  .profileBody .created{
+    width: 100%;
+    max-width: inherit !important;
+  }
+  .profileBody .sectionCard {
+    margin: 30px;
+    padding: 20px 40px 40px;
+    max-width: 500px;
+    text-align: left;
+    background: #fff;
+    border-bottom: 4px solid #ccc;
+    border-radius: 6px;
+    transition: all .5s;
+  }
+  .profileBody .sectionCard:hover {
+    border-color: #ff99ff;
+  }
+  
+  .profileBody ul.skills {
+    padding: 0;
+    text-align: center;
+  }
+  
+  .profileBody .skills li {
+    border-radius: 6px;
+    display: inline-block;
+    background: #ff9904;
+    color: white;
+    padding: 5px 10px;
+    margin: 2px;
+  }
+  
+  .profileBody .skills li:nth-child(odd) {
+    background: #0399ff;
+  }
+  .profileBody .card:hover .edit ,  .profileBody .card:hover .delete  {
+    display: table-cell;
+    background-color: white;
+    color: $color_darkb;
+    height: 20px;
+    width: 20px;
+    line-height: 23px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: $shadow;
+    cursor: pointer; 
+    transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+  }
+  .profileBody .card:hover .delete {
+    line-height: 29px;
+    color: red;
+  }
+  .delete {
+    padding: 7px;
+    /* padding-right: 7px; */
+    position: absolute;
+    right: 2px;
+    top: 47px;
+    display: none;
+    font-size: 34px;
+    line-height: -16px;
+  }
+  .edit {
+    padding: 7px;
+    /* padding-right: 7px; */
+    position: absolute;
+    right: 2px;
+    top: 6px;
+    display: none;
+  }
+  
+  .edit a {
+    color: #000;
+  }
+  .blogposts{
+    margin: 35px;  
+    width: 33% !important;
+    overflow: hidden !important;
+  }
+  
+/* Styles for larger screens */
+@media screen and (max-width: 720px){
+  .profileBody .created{
+    max-width: 500px !important;
+    width: initial;
+  }
+  .profileBody h1, .profileBody h2{
+    font-size: 1.5em !important;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .sectionCard{
+    margin: 20px !important;
+  }
+  .profileBody .card{
+    margin: 15px 0 !important;
+    width: 300px !important;
+  }
+  .profileBody .sectionCard{
+    padding: 20px 10px !important;
+  }
+  .blogpost{
+    overflow: hidden !important;
+  }
+  .blogposts{
+    margin: 15px 0px;  
+    width: 80% !important;
+    overflow: hidden !important;
+  }
+}
+@media screen and (min-width: 800px) {
+    
+    .profileBody .flex {
+        display: -ms-flexbox;      /* TWEENER - IE 10 */
+        display: flex; 
+        max-width: 1200px;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+        margin: 0 auto;
+    }
+    
+  
+    .profileBody header {
+      min-height: 470px;
+    }
+  
+    .profileBody .nav {
+      max-width: 1200px;
+      padding: 0 30px;
+    }
+   
+  
+    .profileBody  main {
+      padding-top: 20px;
+    }
+  
+    .profileBody main p {
+      line-height: 1.6em;
+    }
+  
+    .profileBody  footer {
+      font-size: 1.3em;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
+  
+  }
+    

@@ -37,6 +37,16 @@ class PostController {
             return handleAPIError(500, err.message || 'Some error occurred while retrieving posts', next);
         }
     };
+    // show user posts
+
+    showPosts = async (req, res, next) => {
+        try {
+            const posts = await Post.find({'userid': req.params.id}).sort({ created_at: -1 }).exec();
+            return res.status(200).json(posts);
+        } catch (err) {
+            return handleAPIError(500, err.message || 'Some error occurred while retrieving events', next);
+        }
+    }
 
     // Show specific model by id
     show = async (req, res, next) => {
@@ -62,15 +72,21 @@ class PostController {
 
     // Store / Create the new model
     store = async (req, res, next) => {
+        console.log("kzit in den try")
         try {
             const postCreate = new Post({
                 title: req.body.title,
                 synopsis: req.body.synopsis,
                 body: req.body.body,
-                categoryId: req.body.categoryId
+                categoryId: req.body.categoryId,
+                author: req.body.author,
+                image: req.body.image,
+                imageurl: req.body.imageurl,
+                userid: req.body.userid,
             });
             const post = await postCreate.save();
             return res.status(201).json(post);
+            console.log("jeuj")
         } catch (err) {
             return handleAPIError(err.status || 500, err.message || 'Some error occurred while saving the Post!', next);
         }

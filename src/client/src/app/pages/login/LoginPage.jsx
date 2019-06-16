@@ -1,7 +1,13 @@
+import axios from 'axios';
+import { Redirect } from 'react-router-dom'
+
 /*
 Import extenal libraries
+
 */
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom'
+
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -23,7 +29,12 @@ import Grid from '@material-ui/core/Grid';
 
 /*
 Components
+
 */
+import {login} from './UserFunction'
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 /*
 Styling
@@ -41,7 +52,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 30,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -60,28 +71,66 @@ const styles = theme => ({
   },
 });
 
+
 class LoginPage extends Component {
+  constructor() {
+      super()
+      this.state = {
+          email: '',
+          password: '',
+      }
+      this.onSubmit = this.onSubmit.bind(this)
+      this.handleChange = this.handleChange.bind(this)
+
+  }
+
+  handleChange(event) {
+      this.setState({
+          [event.target.name]: event.target.value
+      })
+  }
+  onSubmit(e){
+    e.preventDefault()
+
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    login(user).then(res => {
+      if(res){
+        this.props.history.push('/')
+      }
+    })
+  }
+
+  
   render() {
     const { classes } = this.props;
-    
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />
+  } else {
+
     return (
+   
       <React.Fragment>
+        <div className="discover"></div>
+
         <CssBaseline />
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h2" variant="h5">
             Sign in
           </Typography>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus />
+              <Input id="email" name="email" autoComplete="email"  value={this.state.email} onChange={this.handleChange} autoFocus />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password" />
+              <Input name="password" type="password" id="password" value={this.state.password} onChange={this.handleChange} autoComplete="current-password" />
             </FormControl>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -93,13 +142,27 @@ class LoginPage extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={this.onSubmit}
             >
               Sign in
             </Button>
           </form>
         </Paper>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+          />
       </React.Fragment>
-    )
+    
+      )
+    }
   }
 }
 

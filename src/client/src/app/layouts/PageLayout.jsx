@@ -13,13 +13,13 @@ class PageLayout extends React.Component {
         return (
             <div className="page">
                 <header role="header">
-                    HEADER
+                    
                 </header>
                 <main className="main" role="main">
                     { children }
                 </main>
                 <footer className="footer" role="footer">
-                    FOOTER
+                    
                 </footer>
             </div>
         )

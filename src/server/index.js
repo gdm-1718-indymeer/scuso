@@ -31,6 +31,7 @@ import mongoose from 'mongoose';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import passport from 'passport';
+import webpush from 'web-push';
 
 /*
 Import internal libraries
@@ -41,6 +42,8 @@ Import internal libraries
 import apiV1Router from './api/v1/routes';
 import { logger } from './utilities';
 import { Seeder } from './api/v1/database';
+
+
 
 // Mongoose (MongoDb port)
 const mongoDbConnectionString = config.mongoDbConnectionstring;
@@ -91,6 +94,9 @@ const swaggerSpecs = swaggerJsdoc(swaggerOptions);
 
 // Create the express application
 const app = express();
+
+
+
 if (config.nodeEnvironment === 'Development') {
     app.use(morganMiddleware);
 }
@@ -115,6 +121,29 @@ app.get('/swagger.json', (req, res) => {
 app.get('/docs', (req, res) => {
     res.render('redoc', {});
 });
+
+//WEBPUSH
+const publicVapidKey ='BEWjVFc3LSrD-gFKFzdroLsbOIOLXIndtrKR2JgndLszVNjpufToQazxkPb-l4Gt46RlQ0wS6uHzpGL8BZDjeAg'
+const privateVapidKey ='hgm_K_tabHzt0KBEJhctaSNefgUPIhnqbQNG2rTkI-0'
+
+webpush.setVapidDetails('mailto:stasseynsjonas@gmail.com', publicVapidKey, privateVapidKey)
+
+app.post('/subscribe', (req, res) => {
+    const subscription = req.body
+    res.status(201).json()
+
+    const payload = JSON.stringify({ title: 'Push Test 25565' })
+
+    webpush.sendNotification(subscription, payload).catch((err) => {
+        console.error(err)
+    })
+})
+
+
+/*io.on('connection', function(socket){
+    console.log('a user connected');
+});*/
+
 app.get('*', (req, res) => {
     if (config.nodeEnvironment === 'Production') {
         res.sendFile(path.join(__dirname, './client/index.html'));
@@ -122,6 +151,7 @@ app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '/../client/build/index.html'));
     }
 });
+app.use('/messaging', verifyToken, apiV1Router);
 
 // Global Application Error Handler
 app.use((error, req, res, next) => {
@@ -159,5 +189,54 @@ if (config.nodeEnvironment === 'Development') {
     seeder.seed();
 }
 
+// Verify Token
+function verifyToken(req, res, next) {
+    // Get auth header value
+    const bearerHeader = req.headers['authorization'];
+    // Check if bearer is undefined
+    if(typeof bearerHeader !== 'undefined') {
+      // Split at the space
+      const bearer = bearerHeader.split(' ');
+      // Get token from array
+      const bearerToken = bearer[1];
+      // Set the token
+      req.token = bearerToken;
+      // Next middleware
+      next();
+    } else {
+      // Forbidden
+      res.sendStatus(403);
+    }
+  
+  }
+// socket.io
+// const WebSocket = require('ws');
+//
+// const wss = new WebSocket.Server({ port: 3030 });
+//
+// wss.on('connection', function connection(ws) {
+//   ws.on('message', function incoming(data) {
+//     wss.clients.forEach(function each(client) {
+//       if (client !== ws && client.readyState === WebSocket.OPEN) {
+//         client.send(data);
+//       }
+//     });
+//   });
+// });
+//const io = socket_io(app)
+/*
+const ht = require('http').Server(app);
+const io = require('socket.io')(ht);
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('User Disconnected');
+    });
+    socket.on('example_message', function(msg){
+        console.log('message: ' + msg);
+    });
+});
+io.listen(8000);
+*/
 // Export our app for testing purposes
 export default app;
