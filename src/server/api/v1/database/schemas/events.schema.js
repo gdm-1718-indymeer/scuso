@@ -13,6 +13,10 @@ const EventSchema = new Schema(
         price: { type: String, required: false },
         author: { type: String, required: false },
     },
+    {
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true },
+    },
 );
 
 export default mongoose.model('Event', EventSchema);

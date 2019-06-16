@@ -102,6 +102,7 @@ class EventPage extends Component {
 
         axios.get(url)
         .then(response => {
+            console.log(response)
             let getData = html => {
                 let data = [];
                 const $ = cheerio.load(html);

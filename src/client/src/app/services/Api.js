@@ -10,12 +10,10 @@ class Api {
         }   
         const response = await fetch(`${url}`);
         return await response.json();
-    }
-    static findAllEvents = async (queryParams=null) => {
+    };
+
+    static findAllEvents = async () => {
         let url = `${this.URL}/events`;
-        if (queryParams !== null) {
-            url += (url.indexOf('?') === -1 ? '?' : '&') + this.queryParams(queryParams);
-        }   
         const response = await fetch(`${url}`);
         return await response.json();
     }
