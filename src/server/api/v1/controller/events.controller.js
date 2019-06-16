@@ -17,7 +17,7 @@ class EventsController {
     index = async (req, res, next) => {
         try {
             let events
-            if(req.params.limit){
+            if(req.params.limit === 'true'){
                 events = await Event.find().sort({ created_at: -1 }).limit(3).exec();
             }else{
                 events = await Event.find().sort({ created_at: -1 }).exec();

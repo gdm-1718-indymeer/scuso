@@ -39,9 +39,9 @@ class Api {
         let url = `${this.URL}/messages/create`;
         axios.post(url, {
             from: req.from,
-            from_name: req.body.from_name,
+            from_name: req.from_name,
             to: req.to,
-            to_name: req.body.to_name,
+            to_name: req.to_name,
             content: req.content,
         }).then((response) => {
             return response.json()
