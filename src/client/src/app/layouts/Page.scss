@@ -295,7 +295,6 @@ h1::after{
   margin: 0;
 }
 section h2{
-  margin-left:  65px;
   margin-top: 50px;
   font-size: 2em;
   position: relative;
@@ -743,16 +742,39 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
 .blogpost{
   overflow: hidden !important;
 }
+.wrapper{
+  margin-top:3%;
+}
+.section__header .Events{
+  margin-left: 7%;
+}
 
 @media only screen and (max-width: 800px) {
   .card{
     width: 90%;
     margin: 30px auto;
   }
+  .section__content--articles .card {
+    margin: 17px;
+  }
   .header{
     position: relative;
     top: 90px;
   }
+  .section__header{
+    display: block;
+  }
+  .section__header a {
+    text-align: right;
+    left: 40px;
+    text-decoration: none;
+    color: #87BCBF;
+    display: block;
+    position: inherit;
+    margin-top: 0px;
+    columns: 1;
+    text-align: left;
+}
   .headerwithsearch{
     padding-bottom: 25%;
   }

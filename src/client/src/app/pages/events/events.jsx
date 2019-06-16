@@ -122,9 +122,7 @@ class EventPage extends Component {
             
 
             <div className="body">
-                    <header>
-                        <img className="introImage" src="https://images.unsplash.com/photo-1508997449629-303059a039c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80" alt="events" />
-                    </header>
+                   
                          <EventsList parameters={this.state.param} posts={events} onReadMore={this.goToPostDetailPage} />
 
                 </div>               
