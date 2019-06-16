@@ -195,7 +195,7 @@ class HomePage extends Component {
                             </header>
                                 <div className="section__content section__content--articles">
                                     {this.state.searchResponse.map((item, index) =>
-                                        <section className="card" key={index} onClick={() => this.goToPostDetailPage(item.id)}>
+                                        <section className="card" key={index} onClick={(ev) => this.openNewsPost(ev, item)}>
                                             <img className="card-image" src={item.imageurl}/>
                                             <div className="card-detail">
                                                 <h3 className="card-title">{item.title}</h3>
