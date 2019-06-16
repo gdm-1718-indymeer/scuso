@@ -281,15 +281,7 @@ h1::after{
   font-size: 3em;
   line-height: 150%;
 }
-.discover:after {
-  content:"";
-  width: 85px;
-  background: $color_white;
-  height: 2px;
-  position: absolute;
-  top: 58px;
-  left: -16px;
-}
+
 .section--articles{
   width: 100%;
   margin: 0;
