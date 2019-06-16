@@ -678,6 +678,7 @@ h2::after{
 .info{
   background: white;
 }
+
 .newsform{
   width: 100%;
   max-width: 600px;
@@ -718,6 +719,7 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
   }
   .headerimg{
     width: 60px;
+    left: 43%;
   }
   nav ul li a{
     font-size: 1.3em;
@@ -728,8 +730,14 @@ MEDIA QUERIES FOR MOBILE AND TABLET..
   .hamburger{
     font-size: 1.5em;
   }
+  .discover{
+    top: 100px;
+  }
   .menubar{
     height: 60px;
+  }
+  .header p{
+    margin-top: 125px;
   }
   .headerwithsearch{
     padding-top: 0;
