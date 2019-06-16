@@ -71,10 +71,10 @@
   "scripts": {
     "build:clean": "rimraf ./dist/*",
     "build:all": "yarn build:clean && yarn client:build && yarn server:build",
-    "client:build": "cd ./src/client && yarn build && cross-env copy -r ./build ../../dist/client",
+    "client:build": "cd ./src/client && yarn build && cross-env cp -r ./build ../../dist/client",
     "client:start": "cd ./src/client && yarn start",
     "client:test": "cd ./src/client && yarn test",
-    "server:build": "babel ./src/server --out-dir ./dist && copy -r ./src/server/views dist/views && copy -r ./src/server/assets dist/assets",
+    "server:build": "babel ./src/server --out-dir ./dist && cp -r ./src/server/views dist/views && cp -r ./src/server/assets dist/assets",
     "server:lint": "eslint ./src/server",
     "server:start": "cross-env NODE_ENV=Development nodemon ./src/server/index.js --exec babel-node",
     "server:test": "cross-env NODE_ENV=Test NODE_SERVER_PORT=8081 mocha ./src/server/api/v1/tests -name '*.test.js' --require @babel/register --timeout 10000 --recursive --exit",
