@@ -52,24 +52,24 @@ class ConversationList extends Component {
         })
     }
 
-    openConversation = async (event, from, conv) => {
-        console.log(from)
+    openConversation = async (event, contact) => {
+        console.log(contact)
         this.setState({
-            uid: from
+            contact: contact,
         })
     }
 
     render() {
-        if(this.state.uid){
-            return <Chat with={this.state.uid} />
+        if(this.state.contact){
+            return <Chat with={this.state.contact} />
         }else {
             return (
                 <div className={'conversation-list-container'}>
                     <div className={'discover'}/>
                     {this.state.conversations.map((state, index) =>
                         <div className={'thumb-container'} key={index}
-                             onClick={(ev) => this.openConversation(ev, state.to, state)}>
-                            <p className={'thumb-from'}>{(state.to == localStorage.getItem('userId')) ? state.from_name : state.to_name}</p>
+                             onClick={(ev) => this.openConversation(ev, state)}>
+                            <p className={'thumb-from'}>{(state.to === localStorage.getItem('userId')) ? state.from_name : state.to_name}</p>
                             <p className={'thumb-content'}>{state.content}</p>
                         </div>,
                     )}

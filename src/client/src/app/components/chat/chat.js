@@ -11,12 +11,38 @@ class Chat extends Component {
     };
 
     loadMessages() {
-        Api.checkUser(this.props.with).then((res) => {
+        let other = ''
+        if(this.props.with.to === localStorage.getItem('userId')){
+            other = this.props.with.from
+            this.setState({
+                me: {
+                    id: this.props.with.to,
+                    name: this.props.with.to_name
+                },
+                other: {
+                    id: this.props.with.from,
+                    name: this.props.with.from_name
+                }
+            })
+        }else{
+            other = this.props.with.to
+            this.setState({
+                me: {
+                    id: this.props.with.from,
+                    name: this.props.with.from_name
+                },
+                other: {
+                    id: this.props.with.to,
+                    name: this.props.with.to_name
+                }
+            })
+        }
+        Api.checkUser(other).then((res) => {
             console.log('CONVERSATION USER: ' + res.username)
             this.setState({
                 otherPerson: res
             })
-            Api.loadMessages(this.props.with)
+            Api.loadMessages(other)
                 .then((data) => {
                     console.log('RUN')
                     this.setState({
@@ -41,7 +67,9 @@ class Chat extends Component {
         console.log(messageString)
         Api.sendMessage({
             from: localStorage.getItem('userId'),
-            to: this.state.otherPerson.id,
+            from_name: this.state.me.name,
+            to: this.state.other.id,
+            to_name: this.state.other.name,
             content: messageString,
         }).then((resp) => {
             this.loadMessages()
