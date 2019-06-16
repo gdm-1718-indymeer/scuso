@@ -61,6 +61,7 @@ const initializeEndpoints = (parentRouter, authService) => {
      *         description: Get post by id
      */
     parentRouter.get('/events/:id', eventController.show);
+    parentRouter.get('/events/filter/:category', eventController.category);
     /**
      * @swagger
      * /api/v1/blogs:
