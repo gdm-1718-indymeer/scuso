@@ -202,55 +202,7 @@ class HomePage extends Component {
                                             </div>
                                         </section>
                                     )}
-                                    <section className="section section--articles">
-                                        <header className="section__header">
-                                            <h2 className="section__title">Featured Activities</h2>
-                                        </header>
-                                        <div className="wrapper">
-                                            <a href="events?cat=rommelmarkt">
-                                                <article>
-                                                    <img className="image"
-                                                         src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"/>
-                                                    <div className="text">
-                                                        <h3>Rommelmarkt</h3>
-                                                        <p>Zie events in de buurt</p>
-                                                    </div>
-                                                </article>
-                                            </a>
-                                            <a href="events?cat=kickoff">
-                                                <article>
-                                                    <img className="image"
-                                                         src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"/>
-                                                    <div className="text">
-                                                        <h3>Kickoff</h3>
-                                                        <p>Zie events in de buurt</p>
-                                                    </div>
-                                                </article>
-                                            </a>
-                                            <a href="events?cat=openaanbod">
-                                                <article>
-                                                    <img className="image"
-                                                         src="https://images.unsplash.com/photo-1503721827581-14e4c8676769?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"/>
-                                                    <div className="text">
-                                                        <h3>Open aanbod</h3>
-                                                        <p>Zie events in de buurt</p>
-                                                    </div>
-                                                </article>
-                                            </a>
-                                            <a href="events?cat=openlab">
-                                                <article>
-                                                    <img className="image"
-                                                         src="https://images.unsplash.com/photo-1511306162219-1c5a469ab86c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"/>
-                                                    <div className="text">
-                                                        <h3>Open Lab</h3>
-                                                        <p>Zie events in de buurt</p>
-                                                    </div>
-                                                </article>
-                                            </a>
-                                        </div>
-                                    </section>
-
-
+                                    
                                     <PostsList posts={posts} onReadMore={this.goToPostDetailPage}/>
                                 </div>
                             </div>
