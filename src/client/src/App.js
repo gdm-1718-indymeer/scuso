@@ -48,7 +48,6 @@ class App extends Component {
   componentDidMount() {
     let storage = localStorage.getItem('userId');
     if( storage !== null){
-      console.log('ture')
       this.setState({ auth: ['Logout']})
     }else{
       this.setState({ auth: ['login', 'signup']})
